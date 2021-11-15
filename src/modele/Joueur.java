@@ -10,8 +10,8 @@ public class Joueur {
 	
 	
 	private String nom;
-	private int trésor;
-    private Quartier cité[];
+	private int tresor;
+    private Quartier cite[];
     private ArrayList<Quartier> main = new ArrayList<>();
 	private int nbQuartier;
 	private boolean possedeCouronne;
@@ -20,10 +20,10 @@ public class Joueur {
 		// TODO Auto-generated constructor stub
 
 		this.nom = nom;
-		this.trésor = 0;
+		this.tresor = 0;
 		this.nbQuartier = 0;
 		this.possedeCouronne = false;
-		this.cité = new Quartier[8];
+		this.cite = new Quartier[8];
 	    this.main = new ArrayList<Quartier>();
 
 		
@@ -34,17 +34,17 @@ public class Joueur {
 	}
 	
 	public int nbPieces() {
-		return trésor;
+		return tresor;
 	}
 	
 	public int nbQuartiersDansCite() {
-		return cité.length;
+		return cite.length;
 	}
 	
 	public Quartier getCite() {
-		for (int i=0; i < cité.length; i++) {
+		for (int i=0; i < cite.length; i++) {
 			
-			return cité[i];
+			return cite[i];
 		}
 		return null;
 	}
@@ -68,22 +68,22 @@ public class Joueur {
 	}
 	
 	public void ajouterPiece(int nbPieces ) {
-		trésor = trésor + nbPieces;
+		tresor = tresor + nbPieces;
 		
 	}
 	
 	public void retirerPiece(int nbPieces) {
 		
-		if (trésor - nbPieces >= 0) {
+		if (tresor - nbPieces >= 0) {
 			
-			trésor = trésor - nbPieces;
+			tresor = tresor - nbPieces;
 		}
 		
 	}
 	
 	public void ajouterQuartierDansCite(Quartier quartier) {
 		
-		if (cité.length != 0) {
+		if (cite.length != 0) {
 			
 			main.add(quartier);
 		}
@@ -94,9 +94,9 @@ public class Joueur {
 		
 		boolean trouve = false;
 		
-		for (int i=0; i< cité.length; i++) {
+		for (int i=0; i< cite.length; i++) {
 		
-			if (cité[i].equals(nom)) {
+			if (cite[i].equals(nom)) {
 				
 			    trouve = true;
 				
@@ -108,18 +108,18 @@ public class Joueur {
 	
 	public Quartier retirerQuartierDansCite(String nom) {
 		
-		Quartier quartSupprimé = null;
+		Quartier quartSupprime = null;
 		
-		for (int i=0; i< cité.length; i++) {
+		for (int i=0; i< cite.length; i++) {
 			
-			if (cité[i].equals(nom)) {
+			if (cite[i].equals(nom)) {
 				
-				quartSupprimé = cité[i];
-				cité[i] = null;
+				quartSupprime = cite[i];
+				cite[i] = null;
 			
 			}
 		}
-		return quartSupprimé;
+		return quartSupprime;
 		
 	}
 	
@@ -142,9 +142,9 @@ public class Joueur {
 	
 	public void reinitialiser() {
 		
-		trésor = 0;
+		tresor = 0;
 		main.removeAll(main);
-		cité = null;
+		cite = null;
 	}	
 
 }

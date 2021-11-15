@@ -10,7 +10,7 @@ package modele;
  *
  */
 public class Quartier {
-	public static final String[] TYPE_QUARTIERS = {"RELIGIEUX","MILITAIRE","NOBLE","COMERCANT","MERVEILLE"};
+	public static final String[] TYPE_QUARTIERS = {"RELIGIEUX","MILITAIRE","NOBLE","COMMERCANT","MERVEILLE"};
 	private String nom;
 	private String type;
 	private int coutConstruction;
@@ -19,13 +19,14 @@ public class Quartier {
 	
 	
 	public Quartier() {
-		super();
+		this("","",0,"");
 	}
 	
 	public Quartier(String nom, String type, int coutConstruction) {
 		this.setNom(nom);
 		this.setType(type);
 		this.setCout(coutConstruction);
+		this.setCaracteristiques("");
 	}
 
 	public Quartier(String nom, String type, int coutConstruction, String caracteristiques) {
@@ -49,8 +50,10 @@ public class Quartier {
 	
 	public void setType(String type) {
 		for (int i = 0; i < TYPE_QUARTIERS.length; i++) {
-			if(TYPE_QUARTIERS[i].equals(type))
+			if(TYPE_QUARTIERS[i].equals(type)) {
 				this.type = type;
+				return;
+			}
 		}
 		this.type = "";
 	}
@@ -72,6 +75,16 @@ public class Quartier {
 
 	public void setCaracteristiques(String caracteristiques) {
 		this.caracteristiques = caracteristiques;
+	}
+
+	public boolean getEmbelli() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void embellir() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
