@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Pioche
 {
-	private ArrayList <Quartier> listPioche = new ArrayList(); 
+	private ArrayList <Quartier> listPioche = new ArrayList(); /* */
 	public void setlistPioche(ArrayList neuve)
 	{
 		this.listPioche= neuve;
@@ -26,7 +26,7 @@ public class Pioche
 	}
 	public void ajouter(Quartier nouveau)
 	{
-		listPioche.add(nouveau);
+		listPioche.add(0, nouveau);
 	}
 	public int nombreElements()
 	{
