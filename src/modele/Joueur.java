@@ -41,12 +41,8 @@ public class Joueur {
 		return cite.length;
 	}
 	
-	public Quartier getCite() {
-		for (int i=0; i < cite.length; i++) {
-			
-			return cite[i];
-		}
-		return null;
+	public Quartier[] getCite() {
+		return cite;
 	}
 	
 	public ArrayList<Quartier> getMain() {
@@ -68,13 +64,14 @@ public class Joueur {
 	}
 	
 	public void ajouterPiece(int nbPieces ) {
-		tresor = tresor + nbPieces;
-		
+		if(nbPieces >= 0) {
+			tresor = tresor + nbPieces;
+		}
 	}
 	
 	public void retirerPiece(int nbPieces) {
 		
-		if (tresor - nbPieces >= 0) {
+		if (nbPieces <= tresor && nbPieces >= 0) {
 			
 			tresor = tresor - nbPieces;
 		}
@@ -83,7 +80,7 @@ public class Joueur {
 	
 	public void ajouterQuartierDansCite(Quartier quartier) {
 		
-		if (cite.length != 0) {
+		if (cite.length < 8) {
 			
 			main.add(quartier);
 		}
@@ -135,6 +132,7 @@ public class Joueur {
 			
 			Random generateur = new Random();
 			int numeroHasard = generateur.nextInt(this.nbQuartiersDansMain());
+			main.remove(numeroHasard);
 			
 		} else return;
 
@@ -143,8 +141,8 @@ public class Joueur {
 	public void reinitialiser() {
 		
 		tresor = 0;
-		main.removeAll(main);
-		cite = null;
+		main = new ArrayList<Quartier>();
+		cite = new Quartier[8];
 	}	
 
 }
