@@ -21,6 +21,12 @@ public class Quartier {
 	public Quartier() {
 		super();
 	}
+	
+	public Quartier(String nom, String type, int coutConstruction) {
+		this.setNom(nom);
+		this.setType(type);
+		this.setCout(coutConstruction);
+	}
 
 	public Quartier(String nom, String type, int coutConstruction, String caracteristiques) {
 		this.setNom(nom);
