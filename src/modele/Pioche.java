@@ -1,18 +1,19 @@
 import java.util.*;
+
 public class Pioche
 {
-	private LinkedList <Quartier> listPioche = new LinkedList(); /* */
-	public void setlistPioche(LinkedList neuve)
+	private ArrayList <Quartier> listPioche = new ArrayList(); 
+	public void setlistPioche(ArrayList neuve)
 	{
 		this.listPioche= neuve;
 	}
-	public LinkedList getlistPioche()
+	public ArrayList getlistPioche()
 	{
 		return  listPioche;
 	}
 	public Pioche()
 	{
-		 LinkedList <Quartier> listPioche = new LinkedList();
+		 ArrayList <Quartier> listPioche = new ArrayList();
 	}
 	public Quartier Piocher()
 	{
@@ -25,7 +26,7 @@ public class Pioche
 	}
 	public void ajouter(Quartier nouveau)
 	{
-		listPioche.addFirst(nouveau);
+		listPioche.add(nouveau);
 	}
 	public int nombreElements()
 	{
