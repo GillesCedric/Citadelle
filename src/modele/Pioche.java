@@ -1,19 +1,18 @@
 import java.util.*;
-
 public class Pioche
 {
-	private ArrayList <Quartier> listPioche = new ArrayList(); /* */
-	public void setlistPioche(ArrayList neuve)
+	private LinkedList <Quartier> listPioche = new LinkedList(); /* */
+	public void setlistPioche(LinkedList neuve)
 	{
 		this.listPioche= neuve;
 	}
-	public ArrayList getlistPioche()
+	public LinkedList getlistPioche()
 	{
 		return  listPioche;
 	}
 	public Pioche()
 	{
-		 ArrayList <Quartier> listPioche = new ArrayList();
+		 LinkedList <Quartier> listPioche = new LinkedList();
 	}
 	public Quartier Piocher()
 	{
@@ -26,7 +25,7 @@ public class Pioche
 	}
 	public void ajouter(Quartier nouveau)
 	{
-		listPioche.add(0, nouveau);
+		listPioche.addFirst(nouveau);
 	}
 	public int nombreElements()
 	{
@@ -35,6 +34,16 @@ public class Pioche
 	
 	public void melanger() 
 	{
-		 Collections.reverse(listPioche);
+		 Random generateur = new Random();
+		 for (int i = 0; i < listPioche.size(); i++) {
+			int a = generateur.nextInt();
+			int b = generateur.nextInt();
+			 
+			Quartier quartier = listPioche.get(a);
+			listPioche.set(a, listPioche.get(b));
+			listPioche.set(b, quartier);
+			
+		}
+
 	}
 }

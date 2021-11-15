@@ -9,7 +9,7 @@ public class TestRoi {
 
 	public static void main(String[] args) {
 		TestRoi testRoi= new TestRoi();
-		testRoi.test1();
+		//testRoi.test1();
 		//testRoi.test2();	
 		//testRoi.test3();
 		//testRoi.test4();
@@ -18,7 +18,7 @@ public class TestRoi {
 		//testRoi.test7();
 		//testRoi.test8();
 		//testRoi.test9();
-		//testRoi.test10();
+		testRoi.test10();
 	}
 	
 	public void test1(){
@@ -93,6 +93,7 @@ public class TestRoi {
 		roi.construire(quartier3);
 		Test.test(roi.getJoueur().nbQuartiersDansCite() == 3,
 				"test du nombre de quartiers après construction");
+		//System.out.println(roi.getJoueur().nbQuartiersDansCite());
 		Test.test(roi.getJoueur().quartierPresentDansCite("prison"),
 				"test de la présence de la prison dans la cité");
 	}

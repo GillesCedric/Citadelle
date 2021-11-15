@@ -5,7 +5,7 @@ public abstract class Personnage {
 	private int rang;
 	private String caracteristiques;
 	private Joueur joueur;
-	private boolean assasine;
+	private boolean assassine;
 	private boolean vole;
 	private PlateauDeJeu plateauDeJeu;
 	
@@ -20,7 +20,7 @@ public abstract class Personnage {
 		this.rang = rang;
 		this.caracteristiques = caracteristiques;
 		this.joueur = null;
-		this.assasine = false;
+		this.assassine = false;
 		this.vole = false;
 	}
 
@@ -55,14 +55,14 @@ public abstract class Personnage {
 	/**
 	 * @return the assasine
 	 */
-	public boolean isAssasine() {
-		return assasine;
+	public boolean getAssassine() {
+		return assassine;
 	}
 
 	/**
 	 * @return the vole
 	 */
-	public boolean isVole() {
+	public boolean getVole() {
 		return vole;
 	}
 
@@ -83,8 +83,8 @@ public abstract class Personnage {
 	/**
 	 * @return void
 	 */
-	public void setAssasine() {
-		this.assasine = true;
+	public void setAssassine() {
+		this.assassine = true;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public abstract class Personnage {
 	 * @return void
 	 */
 	public void ajouterPieces() {
-		if(this.joueur != null && !this.assasine) {
+		if(this.joueur != null && !this.assassine) {
 			this.joueur.ajouterPiece(2);
 		}
 	}
@@ -107,7 +107,7 @@ public abstract class Personnage {
 	 * @return void
 	 */
 	public void ajouterQuartier(Quartier quartier) {
-		if(this.joueur != null && !this.assasine) {
+		if(this.joueur != null && !this.assassine) {
 			this.joueur.ajouterQuartierDansMain(quartier);
 		}
 	}
@@ -116,7 +116,7 @@ public abstract class Personnage {
 	 * @return void
 	 */
 	public void construire(Quartier quartier) {
-		if(this.joueur != null && !this.assasine) {
+		if(this.joueur != null && !this.assassine) {
 			this.joueur.ajouterQuartierDansCite(quartier);
 		}
 	}
@@ -125,7 +125,7 @@ public abstract class Personnage {
 	 * @return void
 	 */
 	public void percevoirRessourcesSpecifiques() {
-		if(this.joueur != null && !this.assasine) {
+		if(this.joueur != null && !this.assassine) {
 			System.out.println("Aucune ressources spécifiques");
 		}
 	}
@@ -140,7 +140,7 @@ public abstract class Personnage {
 	 */
 	public void reinitialiser() {
 		this.joueur = null;
-		this.assasine = false;
+		this.assassine = false;
 		this.vole = false;
 	}
 	

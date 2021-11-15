@@ -17,6 +17,8 @@ public class Roi extends Personnage {
 	@Override
 	public void utiliserPouvoir() {
 		// TODO Auto-generated method stub
+		if(this.getJoueur() == null)
+			return;
 		System.out.println("Je prends la couronne");
 		this.getJoueur().setPossedeCouronne(true);
 	}
@@ -24,9 +26,11 @@ public class Roi extends Personnage {
 	@Override
 	public void percevoirRessourcesSpecifiques() {
 		// TODO Auto-generated method stub
+		if(this.getJoueur() == null)
+			return;
 		int nbQuartierNoble = 0;
-		for (Quartier quartier : this.getJoueur().getCite()) {
-			if(quartier.getType().equals(Quartier.TYPE_QUARTIERS[2]))
+		for (int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++) {
+			if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[2]))
 				nbQuartierNoble ++;
 		}
 		this.getJoueur().ajouterPiece(nbQuartierNoble);

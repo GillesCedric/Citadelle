@@ -38,7 +38,7 @@ public class Joueur {
 	}
 	
 	public int nbQuartiersDansCite() {
-		return cite.length;
+		return nbQuartier;
 	}
 	
 	public Quartier[] getCite() {
@@ -80,26 +80,24 @@ public class Joueur {
 	
 	public void ajouterQuartierDansCite(Quartier quartier) {
 		
-		if (cite.length < 8) {
-			
-			main.add(quartier);
+		if (nbQuartier < 8) {
+			cite[nbQuartier] = quartier;
+			nbQuartier++;
 		}
 		
 	}
 	
 	public boolean quartierPresentDansCite(String nom) {
 		
-		boolean trouve = false;
+		for (int i=0; i< nbQuartier; i++) {
 		
-		for (int i=0; i< cite.length; i++) {
-		
-			if (cite[i].equals(nom)) {
+			if (cite[i].getNom().equals(nom)) {
 				
-			    trouve = true;
+			    return true;
 				
 			}
 		}
-		return trouve;
+		return false;
 		
 	}
 	
@@ -107,13 +105,13 @@ public class Joueur {
 		
 		Quartier quartSupprime = null;
 		
-		for (int i=0; i< cite.length; i++) {
+		for (int i=0; i< nbQuartier; i++) {
 			
-			if (cite[i].equals(nom)) {
+			if (cite[i].getNom().equals(nom)) {
 				
 				quartSupprime = cite[i];
 				cite[i] = null;
-			
+				nbQuartier--;
 			}
 		}
 		return quartSupprime;
