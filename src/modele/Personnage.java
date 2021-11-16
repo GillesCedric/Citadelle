@@ -126,7 +126,7 @@ public abstract class Personnage {
 	 */
 	public void percevoirRessourcesSpecifiques() {
 		if(this.joueur != null && !this.assassine) {
-			System.out.println("Aucune ressources spécifiques");
+			System.out.println("Aucune ressources spÃ©cifiques");
 		}
 	}
 	
@@ -144,4 +144,11 @@ public abstract class Personnage {
 		this.vole = false;
 	}
 	
+	public PlateauDeJeu getPlateau() {
+        return plateau;
+   	}
+
+    	public void setPlateau(PlateauDeJeu plateau) {
+        this.plateau = plateau;
+    	}
 }
