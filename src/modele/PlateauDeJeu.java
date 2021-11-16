@@ -18,7 +18,7 @@ public class PlateauDeJeu {
     public PlateauDeJeu() {
         listePersonnages= new Personnage[9];
         listeJoueurs= new Joueur[9];
-        Pioche p= new Pioche();
+        pioche= new Pioche();
         nombrePersonnages=0;
         nombreJoueurs=0;
     }
