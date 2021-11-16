@@ -32,14 +32,14 @@ public class PlateauDeJeu {
     }    
 	
     public Personnage getPersonnage(int i) {
-        if(i <= listePersonnages.length && i>=0) {
+        if(i < listePersonnages.length && i>=0) {
             return listePersonnages[i];
         }else
             return null;
     }
 
     public Joueur getJoueur(int i) {
-        if(i <= listeJoueurs.length && i>=0) {
+        if(i < listeJoueurs.length && i>=0) {
             return listeJoueurs[i];
         }else
             return null;
@@ -58,7 +58,7 @@ public class PlateauDeJeu {
     }
     
     public void ajouterPersonnage(Personnage p){
-        for(int i=0; i <= listePersonnages.length ;i++){
+        for(int i=0; i < listePersonnages.length ;i++){
         if(listePersonnages[i] != null){
             listePersonnages[i] = p;
         }
@@ -70,7 +70,7 @@ public class PlateauDeJeu {
     }
     
     public void ajouterJoueur(Joueur j){
-        for(int i=0; i <= listeJoueurs.length ;i++){
+        for(int i=0; i < listeJoueurs.length ;i++){
         if(listeJoueurs[i] != null){
             listeJoueurs[i] = j;
         }
