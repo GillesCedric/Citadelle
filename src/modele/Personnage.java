@@ -145,10 +145,10 @@ public abstract class Personnage {
 	}
 	
 	public PlateauDeJeu getPlateau() {
-        return plateau;
+        return plateauDeJeu;
    	}
 
     	public void setPlateau(PlateauDeJeu plateau) {
-        this.plateau = plateau;
+        this.plateauDeJeu = plateauDeJeu;
     	}
 }
