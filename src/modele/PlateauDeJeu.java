@@ -1,70 +1,82 @@
 package modele;
-import java.util.*;
+package com.mycompany.citadelle;
 
-/*
- * @author Razi Askri
- * @edit 15/11/2021
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Badugue Bonnet Igor-M
  */
-
-//notfinished- work in progress
-
 public class PlateauDeJeu {
-	
-	
-	private Personnage listePersonnages[];
-	private Joueur listeJoueurs[];
-	private Pioche pioche;
-	private int nombrePersonnages;
-	private int nombreJoueurs;
-	
-	
-	public PlateauDeJeu() {
-		
-		this.listeJoueurs = new Joueur[9];
-		this.listePersonnages = new Personnage[9];
-		this.nombrePersonnages = 0;
-		this.nombreJoueurs = 0;
-		Pioche p;
-		
-	}
-	
-	public int getNombrePersonnages() {
-		
-		return nombrePersonnages;
-	}
-	
-	public int getNombreJoueurs() {
-		
-		return nombreJoueurs;
-	}
-	
-	public Pioche getPioche() {
-		
-		return pioche;
-	}
-	
-	public Personnage getPersonnage(int i) {
-		
-		Personnage p1 = null;
-		
-		for (int j=0; j< listePersonnages.length; j++) {
-			
-			if (j == i) {
-				
-				 p1 = listePersonnages[j];
-			}
-		}
-		return p1;						
-	}
-	
-	
-	
-	
-	
+    private Personnage[] listePersonnages;
+    private Joueur[] listeJoueurs;
+    private Pioche pioche;
+    private int nombrePersonnages;
+    private int nombreJoueurs;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+    public PlateauDeJeu() {
+        listePersonnages= new Personnage[9];
+        listeJoueurs= new Joueur[9];
+        Pioche p= new Pioche();
+        nombrePersonnages=0;
+        nombreJoueurs=0;
+    }
+    
+    public PlateauDeJeu(Personnage[] listePersonnages, Joueur[] listeJoueurs, Pioche pioche, int nombrePersonnages, int nombreJoueurs) {
+        this.listePersonnages = listePersonnages;
+        this.listeJoueurs = listeJoueurs;
+        this.pioche = pioche;
+        this.nombrePersonnages = nombrePersonnages;
+        this.nombreJoueurs = nombreJoueurs;
+    }    
+	
+    public Personnage getPersonnage(int i) {
+        if(i <= listePersonnages.length && i>=0) {
+            return listePersonnages[i];
+        }else
+            return null;
+    }
 
-	}
+    public Joueur getJoueur(int i) {
+        if(i <= listeJoueurs.length && i>=0) {
+            return listeJoueurs[i];
+        }else
+            return null;
+    }
 
+    public Pioche getPioche() {
+        return pioche;
+    }
+
+    public int getNombrePersonnages() {
+        return nombrePersonnages;
+    }
+
+    public int getNombreJoueurs() {
+        return nombreJoueurs;
+    }
+    
+    public void ajouterPersonnage(Personnage p){
+        for(int i=0; i <= listePersonnages.length ;i++){
+        if(listePersonnages[i] != null){
+            listePersonnages[i] = p;
+        }
+        else
+            System.out.println("liste de Personnage aux complet");
+    }   
+        PlateauDeJeu pl= new PlateauDeJeu(listePersonnages,listeJoueurs,pioche,nombrePersonnages,nombreJoueurs);
+        p.setPlateau(pl);
+    }
+    
+    public void ajouterJoueur(Joueur j){
+        for(int i=0; i <= listeJoueurs.length ;i++){
+        if(listeJoueurs[i] != null){
+            listeJoueurs[i] = j;
+        }
+        else
+            System.out.println("liste de joueuers aux complet");
+    }
+    }
+ 
 }
