@@ -1,5 +1,4 @@
 package modele;
-package com.mycompany.citadelle;
 
 import java.util.ArrayList;
 import java.util.List;
