@@ -33,7 +33,7 @@ public class Roi extends Personnage {
 			if(this.getJoueur().getCite()[i].getType().equals(Quartier.TYPE_QUARTIERS[2]))
 				nbQuartierNoble ++;
 		}
-		this.getJoueur().ajouterPiece(nbQuartierNoble);
+		this.getJoueur().ajouterPieces(nbQuartierNoble);
 	}
 	
 	

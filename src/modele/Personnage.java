@@ -99,7 +99,7 @@ public abstract class Personnage {
 	 */
 	public void ajouterPieces() {
 		if(this.joueur != null && !this.assassine) {
-			this.joueur.ajouterPiece(2);
+			this.joueur.ajouterPieces(2);
 		}
 	}
 	
