@@ -1,48 +1,48 @@
-import java.util.*;
-public class Pioche
-{
-	private LinkedList <Quartier> listPioche = new LinkedList(); /* */
-	public void setlistPioche(LinkedList neuve)
-	{
-		this.listPioche= neuve;
+package modele;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Pioche {
+	private ArrayList<Quartier> listPioche;
+
+	public void setlistPioche(ArrayList<Quartier> neuve) {
+		this.listPioche = neuve;
 	}
-	public LinkedList getlistPioche()
-	{
-		return  listPioche;
+
+	public ArrayList<Quartier> getlistPioche() {
+		return listPioche;
 	}
-	public Pioche()
-	{
-		 LinkedList <Quartier> listPioche = new LinkedList();
+
+	public Pioche() {
+		listPioche = new ArrayList<Quartier>();
 	}
-	public Quartier Piocher()
-	{
-		if(listPioche.size()>1)
-		{
-			return listPioche.get(((listPioche.size())-1));  /*Retourne le dernier élément de la liste */
-		}
-		else
+
+	public Quartier piocher() {
+		if (listPioche.size() >= 1) {
+			return listPioche.remove(((listPioche.size()) - 1)); /* Retourne le dernier élément de la liste */
+		} else
 			return null;
 	}
-	public void ajouter(Quartier nouveau)
-	{
-		listPioche.addFirst(nouveau);
+
+	public void ajouter(Quartier nouveau) {
+		listPioche.add(0, nouveau);
 	}
-	public int nombreElements()
-	{
+
+	public int nombreElements() {
 		return listPioche.size();
 	}
-	
-	public void melanger() 
-	{
-		 Random generateur = new Random();
-		 for (int i = 0; i < listPioche.size(); i++) {
-			int a = generateur.nextInt();
-			int b = generateur.nextInt();
-			 
+
+	public void melanger() {
+		Random generateur = new Random();
+		for (int i = 1; i < 100; i++) {
+			int a = generateur.nextInt(listPioche.size()-1);
+			int b = generateur.nextInt(listPioche.size()-1);
+
 			Quartier quartier = listPioche.get(a);
 			listPioche.set(a, listPioche.get(b));
 			listPioche.set(b, quartier);
-			
+
 		}
 
 	}

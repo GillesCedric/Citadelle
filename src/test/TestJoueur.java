@@ -8,9 +8,9 @@ public class TestJoueur {
 		TestJoueur testJoueur = new TestJoueur();
 		//testJoueur.test1();
 		//testJoueur.test2();	
-		testJoueur.test3();
+		//testJoueur.test3();
 		//testJoueur.test4();
-		//testJoueur.test5();	
+		testJoueur.test5();	
 	}	
 	
 	public void test1(){
@@ -88,6 +88,6 @@ public class TestJoueur {
 		joueur.ajouterPieces(2);
 		joueur.reinitialiser();
 		Test.test(joueur.nbQuartiersDansMain()==0 && joueur.nbQuartiersDansCite()==0
-				&& joueur.nbPieces()==0,"test de la réinitialisation");		
+				&& joueur.nbPieces()==0,"test de la réinitialisation");
 	}
 }

@@ -79,9 +79,9 @@ public class Joueur {
 	
 	public void ajouterQuartierDansCite(Quartier quartier) {
 		
-		if (cite.length != 0) {
-			
-			main.add(quartier);
+		if (nbQuartier < 8) {
+			this.cite[nbQuartier] = quartier;
+			nbQuartier++;
 		}
 		
 	}
@@ -89,7 +89,7 @@ public class Joueur {
 	public boolean quartierPresentDansCite(String nom) {
 		for (int i=0; i< nbQuartier - 1; i++) {
 			
-			if (cite[i].equals(nom)) {
+			if (cite[i].getNom().equals(nom)) {
 				
 			    return true;
 				
@@ -135,9 +135,10 @@ public class Joueur {
 	
 	public void reinitialiser() {
 		
-		tresor = 0;
-		main.removeAll(main);
-		cite = null;
+		this.tresor = 0;
+		this.cite = new Quartier[8];
+	    this.main = new ArrayList<Quartier>();
+	    this.nbQuartier = 0;
 	}	
 
 }

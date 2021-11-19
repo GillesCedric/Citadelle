@@ -34,8 +34,7 @@ public class Roi extends Personnage {
 				nbQuartierNoble ++;
 		}
 		this.getJoueur().ajouterPieces(nbQuartierNoble);
+		System.out.println("Grâce à vos quatier nobles dans votre cité, vous gagnez "+nbQuartierNoble+" de pièces en plus");
 	}
-	
-	
 
 }

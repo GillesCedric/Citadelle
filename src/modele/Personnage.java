@@ -8,7 +8,7 @@ public abstract class Personnage {
 	private boolean assassine;
 	private boolean vole;
 	private PlateauDeJeu plateauDeJeu;
-	
+
 	/**
 	 * @param nom
 	 * @param rang
@@ -93,48 +93,48 @@ public abstract class Personnage {
 	public void setVole() {
 		this.vole = true;
 	}
-	
+
 	/**
 	 * @return void
 	 */
 	public void ajouterPieces() {
-		if(this.joueur != null && !this.assassine) {
+		if (this.joueur != null && !this.assassine) {
 			this.joueur.ajouterPieces(2);
 		}
 	}
-	
+
 	/**
 	 * @return void
 	 */
 	public void ajouterQuartier(Quartier quartier) {
-		if(this.joueur != null && !this.assassine) {
+		if (this.joueur != null && !this.assassine) {
 			this.joueur.ajouterQuartierDansMain(quartier);
 		}
 	}
-	
+
 	/**
 	 * @return void
 	 */
 	public void construire(Quartier quartier) {
-		if(this.joueur != null && !this.assassine) {
+		if (this.joueur != null && !this.assassine) {
 			this.joueur.ajouterQuartierDansCite(quartier);
 		}
 	}
-	
+
 	/**
 	 * @return void
 	 */
 	public void percevoirRessourcesSpecifiques() {
-		if(this.joueur != null && !this.assassine) {
+		if (this.joueur != null && !this.assassine) {
 			System.out.println("Aucune ressources spécifiques");
 		}
 	}
-	
+
 	/**
 	 * @return void
 	 */
 	public abstract void utiliserPouvoir();
-	
+
 	/**
 	 * @return void
 	 */
@@ -143,12 +143,12 @@ public abstract class Personnage {
 		this.assassine = false;
 		this.vole = false;
 	}
-	
-	public PlateauDeJeu getPlateau() {
-        return plateauDeJeu;
-   	}
 
-    	public void setPlateau(PlateauDeJeu plateau) {
-        this.plateauDeJeu = plateauDeJeu;
-    	}
+	public PlateauDeJeu getPlateau() {
+		return plateauDeJeu;
+	}
+
+	public void setPlateau(PlateauDeJeu plateau) {
+		this.plateauDeJeu = plateau;
+	}
 }

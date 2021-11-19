@@ -93,7 +93,6 @@ public class TestRoi {
 		roi.construire(quartier3);
 		Test.test(roi.getJoueur().nbQuartiersDansCite() == 3,
 				"test du nombre de quartiers après construction");
-		//System.out.println(roi.getJoueur().nbQuartiersDansCite());
 		Test.test(roi.getJoueur().quartierPresentDansCite("prison"),
 				"test de la présence de la prison dans la cité");
 	}
