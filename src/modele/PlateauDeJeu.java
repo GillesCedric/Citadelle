@@ -3,6 +3,7 @@ package modele;
 /**
  *
  * @author Badugue Bonnet Igor-M
+ * @since 13/11/2021
  */
 public class PlateauDeJeu {
 	private Personnage[] listePersonnages;
