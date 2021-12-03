@@ -1,3 +1,4 @@
+
 public class Marchande extends Personnage
 {
 	public Marchande(String nom, int rang, String caracteristiques)
@@ -11,7 +12,7 @@ public class Marchande extends Personnage
 		for(i=0; i< getJoueur().nbQuartiersDansCite()-1;i++)
 		{
 			
-			if(cit[i].getType()=="COMMERCANT")
+			if(cit[i].getType().equals("COMMERCANT"))
 			{
 				getJoueur().ajouterPieces(1);
 			}
