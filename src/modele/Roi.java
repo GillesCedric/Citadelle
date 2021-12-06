@@ -6,11 +6,12 @@ package modele;
 /**
  * @author Gilles Cédric
  * @since 15/11/2021
+ * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
  */
 public class Roi extends Personnage {
 
 	public Roi() {
-		super("Roi", 4, Caracteristiques.ROI);
+		super(Nom.ROI, Rang.ROI, Caracteristiques.ROI);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,7 +27,7 @@ public class Roi extends Personnage {
 	@Override
 	public void percevoirRessourcesSpecifiques() {
 		// TODO Auto-generated method stub
-		if(this.getJoueur() == null)
+		if(this.getJoueur() == null || this.getAssassine())
 			return;
 		int nbQuartierNoble = 0;
 		for (int i = 0; i < this.getJoueur().nbQuartiersDansCite(); i++) {

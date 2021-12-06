@@ -1,5 +1,12 @@
 package modele;
 
+
+/**
+ * @author Gilles CÈdric
+ * @since 12/11/2021
+ * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
+ *
+ */
 public abstract class Personnage {
 	private String nom;
 	private int rang;
@@ -67,17 +74,11 @@ public abstract class Personnage {
 	}
 
 	/**
-	 * @return the plateauDeJeu
-	 */
-	public PlateauDeJeu getPlateauDeJeu() {
-		return plateauDeJeu;
-	}
-
-	/**
 	 * @param joueur the joueur to set
 	 */
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
+		this.joueur.monPersonnage = this;
 	}
 
 	/**
@@ -125,7 +126,7 @@ public abstract class Personnage {
 	 * @return void
 	 */
 	public void percevoirRessourcesSpecifiques() {
-		if (this.joueur != null && !this.assassine) {
+		if (this.joueur == null || this.assassine) {
 			System.out.println("Aucune ressources sp√©cifiques");
 		}
 	}
@@ -142,12 +143,19 @@ public abstract class Personnage {
 		this.joueur = null;
 		this.assassine = false;
 		this.vole = false;
+		this.joueur.monPersonnage = null;
 	}
 
+	/**
+	 * @return void
+	 */
 	public PlateauDeJeu getPlateau() {
 		return plateauDeJeu;
 	}
 
+	/**
+	 * @return void
+	 */
 	public void setPlateau(PlateauDeJeu plateau) {
 		this.plateauDeJeu = plateau;
 	}

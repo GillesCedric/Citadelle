@@ -1,6 +1,12 @@
 package modele;
 import java.util.*;
 
+/**
+ * @author Gilles Cédric
+ * @since 12/11/2021
+ * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
+ *
+ */
 public class Joueur {
 	
 	
@@ -10,24 +16,34 @@ public class Joueur {
     private ArrayList<Quartier> main = new ArrayList<>();
 	private int nbQuartier;
 	private boolean possedeCouronne;
+	protected Personnage monPersonnage;
 
+	/**
+	 * @param nom
+	 */
 	public Joueur(String nom) {
 		// TODO Auto-generated constructor stub
-
 		this.nom = nom;
 		this.tresor = 0;
 		this.nbQuartier = 0;
 		this.possedeCouronne = false;
 		this.cite = new Quartier[8];
 	    this.main = new ArrayList<Quartier>();
-
-		
+	    this.monPersonnage = null;
+	    
 	}
 	
 	public String getNom() {
 		return nom;
 	}
 	
+	/**
+	 * @return the monPersonnage
+	 */
+	public Personnage getPersonnage() {
+		return monPersonnage;
+	}
+
 	public int nbPieces() {
 		return tresor;
 	}
@@ -134,7 +150,6 @@ public class Joueur {
 	}
 	
 	public void reinitialiser() {
-		
 		this.tresor = 0;
 		this.cite = new Quartier[8];
 	    this.main = new ArrayList<Quartier>();
