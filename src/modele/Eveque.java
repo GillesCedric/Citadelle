@@ -1,3 +1,5 @@
+package modele;
+
 
 public class Eveque extends Personnage
 {
@@ -8,7 +10,7 @@ public class Eveque extends Personnage
 	public void percevoirRessourcesSpecifiques()
 	{
 		int i;
-		Quartie cit[]= getJoueur().getCite();
+		Quartier cit[]= getJoueur().getCite();
 		for(i=0; i< getJoueur().nbQuartiersDansCite()-1;i++)
 		{
 			
@@ -22,7 +24,7 @@ public class Eveque extends Personnage
 	{
 		if(getRang()<8)
 		{
-			System.out.println("Rang 8 minimum exigÃ©");
+			System.out.println("Rang 8 minimum exigé");
 		}
 	}
 }

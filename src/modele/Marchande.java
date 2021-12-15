@@ -1,3 +1,5 @@
+package modele;
+
 
 public class Marchande extends Personnage
 {
@@ -8,7 +10,7 @@ public class Marchande extends Personnage
 	public void percevoirRessourcesSpecifiques()
 	{
 		int i;
-		Quartie cit[]= getJoueur().getCite();
+		Quartier cit[]= getJoueur().getCite();
 		for(i=0; i< getJoueur().nbQuartiersDansCite()-1;i++)
 		{
 			
