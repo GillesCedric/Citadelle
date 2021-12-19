@@ -20,6 +20,13 @@ public class PlateauDeJeu {
 		nombreJoueurs = 0;
 	}
 
+	/**
+	 * @param pioche the pioche to set
+	 */
+	public void setPioche(Pioche pioche) {
+		this.pioche = pioche;
+	}
+
 	public Personnage getPersonnage(int i) {
 		if (i < listePersonnages.length && i >= 0) {
 			return listePersonnages[i];
