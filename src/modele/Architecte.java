@@ -2,6 +2,9 @@ package modele;
 
 public class Architecte extends Personnage {
 	
+
+	Pioche P = new Pioche();
+	
 	public Architecte(String nom, int rang, String caracteristiques) {
 		super(nom, rang, caracteristiques);
 		// TODO Auto-generated constructor stub
@@ -9,8 +12,22 @@ public class Architecte extends Personnage {
 
 	
 	public void utiliserPouvoir() {
-		//il reste a ajouter la fonction des cartes quartiers 
-		//dans la classe personnage		
+			
+		if (P.nombreElements() >= 2) {
+			
+			for (int i=0; i<2; i++ ) {
+				
+				 P.piocher();
+				}
+			System.out.println("\nvous avez pioché 2 cartes quartier supplémentaires !");
+
+		} else {
+			System.out.println("\nnombre de cartes quartier dans la pioche insuffisant");
+
+		}
+
+		
+		
 	}
 
 }
