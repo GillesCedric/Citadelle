@@ -34,6 +34,7 @@ public class Configuration {
 				pioche.ajouter(q);
 			}
 		}
+		pioche.melanger();
 		return pioche;
 	}
 	
