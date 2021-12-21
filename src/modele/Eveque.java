@@ -3,9 +3,9 @@ package modele;
 
 public class Eveque extends Personnage
 {
-	public Eveque(String nom, int rang, String caracteristiques)
+	public Eveque()
 	{
-		super( nom, rang, caracteristiques);
+		super( Nom.EVEQUE, Rang.EVEQUE, Caracteristiques.EVEQUE);
 	}
 	public void percevoirRessourcesSpecifiques()
 	{
