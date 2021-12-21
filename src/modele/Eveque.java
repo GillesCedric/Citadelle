@@ -22,9 +22,5 @@ public class Eveque extends Personnage
 	}
 	public void utiliserPouvoir()
 	{
-		if(getRang()<8)
-		{
-			System.out.println("Rang 8 minimum exigé");
-		}
 	}
 }
