@@ -23,6 +23,8 @@ public class Interaction {
 				continu = false;
 			} catch (InputMismatchException e) {
 				System.out.print("Veuillez rentrer un chiffre : ");
+			} finally {
+				sc.nextLine();
 			}
 		} while(continu);
 		return i;
@@ -41,6 +43,8 @@ public class Interaction {
 				continu = false;
 			} catch (InputMismatchException e) {
 				System.out.print("Veuillez rentrer un chiffre entre : "+borneMin+" et "+(borneMax-1)+" ");
+			} finally {
+				sc.nextLine();
 			}
 		} while(continu);	
 		return i;

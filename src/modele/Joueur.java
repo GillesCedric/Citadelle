@@ -17,6 +17,7 @@ public class Joueur {
 	private int nbQuartier;
 	private boolean possedeCouronne;
 	protected Personnage monPersonnage;
+	private boolean simule;
 
 	/**
 	 * @param nom
@@ -30,6 +31,7 @@ public class Joueur {
 		this.cite = new Quartier[8];
 	    this.main = new ArrayList<Quartier>();
 	    this.monPersonnage = null;
+	    this.simule = false;
 	    
 	}
 	
@@ -67,6 +69,20 @@ public class Joueur {
 
 	}
 	
+	/**
+	 * @return the simule
+	 */
+	public boolean isSimule() {
+		return simule;
+	}
+
+	/**
+	 * @param simule the simule to set
+	 */
+	public void setSimule(boolean simule) {
+		this.simule = simule;
+	}
+
 	public Boolean getPossedeCouronne() {
 		return possedeCouronne;
 	}

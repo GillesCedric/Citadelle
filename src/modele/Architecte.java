@@ -5,8 +5,8 @@ public class Architecte extends Personnage {
 
 	Pioche P = new Pioche();
 	
-	public Architecte(String nom, int rang, String caracteristiques) {
-		super(nom, rang, caracteristiques);
+	public Architecte() {
+		super(Nom.ARCHITECTE, Rang.ARCHITECTE, Caracteristiques.ARCHITECTE);
 		// TODO Auto-generated constructor stub
 	}
 
