@@ -18,6 +18,8 @@ public class Joueur {
 	private boolean possedeCouronne;
 	protected Personnage monPersonnage;
 	private boolean simule;
+	private boolean premier;
+	private boolean rangPlusEleve;
 
 	/**
 	 * @param nom
@@ -32,6 +34,8 @@ public class Joueur {
 	    this.main = new ArrayList<Quartier>();
 	    this.monPersonnage = null;
 	    this.simule = false;
+	    this.premier = false;
+	    this.rangPlusEleve = false;
 	    
 	}
 	
@@ -70,6 +74,20 @@ public class Joueur {
 	}
 	
 	/**
+	 * @return the rangPlusEleve
+	 */
+	public boolean isRangPlusEleve() {
+		return rangPlusEleve;
+	}
+
+	/**
+	 * @param rangPlusEleve the rangPlusEleve to set
+	 */
+	public void setRangPlusEleve() {
+		this.rangPlusEleve = true;
+	}
+
+	/**
 	 * @return the simule
 	 */
 	public boolean isSimule() {
@@ -81,6 +99,20 @@ public class Joueur {
 	 */
 	public void setSimule(boolean simule) {
 		this.simule = simule;
+	}
+
+	/**
+	 * @return the premier
+	 */
+	public boolean isPremier() {
+		return premier;
+	}
+
+	/**
+	 * @param premier the premier to set
+	 */
+	public void setPremier(boolean premier) {
+		this.premier = premier;
 	}
 
 	public Boolean getPossedeCouronne() {

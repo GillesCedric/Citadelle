@@ -13,4 +13,10 @@ public class Assassin extends Personnage {
 		
 	}
 
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

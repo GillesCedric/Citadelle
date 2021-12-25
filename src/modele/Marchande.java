@@ -24,4 +24,9 @@ public class Marchande extends Personnage
 	{
 		getJoueur().ajouterPieces(1);
 	}
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

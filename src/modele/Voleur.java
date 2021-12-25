@@ -25,4 +25,18 @@ public class Voleur extends Personnage {
 
 	}
 
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void percevoirRessourcesSpecifiques() {
+		// TODO Auto-generated method stub
+		super.percevoirRessourcesSpecifiques();
+	}
+	
+	
+
 }

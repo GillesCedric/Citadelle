@@ -16,4 +16,10 @@ public class Condottiere extends Personnage {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

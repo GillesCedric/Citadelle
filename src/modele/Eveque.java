@@ -23,4 +23,9 @@ public class Eveque extends Personnage
 	public void utiliserPouvoir()
 	{
 	}
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

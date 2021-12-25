@@ -135,15 +135,20 @@ public abstract class Personnage {
 	 * @return void
 	 */
 	public abstract void utiliserPouvoir();
+	
+	/**
+	 * @return void
+	 */
+	public abstract void utiliserPouvoirAvatar();
 
 	/**
 	 * @return void
 	 */
 	public void reinitialiser() {
+		this.joueur.monPersonnage = null;
 		this.joueur = null;
 		this.assassine = false;
 		this.vole = false;
-		this.joueur.monPersonnage = null;
 	}
 
 	/**

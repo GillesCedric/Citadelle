@@ -38,4 +38,10 @@ public class Roi extends Personnage {
 		System.out.println("Grâce à vos quatier nobles dans votre cité, vous gagnez "+nbQuartierNoble+" de pièces en plus");
 	}
 
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
