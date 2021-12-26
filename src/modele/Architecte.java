@@ -22,7 +22,7 @@ public class Architecte extends Personnage {
 			System.out.println("\nvous avez pioché 2 cartes quartier supplémentaires !");
 
 		} else {
-			System.out.println("\nnombre de cartes quartier dans la pioche insuffisant");
+			System.out.println("\nnombre de cartes quartier dans la pioche insuffisant !");
 
 		}
 
