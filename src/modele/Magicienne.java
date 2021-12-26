@@ -21,13 +21,15 @@ public class Magicienne extends Personnage {
 	public void utiliserPouvoir() {
 		ArrayList<Quartier> copieMainMagicienne = null;
 		ArrayList<Quartier> copieMainJoueur = null;
-		System.out.print("Voulez échanger vos cartes avec celle d'un autre joueur ? (oui/non) ");
+		System.out.println("Voulez échanger vos cartes avec celle d'un autre joueur ? (oui/non) ");
 		if (Interaction.lireOuiOuNon()) {
 			for (int i = 0; i < this.getPlateau().getNombreJoueurs(); i++) {
-				System.out.println((i + 1) + " : Le joueur " + this.getPlateau().getJoueur(i).getNom() + " possède "
-						+ this.getPlateau().getJoueur(i).nbQuartiersDansMain() + " cartes dans sa main");
+				if(!this.getPlateau().getJoueur(i).monPersonnage.getNom().equals(this.getNom())) {
+					System.out.println((i + 1) + " : Le joueur " + this.getPlateau().getJoueur(i).getNom() + " possède "
+							+ this.getPlateau().getJoueur(i).nbQuartiersDansMain() + " cartes dans sa main");
+				}
 			}
-			System.out.print("Veuillez choisir un joueur en entrant son numéro ");
+			System.out.println("Veuillez choisir un joueur en entrant son numéro ");
 			int joueur = Interaction.lireUnEntier(1, this.getPlateau().getNombreJoueurs()+1);
 			copieMainMagicienne = new ArrayList<Quartier>(this.getJoueur().getMain());
 			copieMainJoueur = new ArrayList<Quartier>(
@@ -50,7 +52,7 @@ public class Magicienne extends Personnage {
 			if (this.getJoueur().nbQuartiersDansMain() == 0) {
 				return;
 			} else {
-				System.out.print("Combien de cartes voulez-vous prendre dans la pioche ? ");
+				System.out.println("Combien de cartes voulez-vous prendre dans la pioche ? ");
 				int nb = Interaction.lireUnEntier(0, this.getJoueur().nbQuartiersDansMain() + 1);
 				if (nb == 0) {
 					return;
@@ -72,7 +74,7 @@ public class Magicienne extends Personnage {
 								+ copieMainMagicienne.get(i).getCout());
 					}
 					for (int i = 0; i < nb; i++) {
-						System.out.print("Quel est le numéro de la carte que vous voulez retirer ? ");
+						System.out.println("Quel est le numéro de la carte que vous voulez retirer ? ");
 						int carte = Interaction.lireUnEntier(1, copieMainMagicienne.size() + 1);
 						this.getPlateau().getPioche().ajouter(copieMainMagicienne.remove(carte-1));
 					}
@@ -91,6 +93,12 @@ public class Magicienne extends Personnage {
 			}
 		}
 
+	}
+
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

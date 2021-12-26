@@ -6,7 +6,9 @@ package application;
 import java.util.Random;
 
 import controlleur.Interaction;
+import modele.Architecte;
 import modele.Assassin;
+import modele.Condottiere;
 import modele.Eveque;
 import modele.Joueur;
 import modele.JoueurIA;
@@ -19,6 +21,7 @@ import modele.Pioche;
 import modele.PlateauDeJeu;
 import modele.Quartier;
 import modele.Roi;
+import modele.Voleur;
 
 /**
  * @author Gilles Cédric
@@ -34,6 +37,7 @@ public class Configuration {
 				pioche.ajouter(q);
 			}
 		}
+		pioche.melanger();
 		return pioche;
 	}
 	
@@ -65,10 +69,14 @@ public class Configuration {
 		String nom = Interaction.lireUneChaine();
 		joueur = new Joueur(nom);
 		plateauDeJeu.ajouterJoueur(joueur);
-		
+		String IALastName = "";
 		for (int i = 0; i < 3; i++) {
-			joueur = new Joueur(JoueurIA.values()[generateur.nextInt(JoueurIA.values().length)].getNom());
+			do {
+				joueur = new Joueur(JoueurIA.values()[generateur.nextInt(JoueurIA.values().length)].getNom());
+			}while(joueur.getNom().equals(IALastName));
+			joueur.setSimule(true);
 			plateauDeJeu.ajouterJoueur(joueur);
+			IALastName = joueur.getNom();
 		}
 		
 		quartier = new Quartier(ListeMerveille.BIBLIOTHEQUE.getNom(),ListeMerveille.BIBLIOTHEQUE.getType(),ListeMerveille.BIBLIOTHEQUE.getCoutConstruction(),ListeMerveille.BIBLIOTHEQUE.getCaracteristique());
