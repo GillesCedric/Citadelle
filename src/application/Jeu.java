@@ -253,7 +253,11 @@ public class Jeu {
 								}
 								if(manufacture)
 								{
-									personnages.get(personnage).getJoueur().getMain().get(carte - 1).getCout()--;
+										for (ListeMerveille merveille : ListeMerveille.values()) 
+										{
+											if(personnages.get(personnage).getJoueur().getMain().get(carte - 1).getNom().equals(merveille.getNom()))
+												personnages.get(personnage).getJoueur().getMain().get(carte - 1).getCout()--;
+										}
 								}
 								//Fin de l'effet de la merveille Manufacture
 								
