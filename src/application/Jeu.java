@@ -371,7 +371,7 @@ public class Jeu {
 			}
 			boolean fontaine = false;
 			for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) {
-				if(this.plateauDeJeu.getJoueur(j).getCite()[i].getNom().equals(ListeMerveille.FONTAINE_AUX_SOUHAITS))
+				if(this.plateauDeJeu.getJoueur(j).getCite()[i].getNom().equals(ListeMerveille.FONTAINE_AUX_SOUHAITS.getNom()))
 					fontaine = true;
 			}
 			// la somme des différents bonus des merveilles de sa cité
