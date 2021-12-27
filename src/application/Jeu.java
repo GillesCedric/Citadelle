@@ -84,21 +84,27 @@ public class Jeu {
 	}
 	
 	private void initialisation() {
+		//ici on initialise le plateau avec la configuration de base du projet
 		this.plateauDeJeu = Configuration.configurationDeBase(Configuration.nouvellePioche());
+		//on ajoute deux pièces à tous les joueurs
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			this.plateauDeJeu.getJoueur(i).ajouterPieces(2);
 			for (int j = 0; j < 4; j++) {
+				//on ajoute à la main de chaque joueur un quatier qu'il a pioché dans la pioche
 				this.plateauDeJeu.getJoueur(i).ajouterQuartierDansMain(this.plateauDeJeu.getPioche().piocher());
 			}
 		}
+		//ici on attribue la couronne à un jooueur aléatoire
 		this.plateauDeJeu.getJoueur(this.generateur.nextInt(this.plateauDeJeu.getNombreJoueurs())).setPossedeCouronne(true);
 	}
 	
 	private void gestionCouronne() {
+		//on détermine le joueur qui possède la couronne et on lui enlève la couronne
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			if(this.plateauDeJeu.getJoueur(i).getPossedeCouronne())
 				this.plateauDeJeu.getJoueur(i).setPossedeCouronne(false);
 		}
+		//on attribue la couronne au joueur qui possède le peesonnage Roi
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			if(this.plateauDeJeu.getJoueur(i).getPersonnage().getNom().equals(Nom.ROI)) {
 				System.out.println(this.plateauDeJeu.getJoueur(i).getNom()+" possède la couronne");
@@ -108,6 +114,7 @@ public class Jeu {
 	}
 	
 	private void reinitialisationPersonnages() {
+		//on réinitialise tous les personnage
 		for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
 			if(this.plateauDeJeu.getPersonnage(i).getJoueur() != null)
 				this.plateauDeJeu.getPersonnage(i).reinitialiser();
@@ -115,15 +122,19 @@ public class Jeu {
 	}
 	
 	private boolean partieFinie() {
+		//on parcoure tous les joueurs pour vérifier si un possède une cité complète
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			if (this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite() >= 7) {
 				System.out.println("La partie est terminé : "+this.plateauDeJeu.getJoueur(i).getNom()+" possède une cité complète");
+				//on affecte l'attribut isPremier de joueur à true pour dire qu'il est le premier à avoir une cité complète
 				this.plateauDeJeu.getJoueur(i).setPremier(true);
 				int joueurPersoRangMax = this.plateauDeJeu.getJoueur(0).getPersonnage().getRang();
+				//on détermine l'i du joueur qui possède le personnage de rang le plus élévé à la fin de la partie
 				for (int j = 0; j < this.plateauDeJeu.getNombreJoueurs(); j++) {
 					if(this.plateauDeJeu.getJoueur(j).getPersonnage().getRang() > joueurPersoRangMax)
 						joueurPersoRangMax = this.plateauDeJeu.getJoueur(j).getPersonnage().getRang();
 				}
+				//on affecte l'attribut RangPlusEleve de joueur à true pour dire qu'il est le joueur à avoir le personnage de ranf=g le plus élévé à la fin de la partie
 				this.plateauDeJeu.getJoueur(joueurPersoRangMax).setRangPlusEleve();;
 				return true;
 			}
@@ -132,21 +143,27 @@ public class Jeu {
 	}
 	
 	private void tourDeJeu() {
+		//on effectue le choix des personnages
 		choixPersonnages();
+		//on cree une copie de la liste des personnages de la partie
 		ArrayList<Personnage> personnages = new ArrayList<>();
 		for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
 			personnages.add(this.plateauDeJeu.getPersonnage(i));
 		}
 		do {
+			//on détermine le personnage de rang le plus petit pour l'appeller
 			int personnage = 0;
 			for (int i = 0; i < personnages.size(); i++) {
-				if (personnages.get(i).getRang() > personnages.get(personnage).getRang())
+				if (personnages.get(i).getRang() < personnages.get(personnage).getRang())
 					personnage = i;
 
 			}
 			System.out.println("Le jeu appelle " + personnages.get(personnage).getNom());
+			//on vérifie si le personnage est associé à un joueur
 			if (personnages.get(personnage).getJoueur() != null) {
+				//on vérifie si le joueur associé au personnage n'est pas simulé par l'ordinateur en testant son attribut simule de la classe joueur
 				if(!personnages.get(personnage).getJoueur().isSimule()) {
+					//on affiche la main du joueur
 					System.out.println("Voici votre Main :");
 					for (int i = 0; i < personnages.get(personnage).getJoueur().nbQuartiersDansMain(); i++) {
 						System.out.println((i + 1) + " " + personnages.get(personnage).getJoueur().getMain().get(i).getNom() + " - type : "
@@ -154,30 +171,37 @@ public class Jeu {
 								+  personnages.get(personnage).getJoueur().getMain().get(i).getCout());
 					}
 				}
+				//on affiche la cité du joueur
 				System.out.println("Voici votre Cité :");
 				for (int i = 0; i < personnages.get(personnage).getJoueur().nbQuartiersDansMain(); i++) {
 					System.out.println((i + 1) + " " +  personnages.get(personnage).getJoueur().getCite()[i].getNom() + " - type : "
 							+ personnages.get(personnage).getJoueur().getCite()[i].getType() + " - pièces : "
 							+ personnages.get(personnage).getJoueur().getCite()[i].getCout());
 				}
+				//on vérifie si le personnage n'est pas assassiné
 				if (!personnages.get(personnage).getAssassine()) {
+					//on vérifie si le personnage n'est pas volé
 					if (personnages.get(personnage).getVole()) {
 						System.out.println("Le " + personnages.get(personnage).getNom() + " est volé !");
 						System.out.println("Le " + personnages.get(personnage).getNom() + " donne toutes ses pièces au voleur !");
 						int nbPieces = personnages.get(personnage).getJoueur().nbPieces();
+						//si le personnage est volé il donne toutes ses pièces au voleur
 						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(nbPieces);
 						for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
 							if (this.plateauDeJeu.getJoueur(i).getNom().equals(Nom.VOLEUR))
 								this.plateauDeJeu.getJoueur(i).ajouterPieces(nbPieces);
 						}
 					} else {
+						//le personnage percoit les ressources (cartes ou pièces d'or)
 						percevoirRessource(personnage);
 						this.plateauDeJeu.getPersonnage(personnage).percevoirRessourcesSpecifiques();
 						System.out.println("Voulez vous utiliser votre pouvoir ?");
 						boolean res = false;
+						//on teste si le personnage n'est pas simulé par l'ordinateur
 						if (!personnages.get(personnage).getJoueur().isSimule())
 							res = Interaction.lireOuiOuNon();
 						else {
+							//sinon on génère un nombre aléatoire qui correspond au choix de l'ordinateur
 							res = this.generateur.nextInt(2) == 1;
 						}
 						if (res) {
@@ -199,6 +223,7 @@ public class Jeu {
 							do {
 								System.out.println("Quel cartier voulez vous construire ?");
 								int i = 1;
+								//on affiche la main du joueur
 								for (Quartier quartier : personnages.get(personnage).getJoueur().getMain()) {
 									System.out.println((i) + " " + quartier.getNom() + " - type : " + quartier.getType()
 											+ " - pièces : " + quartier.getCout());
@@ -214,6 +239,7 @@ public class Jeu {
 								}
 								if (carte == 0)
 									break;
+								//on vérifie si le joueur peut construire la carte choisie
 								if (personnages.get(personnage).getJoueur().nbPieces() >= personnages.get(personnage)
 										.getJoueur().getMain().get(carte - 1).getCout()
 										&& !personnages.get(personnage).getJoueur().quartierPresentDansCite(personnages
@@ -224,6 +250,7 @@ public class Jeu {
 											"Vous ne pouvez pas construire ce quartier. Veuillez choisir un autre quartier !");
 							} while (!peutConstruire);
 							if (carte != 0) {
+								//on constuit le quartier choisit
 								System.out.println("Le " + personnages.get(personnage).getNom()  + " a construit le "+this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte-1).getNom());
 								this.plateauDeJeu.getPersonnage(personnage)
 										.construire(personnages.get(personnage).getJoueur().getMain().get(carte - 1));
