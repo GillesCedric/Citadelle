@@ -4,6 +4,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import controlleur.Interaction;
 
@@ -97,8 +98,91 @@ public class Magicienne extends Personnage {
 
 	@Override
 	public void utiliserPouvoirAvatar() {
-		// TODO Auto-generated method stub
-		
+		Random random = new Random();
+		ArrayList<Quartier> copieMainMagicienne = null;
+		ArrayList<Quartier> copieMainJoueur = null;
+		int response = 0;
+		boolean res = false;
+		System.out.println("Voulez échanger vos cartes avec celle d'un autre joueur ? (oui/non) ");
+		res = random.nextInt(2) == 1;
+		if (res) {
+			for (int i = 0; i < this.getPlateau().getNombreJoueurs(); i++) {
+				if(!this.getPlateau().getJoueur(i).monPersonnage.getNom().equals(this.getNom())) {
+					System.out.println((i + 1) + " : Le joueur " + this.getPlateau().getJoueur(i).getNom() + " possède "
+							+ this.getPlateau().getJoueur(i).nbQuartiersDansMain() + " cartes dans sa main");
+				}
+			}
+			System.out.println("Veuillez choisir un joueur en entrant son numéro ");
+			do
+				response = random
+				.nextInt(this.getPlateau().getNombreJoueurs()+1);
+			while(response == 0);
+			copieMainMagicienne = new ArrayList<Quartier>(this.getJoueur().getMain());
+			copieMainJoueur = new ArrayList<Quartier>(
+					this.getPlateau().getJoueur(response - 1).getMain());
+			int nbQuartiersDansMainMagicienne = this.getJoueur().nbQuartiersDansMain();
+			int nbQuartiersDansMainJoueur = this.getPlateau().getJoueur(response-1).nbQuartiersDansMain();
+			for (int i = 0; i < nbQuartiersDansMainMagicienne; i++) {
+				this.getJoueur().retirerQuartierDansMain();
+			}
+			for (int i = 0; i < nbQuartiersDansMainJoueur; i++) {
+				this.getPlateau().getJoueur(response - 1).retirerQuartierDansMain();
+			}
+			for (Quartier quartier : copieMainMagicienne) {
+				this.getPlateau().getJoueur(response - 1).ajouterQuartierDansMain(quartier);
+			}
+			for (Quartier quartier : copieMainJoueur) {
+				this.getJoueur().ajouterQuartierDansMain(quartier);
+			}
+		} else {
+			if (this.getJoueur().nbQuartiersDansMain() == 0) {
+				return;
+			} else {
+				System.out.println("Combien de cartes voulez-vous prendre dans la pioche ? ");
+					int nb = random
+					.nextInt(this.getPlateau().getNombreJoueurs()+1);
+				if (nb == 0) {
+					return;
+				}
+				if (nb == this.getJoueur().nbQuartiersDansMain()) {
+					int n = this.getJoueur().nbQuartiersDansMain();
+					for (int i = 0; i < n; i++) {
+						this.getPlateau().getPioche().ajouter(this.getJoueur().retirerQuartierDansMain());
+					}
+					for (int i = 0; i < n; i++) {
+						this.getJoueur().ajouterQuartierDansMain(this.getPlateau().getPioche().piocher());
+					}
+				} else {
+					copieMainMagicienne = new ArrayList<Quartier>(this.getJoueur().getMain());
+					for (int i = 0; i < copieMainMagicienne.size(); i++) {
+						System.out.println("Voici les cartes de votre main :");
+						System.out.println((i + 1) + " " + copieMainMagicienne.get(i).getNom() + " - type : "
+								+ copieMainMagicienne.get(i).getType() + " - pièces : "
+								+ copieMainMagicienne.get(i).getCout());
+					}
+					for (int i = 0; i < nb; i++) {
+						System.out.println("Quel est le numéro de la carte que vous voulez retirer ? ");
+						int carte = 0;
+						do
+							carte = random
+							.nextInt(copieMainMagicienne.size() + 1);
+						while(response == 0);
+						this.getPlateau().getPioche().ajouter(copieMainMagicienne.remove(carte-1));
+					}
+					for (int i = 0; i < nb; i++) {
+						copieMainMagicienne.add(this.getPlateau().getPioche().piocher());
+					}
+					int n = this.getJoueur().nbQuartiersDansMain();
+					for (int i = 0; i < n; i++) {
+						this.getJoueur().retirerQuartierDansMain();
+					}
+					for (Quartier quartier : copieMainMagicienne) {
+						this.getJoueur().ajouterQuartierDansMain(quartier);
+					}
+				}
+
+			}
+		}
 	}
 
 }

@@ -4,13 +4,13 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import controlleur.Interaction;
 import modele.Joueur;
+import modele.ListeMerveille;
 import modele.Nom;
 import modele.Personnage;
 import modele.PlateauDeJeu;
@@ -144,11 +144,26 @@ public class Jeu {
 					personnage = i;
 
 			}
-			System.out.println("Le jeu appelle le " + personnages.get(personnage).getNom());
+			System.out.println("Le jeu appelle " + personnages.get(personnage).getNom());
 			if (personnages.get(personnage).getJoueur() != null) {
+				if(!personnages.get(personnage).getJoueur().isSimule()) {
+					System.out.println("Voici votre Main :");
+					for (int i = 0; i < personnages.get(personnage).getJoueur().nbQuartiersDansMain(); i++) {
+						System.out.println((i + 1) + " " + personnages.get(personnage).getJoueur().getMain().get(i).getNom() + " - type : "
+								+  personnages.get(personnage).getJoueur().getMain().get(i).getType() + " - pièces : "
+								+  personnages.get(personnage).getJoueur().getMain().get(i).getCout());
+					}
+				}
+				System.out.println("Voici votre Cité :");
+				for (int i = 0; i < personnages.get(personnage).getJoueur().nbQuartiersDansMain(); i++) {
+					System.out.println((i + 1) + " " +  personnages.get(personnage).getJoueur().getCite()[i].getNom() + " - type : "
+							+ personnages.get(personnage).getJoueur().getCite()[i].getType() + " - pièces : "
+							+ personnages.get(personnage).getJoueur().getCite()[i].getCout());
+				}
 				if (!personnages.get(personnage).getAssassine()) {
 					if (personnages.get(personnage).getVole()) {
 						System.out.println("Le " + personnages.get(personnage).getNom() + " est volé !");
+						System.out.println("Le " + personnages.get(personnage).getNom() + " donne toutes ses pièces au voleur !");
 						int nbPieces = personnages.get(personnage).getJoueur().nbPieces();
 						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(nbPieces);
 						for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
@@ -166,6 +181,7 @@ public class Jeu {
 							res = this.generateur.nextInt(2) == 1;
 						}
 						if (res) {
+							System.out.println("Le " + personnages.get(personnage).getNom() + " utilise son pouvoir !");
 							if (!personnages.get(personnage).getJoueur().isSimule())
 								this.plateauDeJeu.getPersonnage(personnage).utiliserPouvoir();
 							else
@@ -208,6 +224,7 @@ public class Jeu {
 											"Vous ne pouvez pas construire ce quartier. Veuillez choisir un autre quartier !");
 							} while (!peutConstruire);
 							if (carte != 0) {
+								System.out.println("Le " + personnages.get(personnage).getNom()  + " a construit le "+this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte-1).getNom());
 								this.plateauDeJeu.getPersonnage(personnage)
 										.construire(personnages.get(personnage).getJoueur().getMain().get(carte - 1));
 								this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().remove(carte - 1);
@@ -289,6 +306,13 @@ public class Jeu {
 		}
 		if (response == 1) {
 			System.out.println("Vous avez pioché deux cartes");
+			boolean bibliotheque = false;
+			for (int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++) {
+				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.BIBLIOTHEQUE.getNom())) {
+					bibliotheque = true;
+					break;
+				}
+			}
 			Quartier[] quartiers = new Quartier[2];
 			for (int i = 0; i < quartiers.length; i++) {
 				quartiers[i] = this.plateauDeJeu.getPioche().piocher();
@@ -298,20 +322,27 @@ public class Jeu {
 				System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
 						+ quartiers[i].getType() + " - pièces : " + quartiers[i].getCout());
 			}
-			System.out.println("Quel carte voulez vous gardez ? : ");
-			int carte = 0;
-			if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
-				carte = Interaction.lireUnEntier(1, 3);
-			else {
-				do {
-					carte = this.generateur.nextInt(3);
-				} while (carte == 0);
-			}
-			this.plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[carte-1]);
-			for (int i = 0; i < quartiers.length; i++) {
-				if (!quartiers[carte-1].getNom().equals(quartiers[i].getNom())) {
-					this.plateauDeJeu.getPioche().ajouter(quartiers[i]);
-					break;
+			if(!bibliotheque) {
+				System.out.println("Quelle carte voulez vous gardez ? : ");
+				int carte = 0;
+				if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+					carte = Interaction.lireUnEntier(1, 3);
+				else {
+					do {
+						carte = this.generateur.nextInt(3);
+					} while (carte == 0);
+				}
+				this.plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[carte-1]);
+				for (int i = 0; i < quartiers.length; i++) {
+					if (!quartiers[carte-1].getNom().equals(quartiers[i].getNom())) {
+						this.plateauDeJeu.getPioche().ajouter(quartiers[i]);
+						break;
+					}
+				}
+			}else {
+				System.out.println("Grâce à votre Merveille Bibliothèque, vous gardez vos deux cartes!");
+				for (int i = 0; i < quartiers.length; i++) {
+					this.plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[i]);
 				}
 			}
 		} else {
@@ -338,7 +369,20 @@ public class Jeu {
 				if(this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite() >= 7)
 					score += 2;
 			}
+			boolean fontaine = false;
+			for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) {
+				if(this.plateauDeJeu.getJoueur(j).getCite()[i].getNom().equals(ListeMerveille.FONTAINE_AUX_SOUHAITS))
+					fontaine = true;
+			}
 			// la somme des différents bonus des merveilles de sa cité
+			if(fontaine) {
+				for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) {
+					for (ListeMerveille merveille : ListeMerveille.values()) {
+						if(this.plateauDeJeu.getJoueur(j).getCite()[i].getNom().equals(merveille.getNom()))
+							score++;
+					}
+				}
+			}
 			scores[i][0] = score;
 			System.out.println( this.plateauDeJeu.getJoueur(i).getNom()+" a un total de "+score+" points !");
 		}
