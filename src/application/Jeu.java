@@ -17,7 +17,7 @@ import modele.PlateauDeJeu;
 import modele.Quartier;
 
 /**
- * @author Gilles CÈdric
+ * @author Gilles C√©dric
  *
  */
 public class Jeu {
@@ -54,9 +54,9 @@ public class Jeu {
 	}
 	
 	private void afficherMenu() {
-		System.out.println("Veuillez entrer le chiffre correspondant ‡ votre choix!!!");
+		System.out.println("Veuillez entrer le chiffre correspondant √† votre choix!!!");
 		System.out.println("	1 : 	Jouer une nouvelle partie. ");
-		System.out.println("	2 : 	Afficher les rËgles du jeu. ");
+		System.out.println("	2 : 	Afficher les r√®gles du jeu. ");
 		System.out.println("	3 : 	Quitter l'application. ");
 	}
 	
@@ -64,12 +64,12 @@ public class Jeu {
 		try {
 			Desktop.getDesktop().open(new File("C:\\Users\\HP\\eclipse-2021-workspace\\Citadelle\\src\\ressources\\presentationJeuCitadelles.pdf"));
 		} catch (IOException e) {
-			System.err.println("Erreur lors de l'ouverture des rËgles du jeu : "+e.getMessage());
+			System.err.println("Erreur lors de l'ouverture des r√®gles du jeu : "+e.getMessage());
 		}
 	}
 	
 	private void quitter() {
-		System.out.println("Au revoir et ‡ trËs bientÙt !!!");
+		System.out.println("Au revoir et √† tr√®s bient√¥t !!!");
 		System.exit(0);
 	}
 	
@@ -86,35 +86,35 @@ public class Jeu {
 	private void initialisation() {
 		//ici on initialise le plateau avec la configuration de base du projet
 		this.plateauDeJeu = Configuration.configurationDeBase(Configuration.nouvellePioche());
-		//on ajoute deux piËces ‡ tous les joueurs
+		//on ajoute deux pi√®ces √† tous les joueurs
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			this.plateauDeJeu.getJoueur(i).ajouterPieces(2);
 			for (int j = 0; j < 4; j++) {
-				//on ajoute ‡ la main de chaque joueur un quatier qu'il a piochÈ dans la pioche
+				//on ajoute √† la main de chaque joueur un quatier qu'il a pioch√© dans la pioche
 				this.plateauDeJeu.getJoueur(i).ajouterQuartierDansMain(this.plateauDeJeu.getPioche().piocher());
 			}
 		}
-		//ici on attribue la couronne ‡ un jooueur alÈatoire
+		//ici on attribue la couronne √† un jooueur al√©atoire
 		this.plateauDeJeu.getJoueur(this.generateur.nextInt(this.plateauDeJeu.getNombreJoueurs())).setPossedeCouronne(true);
 	}
 	
 	private void gestionCouronne() {
-		//on dÈtermine le joueur qui possËde la couronne et on lui enlËve la couronne
+		//on d√©termine le joueur qui poss√®de la couronne et on lui enl√®ve la couronne
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			if(this.plateauDeJeu.getJoueur(i).getPossedeCouronne())
 				this.plateauDeJeu.getJoueur(i).setPossedeCouronne(false);
 		}
-		//on attribue la couronne au joueur qui possËde le peesonnage Roi
+		//on attribue la couronne au joueur qui poss√®de le peesonnage Roi
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			if(this.plateauDeJeu.getJoueur(i).getPersonnage().getNom().equals(Nom.ROI)) {
-				System.out.println(this.plateauDeJeu.getJoueur(i).getNom()+" possËde la couronne");
+				System.out.println(this.plateauDeJeu.getJoueur(i).getNom()+" poss√®de la couronne");
 				this.plateauDeJeu.getJoueur(i).setPossedeCouronne(true);
 			}
 		}
 	}
 	
 	private void reinitialisationPersonnages() {
-		//on rÈinitialise tous les personnage
+		//on r√©initialise tous les personnage
 		for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
 			if(this.plateauDeJeu.getPersonnage(i).getJoueur() != null)
 				this.plateauDeJeu.getPersonnage(i).reinitialiser();
@@ -122,19 +122,19 @@ public class Jeu {
 	}
 	
 	private boolean partieFinie() {
-		//on parcoure tous les joueurs pour vÈrifier si un possËde une citÈ complËte
+		//on parcoure tous les joueurs pour v√©rifier si un poss√®de une cit√© compl√®te
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			if (this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite() >= 7) {
-				System.out.println("La partie est terminÈ : "+this.plateauDeJeu.getJoueur(i).getNom()+" possËde une citÈ complËte");
-				//on affecte l'attribut isPremier de joueur ‡ true pour dire qu'il est le premier ‡ avoir une citÈ complËte
+				System.out.println("La partie est termin√© : "+this.plateauDeJeu.getJoueur(i).getNom()+" poss√®de une cit√© compl√®te");
+				//on affecte l'attribut isPremier de joueur √† true pour dire qu'il est le premier √† avoir une cit√© compl√®te
 				this.plateauDeJeu.getJoueur(i).setPremier(true);
 				int joueurPersoRangMax = this.plateauDeJeu.getJoueur(0).getPersonnage().getRang();
-				//on dÈtermine l'i du joueur qui possËde le personnage de rang le plus ÈlÈvÈ ‡ la fin de la partie
+				//on d√©termine l'i du joueur qui poss√®de le personnage de rang le plus √©l√©v√© √† la fin de la partie
 				for (int j = 0; j < this.plateauDeJeu.getNombreJoueurs(); j++) {
 					if(this.plateauDeJeu.getJoueur(j).getPersonnage().getRang() > joueurPersoRangMax)
 						joueurPersoRangMax = this.plateauDeJeu.getJoueur(j).getPersonnage().getRang();
 				}
-				//on affecte l'attribut RangPlusEleve de joueur ‡ true pour dire qu'il est le joueur ‡ avoir le personnage de ranf=g le plus ÈlÈvÈ ‡ la fin de la partie
+				//on affecte l'attribut RangPlusEleve de joueur √† true pour dire qu'il est le joueur √† avoir le personnage de ranf=g le plus √©l√©v√© √† la fin de la partie
 				this.plateauDeJeu.getJoueur(joueurPersoRangMax).setRangPlusEleve();;
 				return true;
 			}
@@ -151,7 +151,7 @@ public class Jeu {
 			personnages.add(this.plateauDeJeu.getPersonnage(i));
 		}
 		do {
-			//on dÈtermine le personnage de rang le plus petit pour l'appeller
+			//on d√©termine le personnage de rang le plus petit pour l'appeller
 			int personnage = 0;
 			for (int i = 0; i < personnages.size(); i++) {
 				if (personnages.get(i).getRang() < personnages.get(personnage).getRang())
@@ -159,49 +159,49 @@ public class Jeu {
 
 			}
 			System.out.println("Le jeu appelle " + personnages.get(personnage).getNom());
-			//on vÈrifie si le personnage est associÈ ‡ un joueur
+			//on v√©rifie si le personnage est associ√© √† un joueur
 			if (personnages.get(personnage).getJoueur() != null) {
-				//on vÈrifie si le joueur associÈ au personnage n'est pas simulÈ par l'ordinateur en testant son attribut simule de la classe joueur
+				//on v√©rifie si le joueur associ√© au personnage n'est pas simul√© par l'ordinateur en testant son attribut simule de la classe joueur
 				if(!personnages.get(personnage).getJoueur().isSimule()) {
 					//on affiche la main du joueur
 					System.out.println("Voici votre Main :");
 					for (int i = 0; i < personnages.get(personnage).getJoueur().nbQuartiersDansMain(); i++) {
 						System.out.println((i + 1) + " " + personnages.get(personnage).getJoueur().getMain().get(i).getNom() + " - type : "
-								+  personnages.get(personnage).getJoueur().getMain().get(i).getType() + " - piËces : "
+								+  personnages.get(personnage).getJoueur().getMain().get(i).getType() + " - pi√®ces : "
 								+  personnages.get(personnage).getJoueur().getMain().get(i).getCout());
 					}
 				}
-				//on affiche la citÈ du joueur
-				System.out.println("Voici votre CitÈ :");
+				//on affiche la cit√© du joueur
+				System.out.println("Voici votre Cit√© :");
 				for (int i = 0; i < personnages.get(personnage).getJoueur().nbQuartiersDansMain(); i++) {
 					System.out.println((i + 1) + " " +  personnages.get(personnage).getJoueur().getCite()[i].getNom() + " - type : "
-							+ personnages.get(personnage).getJoueur().getCite()[i].getType() + " - piËces : "
+							+ personnages.get(personnage).getJoueur().getCite()[i].getType() + " - pi√®ces : "
 							+ personnages.get(personnage).getJoueur().getCite()[i].getCout());
 				}
-				//on vÈrifie si le personnage n'est pas assassinÈ
+				//on v√©rifie si le personnage n'est pas assassin√©
 				if (!personnages.get(personnage).getAssassine()) {
-					//on vÈrifie si le personnage n'est pas volÈ
+					//on v√©rifie si le personnage n'est pas vol√©
 					if (personnages.get(personnage).getVole()) {
-						System.out.println("Le " + personnages.get(personnage).getNom() + " est volÈ !");
-						System.out.println("Le " + personnages.get(personnage).getNom() + " donne toutes ses piËces au voleur !");
+						System.out.println("Le " + personnages.get(personnage).getNom() + " est vol√© !");
+						System.out.println("Le " + personnages.get(personnage).getNom() + " donne toutes ses pi√®ces au voleur !");
 						int nbPieces = personnages.get(personnage).getJoueur().nbPieces();
-						//si le personnage est volÈ il donne toutes ses piËces au voleur
+						//si le personnage est vol√© il donne toutes ses pi√®ces au voleur
 						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(nbPieces);
 						for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
 							if (this.plateauDeJeu.getJoueur(i).getNom().equals(Nom.VOLEUR))
 								this.plateauDeJeu.getJoueur(i).ajouterPieces(nbPieces);
 						}
 					} else {
-						//le personnage percoit les ressources (cartes ou piËces d'or)
+						//le personnage percoit les ressources (cartes ou pi√®ces d'or)
 						percevoirRessource(personnage);
 						this.plateauDeJeu.getPersonnage(personnage).percevoirRessourcesSpecifiques();
 						System.out.println("Voulez vous utiliser votre pouvoir ?");
 						boolean res = false;
-						//on teste si le personnage n'est pas simulÈ par l'ordinateur
+						//on teste si le personnage n'est pas simul√© par l'ordinateur
 						if (!personnages.get(personnage).getJoueur().isSimule())
 							res = Interaction.lireOuiOuNon();
 						else {
-							//sinon on gÈnËre un nombre alÈatoire qui correspond au choix de l'ordinateur
+							//sinon on g√©n√®re un nombre al√©atoire qui correspond au choix de l'ordinateur
 							res = this.generateur.nextInt(2) == 1;
 						}
 						if (res) {
@@ -226,7 +226,7 @@ public class Jeu {
 								//on affiche la main du joueur
 								for (Quartier quartier : personnages.get(personnage).getJoueur().getMain()) {
 									System.out.println((i) + " " + quartier.getNom() + " - type : " + quartier.getType()
-											+ " - piËces : " + quartier.getCout());
+											+ " - pi√®ces : " + quartier.getCout());
 									i++;
 								}
 								System.out.println("0 : Annuler la construction");
@@ -239,7 +239,24 @@ public class Jeu {
 								}
 								if (carte == 0)
 									break;
-								//on vÈrifie si le joueur peut construire la carte choisie
+								//on v√©rifie si le joueur peut construire la carte choisie
+								//Impl√©mentation de la Merveille Manufacture
+								boolean manufacture = false;
+								//Parcours de la cit√© du joueur afin de d√©terminer si il poss√®de la merveille Manufacture
+								for (int j = 0; j < personnages.get(personnage).getJoueur().nbQuartiersDansMain(); j++) 
+								{
+									if(personnages.get(personnage).getJoueur().getMain()[i].getNom().equals(ListeMerveille.Manufacture.getNom()))
+									{
+										manufacture = true;
+										break;
+									}
+								}
+								if(manufacture)
+								{
+									personnages.get(personnage).getJoueur().getMain().get(carte - 1).getCout()--;
+								}
+								//Fin de l'effet de la merveille Manufacture
+								
 								if (personnages.get(personnage).getJoueur().nbPieces() >= personnages.get(personnage)
 										.getJoueur().getMain().get(carte - 1).getCout()
 										&& !personnages.get(personnage).getJoueur().quartierPresentDansCite(personnages
@@ -259,10 +276,10 @@ public class Jeu {
 						}
 					}
 				} else {
-					System.out.println("Le " + personnages.get(personnage).getNom() + " est assasinÈ !");
+					System.out.println("Le " + personnages.get(personnage).getNom() + " est assasin√© !");
 				}
 			} else {
-				System.out.println("Aucun joueur ne possËde le " + personnages.get(personnage).getNom());
+				System.out.println("Aucun joueur ne poss√®de le " + personnages.get(personnage).getNom());
 			}
 			personnages.remove(personnage);
 		} while (personnages.size() > 0);
@@ -272,7 +289,7 @@ public class Jeu {
 		ArrayList<Joueur> joueurs = new ArrayList<>();
 		Personnage persoFaceVisible1 = null;
 		Personnage persoFaceVisible2 = null;
-		Personnage persoFaceCachÈ = null;
+		Personnage persoFaceCach√© = null;
 		int response = 0;
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			joueurs.add(this.plateauDeJeu.getJoueur(i));
@@ -280,9 +297,9 @@ public class Jeu {
 		do {
 			persoFaceVisible1 = this.plateauDeJeu.getPersonnage(this.generateur.nextInt(this.plateauDeJeu.getNombrePersonnages()));
 			persoFaceVisible2 = this.plateauDeJeu.getPersonnage(this.generateur.nextInt(this.plateauDeJeu.getNombrePersonnages()));
-			persoFaceCachÈ = this.plateauDeJeu.getPersonnage(this.generateur.nextInt(this.plateauDeJeu.getNombrePersonnages()));
+			persoFaceCach√© = this.plateauDeJeu.getPersonnage(this.generateur.nextInt(this.plateauDeJeu.getNombrePersonnages()));
 			
-		}while(persoFaceVisible1.getRang() == 4 || persoFaceVisible2.getRang() == 4 || persoFaceCachÈ.getNom().equals(persoFaceVisible1.getNom()) || persoFaceCachÈ.getNom().equals(persoFaceVisible2.getNom()) || persoFaceVisible1.getNom().equals(persoFaceVisible2.getNom()));
+		}while(persoFaceVisible1.getRang() == 4 || persoFaceVisible2.getRang() == 4 || persoFaceCach√©.getNom().equals(persoFaceVisible1.getNom()) || persoFaceCach√©.getNom().equals(persoFaceVisible2.getNom()) || persoFaceVisible1.getNom().equals(persoFaceVisible2.getNom()));
 		int n = joueurs.size();
 		for (int i = 0; i < n; i++) {
 			if(joueurs.get(i).getPossedeCouronne()) {
@@ -291,13 +308,13 @@ public class Jeu {
 		}
 		do {
 			System.out.println("Choix des personnages :");
-			System.out.println("Le personnage \""+persoFaceVisible1.getNom()+"\" est ÈcartÈ face visible");
-			System.out.println("Le personnage \""+persoFaceVisible2.getNom()+"\" est ÈcartÈ face visible");
-			System.out.println("Un personnage est ÈcartÈ face cachÈe");
+			System.out.println("Le personnage \""+persoFaceVisible1.getNom()+"\" est √©cart√© face visible");
+			System.out.println("Le personnage \""+persoFaceVisible2.getNom()+"\" est √©cart√© face visible");
+			System.out.println("Un personnage est √©cart√© face cach√©e");
 			if(joueurs.get(0).getPossedeCouronne())
 				System.out.println("Vous avez la couronne ! ");
 			for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
-				if(this.plateauDeJeu.getPersonnage(i).getJoueur() == null && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceCachÈ.getNom()) && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceVisible1.getNom()) && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceVisible2.getNom())) {
+				if(this.plateauDeJeu.getPersonnage(i).getJoueur() == null && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceCach√©.getNom()) && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceVisible1.getNom()) && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceVisible2.getNom())) {
 					System.out.println((i+1)+" "+this.plateauDeJeu.getPersonnage(i).getNom());
 				}
 			}
@@ -305,13 +322,13 @@ public class Jeu {
 				do {
 					System.out.println("Quel personnage choisissez vous ?");
 					response = Interaction.lireUnEntier(1, this.plateauDeJeu.getNombrePersonnages()+1);
-				}while(this.plateauDeJeu.getPersonnage(response-1).getJoueur() != null || this.plateauDeJeu.getPersonnage(response-1).getNom().equals(persoFaceCachÈ.getNom()) || this.plateauDeJeu.getPersonnage(response-1).getNom().equals(persoFaceVisible1.getNom()) || this.plateauDeJeu.getPersonnage(response-1).getNom().equals(persoFaceVisible2.getNom()));
+				}while(this.plateauDeJeu.getPersonnage(response-1).getJoueur() != null || this.plateauDeJeu.getPersonnage(response-1).getNom().equals(persoFaceCach√©.getNom()) || this.plateauDeJeu.getPersonnage(response-1).getNom().equals(persoFaceVisible1.getNom()) || this.plateauDeJeu.getPersonnage(response-1).getNom().equals(persoFaceVisible2.getNom()));
 				this.plateauDeJeu.getPersonnage(response-1).setJoueur(joueurs.get(0));
 			}else {
 				int perso = 0;
 				do {
 					perso = this.generateur.nextInt(this.plateauDeJeu.getNombrePersonnages());
-				}while(this.plateauDeJeu.getPersonnage(perso).getJoueur() != null || this.plateauDeJeu.getPersonnage(perso).getNom().equals(persoFaceCachÈ.getNom()) || this.plateauDeJeu.getPersonnage(perso).getNom().equals(persoFaceVisible1.getNom()) || this.plateauDeJeu.getPersonnage(perso).getNom().equals(persoFaceVisible2.getNom()));
+				}while(this.plateauDeJeu.getPersonnage(perso).getJoueur() != null || this.plateauDeJeu.getPersonnage(perso).getNom().equals(persoFaceCach√©.getNom()) || this.plateauDeJeu.getPersonnage(perso).getNom().equals(persoFaceVisible1.getNom()) || this.plateauDeJeu.getPersonnage(perso).getNom().equals(persoFaceVisible2.getNom()));
 				this.plateauDeJeu.getPersonnage(perso).setJoueur(joueurs.get(0));
 			}
 			joueurs.remove(0);
@@ -319,10 +336,11 @@ public class Jeu {
 		
 	}
 	
-	private void percevoirRessource(int personnage) {
-		System.out.println("Voulez vous percevoir des cartes ou des piËces d'or ?");
+	private void percevoirRessource(int personnage) 
+	{
+		System.out.println("Voulez vous percevoir des cartes ou des pi√®ces d'or ?");
 		System.out.println("1 : deux cartes");
-		System.out.println("2 : deux piËces d'or");
+		System.out.println("2 : deux pi√®ces d'or");
 		int response = 0;
 		if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
 			response = Interaction.lireUnEntier(1, 3);
@@ -332,24 +350,84 @@ public class Jeu {
 			} while (response == 0);
 		}
 		if (response == 1) {
-			System.out.println("Vous avez piochÈ deux cartes");
+			System.out.println("Vous avez pioch√© deux cartes");
 			boolean bibliotheque = false;
+			//Parcours de la cit√© du Joueur afin de d√©ternmin√© si le joueur poss√®de la Merveille Bibliotheque
 			for (int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++) {
 				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.BIBLIOTHEQUE.getNom())) {
 					bibliotheque = true;
 					break;
 				}
 			}
-			Quartier[] quartiers = new Quartier[2];
-			for (int i = 0; i < quartiers.length; i++) {
+			// Impl√©mentation de la merveille Forge 
+			boolean forge =  false;
+			int nbCartesPiocher = 2;
+			//Parcours de la cit√© du Joueur afin de d√©ternmin√© si le joueur poss√®de la Merveille Forge
+			for (int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++) 
+			{
+				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.FORGE.getNom())) 
+				{
+					forge = true;
+					break;
+				}
+			}
+			if(forge)
+			{
+				System.out.println("Voulez vous payez deux pieces d'or pour piocher une carte de plus? ");
+				choix = Interaction.lireOuiOuNon();
+				if(choix)
+				{
+					if(personnages.get(personnage).getJoueur().nbPieces() >= 2);
+					{
+						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(2);
+						nbCartesPiocher = 3;
+					}
+					else
+						System.out.println("Vous ne poss√©dez pas assez de pi√®ces pour utiliser cet effet");
+				}
+			}
+			//Fin de l'effet de la Merveille Forge
+			
+			//Impl√©mentation de la merveille Laboratoire
+			boolean laboratoire = false;
+			//Parcours de la cit√© du Joueur afin de d√©ternmin√© si le joueur poss√®de la Merveille Forge
+			for(int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++)
+			{
+				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.BIBLIOTHEQUE.getNom())) 
+				{
+					laboratoire = true;
+					break;
+				}
+			}
+			if(laboratoire)
+			{
+				System.out.println("Voulez vous vous d√©faussez d'une carte de votre main pour percevoir deux pi√®ces d'or suppl√©mentaires? ");
+				choice = Interaction.lireOuiOuNon();
+				if(choice)
+				{
+					if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain() >= 0)
+					{
+						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerQuartierDansMain();
+						this.plateauDeJeu.getPersonnage(personnage).getJoueur().ajouterPieces(2);
+					}
+					else
+						System.out.println("Vous n'avez pas de cartes dans votre main vous ne pouvez donc pas activer l'effet de cette merveille ");
+				}
+			}
+			//Fin de l'impl√©mentation de la Merveille Laboratoire
+			Quartier[] quartiers = new Quartier[nbCartesPiocher];
+			for (int i = 0; i < quartiers.length; i++) 
+			{
 				quartiers[i] = this.plateauDeJeu.getPioche().piocher();
 			}
-			System.out.println("Voici les cartes que vous avez piochÈ : ");
-			for (int i = 0; i < quartiers.length; i++) {
+			System.out.println("Voici les cartes que vous avez pioch√© : ");
+			for (int i = 0; i < quartiers.length; i++) 
+			{
 				System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
-						+ quartiers[i].getType() + " - piËces : " + quartiers[i].getCout());
+				+ quartiers[i].getType() + " - pi√®ces : " + quartiers[i].getCout());
 			}
-			if(!bibliotheque) {
+			if(!bibliotheque) 
+			{
 				System.out.println("Quelle carte voulez vous gardez ? : ");
 				int carte = 0;
 				if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
@@ -367,13 +445,13 @@ public class Jeu {
 					}
 				}
 			}else {
-				System.out.println("Gr‚ce ‡ votre Merveille BibliothËque, vous gardez vos deux cartes!");
+				System.out.println("Gr√¢ce √† votre Merveille Biblioth√®que, vous gardez vos deux cartes!");
 				for (int i = 0; i < quartiers.length; i++) {
 					this.plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[i]);
 				}
 			}
 		} else {
-			System.out.println("Vous avez perÁu deux piËces d'or");
+			System.out.println("Vous avez per√ßu deux pi√®ces d'or");
 			this.plateauDeJeu.getPersonnage(personnage).ajouterPieces();
 		}
 	}
@@ -401,7 +479,7 @@ public class Jeu {
 				if(this.plateauDeJeu.getJoueur(j).getCite()[i].getNom().equals(ListeMerveille.FONTAINE_AUX_SOUHAITS.getNom()))
 					fontaine = true;
 			}
-			// la somme des diffÈrents bonus des merveilles de sa citÈ
+			// la somme des diff√©rents bonus des merveilles de sa cit√©
 			if(fontaine) {
 				for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) {
 					for (ListeMerveille merveille : ListeMerveille.values()) {
@@ -410,6 +488,23 @@ public class Jeu {
 					}
 				}
 			}
+			//Impl√©mentation de la merveille Salle des Cartes
+			boolean salleDesCartes = false;
+			//Parcours de la cit√© du joueur afin de d√©terminer si il poss√®de la merveille Salle des Cartes
+			for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
+			{
+				if(this.plateauDeJeu.getJoueur(j).getCite()[i].getNom().equals(ListeMerveille.SALLE_DES_CARTES.getNom()))
+					salleDesCartes = true;
+			}
+			//Impl√©mentatioon de l'augmentation du score pour chaque carte dans la main du joueur
+			if(salleDesCartes) 
+			{
+				for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
+				{
+					score++;
+				}
+			}
+			//Fin de l'impl√©mentation de la Merveille Salle de Cartes
 			scores[i][0] = score;
 			System.out.println( this.plateauDeJeu.getJoueur(i).getNom()+" a un total de "+score+" points !");
 		}
@@ -428,8 +523,8 @@ public class Jeu {
 				}
 			}
 		}
-		System.out.println(this.plateauDeJeu.getJoueur(joueurMax).getNom()+" a remportÈ la partie avec un total de "+scoreMax+" points.");
-		System.out.println("FÈlicitation "+this.plateauDeJeu.getJoueur(joueurMax).getNom()+"!!!");
+		System.out.println(this.plateauDeJeu.getJoueur(joueurMax).getNom()+" a remport√© la partie avec un total de "+scoreMax+" points.");
+		System.out.println("F√©licitation "+this.plateauDeJeu.getJoueur(joueurMax).getNom()+"!!!");
 	}
 	
 }
