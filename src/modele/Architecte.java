@@ -3,7 +3,7 @@ package modele;
 public class Architecte extends Personnage {
 	
 
-	Pioche P = new Pioche();
+	Pioche pioche = new Pioche();
 	
 	public Architecte() {
 		super(Nom.ARCHITECTE, Rang.ARCHITECTE, Caracteristiques.ARCHITECTE);
@@ -13,12 +13,14 @@ public class Architecte extends Personnage {
 	
 	public void utiliserPouvoir() {
 			
-		if (P.nombreElements() >= 2) {
+		if (this.getPlateau().getPioche().nombreElements() >= 2) {
 			
 			for (int i=0; i<2; i++ ) {
 				
-				 P.piocher();
-				}
+				this.getJoueur().ajouterQuartierDansMain(this.getPlateau().getPioche().piocher());
+				 
+				 
+			}
 			System.out.println("\nvous avez pioché 2 cartes quartier supplémentaires !");
 
 		} else {

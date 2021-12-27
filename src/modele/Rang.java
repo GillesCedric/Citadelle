@@ -25,7 +25,7 @@ public class Rang {
 	public static final int ALCHIMISTE = 6;
 	public static final int MARCHANDE = 6;
 	public static final int NEGOCIANT = 6;
-	public static final int ARCHITECTE = 7;
+	public static final int ARCHITECTE = 6;
 	public static final int ARCHIVISTE = 7;
 	public static final int NAVIGATRICE = 7;
 	public static final int CAPITAINE = 8;
