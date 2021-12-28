@@ -168,17 +168,21 @@ public class Jeu {
 				//on vérifie si le personnage n'est pas assassiné
 				if (!this.plateauDeJeu.getPersonnage(personnage).getAssassine()) {
 					//on vérifie si le personnage n'est pas volé
-					if (this.plateauDeJeu.getPersonnage(personnage).getVole()) {
+					if (this.plateauDeJeu.getPersonnage(personnage).getVole()) 
+					{
 						System.out.println("Le " + this.plateauDeJeu.getPersonnage(personnage).getNom() + " est volé !");
 						System.out.println("Le " + this.plateauDeJeu.getPersonnage(personnage).getNom() + " donne toutes ses pièces au voleur !");
 						int nbPieces = this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces();
 						//si le personnage est volé il donne toutes ses pièces au voleur
 						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(nbPieces);
-						for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
+						for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) 
+						{
 							if (this.plateauDeJeu.getJoueur(i).getNom().equals(Nom.VOLEUR))
 								this.plateauDeJeu.getJoueur(i).ajouterPieces(nbPieces);
 						}
-					} else {
+					} 
+					else
+					{
 						//le personnage percoit les ressources (cartes ou piÃ¨ces d'or)
 						percevoirRessource(personnage);
 						this.plateauDeJeu.getPersonnage(personnage).percevoirRessourcesSpecifiques();
@@ -204,7 +208,8 @@ public class Jeu {
 						else {
 							res = this.generateur.nextInt(2) == 1;
 						}
-						if (res) {
+						if (res) 
+						{
 							boolean peutConstruire = false;
 							int carte = 0;
 							do {
@@ -264,6 +269,40 @@ public class Jeu {
 										.construire(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1));
 							}
 						}
+						//ImplÃ©mentation de la merveille Laboratoire
+						boolean laboratoire = false;
+						//Parcours de la citÃ© du Joueur afin de dÃ©ternminÃ© si le joueur possÃ¨de la Merveille Forge
+						for(int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++)
+						{
+							if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.BIBLIOTHEQUE.getNom())) 
+							{
+								laboratoire = true;
+								break;
+							}
+						}
+						if(laboratoire)
+						{
+							System.out.println("Voulez vous vous defaussez d'une carte de votre main pour percevoir deux piÃ¨ces d'or supplÃ©mentaires? ");
+							boolean choice;
+							if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+								choice = Interaction.lireOuiOuNon();
+							else 
+							{
+								//sinon on gÃ©nÃ¨re un nombre alÃ©atoire qui correspond au choix de l'ordinateur
+								choice = this.generateur.nextInt(2) == 1;
+							}
+							if(choice)
+							{
+								if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain() >= 0)
+								{
+									this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerQuartierDansMain();
+									this.plateauDeJeu.getPersonnage(personnage).getJoueur().ajouterPieces(2);
+								}
+								else
+									System.out.println("Vous n'avez pas de cartes dans votre main vous ne pouvez donc pas activer l'effet de cette merveille ");
+							}
+						}
+						//Fin de l'implÃ©mentation de la Merveille Laboratoire
 					}
 				} else {
 					System.out.println("Le " + this.plateauDeJeu.getPersonnage(personnage).getNom() + " est assasiné !");
@@ -368,49 +407,40 @@ public class Jeu {
 			}
 			if(forge)
 			{
-				System.out.println("Voulez vous payez deux pieces d'or pour piocher une carte de plus? ");
-				boolean choix = Interaction.lireOuiOuNon();
+				System.out.println("Voulez vous payez deux pieces d'or pour piocher trois cartes ? ");
+				if
+				boolean choix;
+				if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+					choix = Interaction.lireOuiOuNon();
+				else 
+				{
+					//sinon on gÃ©nÃ¨re un nombre alÃ©atoire qui correspond au choix de l'ordinateur
+					choix = this.generateur.nextInt(2) == 1;
+				}
 				if(choix)
 				{
 					if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= 2)
 					{
 						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(2);
-						nbCartesPiocher = 3;
+						Quartier[] quartiers = new Quartier[3];
+						for (int i = 0; i < quartiers.length; i++) 
+						{
+							quartiers[i] = this.plateauDeJeu.getPioche().piocher();
+						}
+						System.out.println("Voici les cartes que vous avez piochÃ© : ");
+						for (int i = 0; i < quartiers.length; i++) 
+						{
+							System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
+								+ quartiers[i].getType() + " - piÃ¨ces : " + quartiers[i].getCout());
+						}
 					}
 					else
 						System.out.println("Vous ne possÃ©dez pas assez de piÃ¨ces pour utiliser cet effet");
 				}
 			}
 			//Fin de l'effet de la Merveille Forge
-			
-			//ImplÃ©mentation de la merveille Laboratoire
-			boolean laboratoire = false;
-			//Parcours de la citÃ© du Joueur afin de dÃ©ternminÃ© si le joueur possÃ¨de la Merveille Forge
-			for(int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++)
-			{
-				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.BIBLIOTHEQUE.getNom())) 
-				{
-					laboratoire = true;
-					break;
-				}
-			}
-			if(laboratoire)
-			{
-				System.out.println("Voulez vous vous dÃ©faussez d'une carte de votre main pour percevoir deux piÃ¨ces d'or supplÃ©mentaires? ");
-				boolean choice = Interaction.lireOuiOuNon();
-				if(choice)
-				{
-					if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain() >= 0)
-					{
-						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerQuartierDansMain();
-						this.plateauDeJeu.getPersonnage(personnage).getJoueur().ajouterPieces(2);
-					}
-					else
-						System.out.println("Vous n'avez pas de cartes dans votre main vous ne pouvez donc pas activer l'effet de cette merveille ");
-				}
-			}
-			//Fin de l'implÃ©mentation de la Merveille Laboratoire
-			Quartier[] quartiers = new Quartier[nbCartesPiocher];
+	
+			Quartier[] quartiers = new Quartier[2];
 			for (int i = 0; i < quartiers.length; i++) 
 			{
 				quartiers[i] = this.plateauDeJeu.getPioche().piocher();
