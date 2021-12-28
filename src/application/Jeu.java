@@ -56,7 +56,7 @@ public class Jeu {
 	}
 	
 	private void afficherMenu() {
-		System.out.println("Veuillez entrer le chiffre correspondant Ã  votre choix!!!");
+		System.out.println("Veuillez entrer le chiffre correspondant Ã  votre choix!!!");
 		System.out.println("	1 : 	Jouer une nouvelle partie. ");
 		System.out.println("	2 : 	Afficher les rÃ¨gles du jeu. ");
 		System.out.println("	3 : 	Quitter l'application. ");
@@ -71,7 +71,7 @@ public class Jeu {
 	}
 	
 	private void quitter() {
-		System.out.println("Au revoir et Ã  trÃ¨s bientÃ´t !!!");
+		System.out.println("Au revoir et Ã  trÃ¨s bientÃ´t !!!");
 		System.exit(0);
 	}
 	
@@ -89,15 +89,15 @@ public class Jeu {
 		//ici on initialise le plateau avec la configuration de base du projet
 		this.plateauDeJeu = Configuration.configurationDeBase(Configuration.nouvellePioche());
 		Merveille.setPlateauDeJeu(plateauDeJeu);
-		//on ajoute deux pièces Ã  tous les joueurs
+		//on ajoute deux pièces Ã  tous les joueurs
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			this.plateauDeJeu.getJoueur(i).ajouterPieces(2);
 			for (int j = 0; j < 4; j++) {
-				//on ajoute Ã  la main de chaque joueur un quatier qu'il a pioché dans la pioche
+				//on ajoute Ã  la main de chaque joueur un quatier qu'il a pioché dans la pioche
 				this.plateauDeJeu.getJoueur(i).ajouterQuartierDansMain(this.plateauDeJeu.getPioche().piocher());
 			}
 		}
-		//ici on attribue la couronne Ã  un jooueur alÃ©atoire
+		//ici on attribue la couronne Ã  un jooueur alÃ©atoire
 		this.plateauDeJeu.getJoueur(this.generateur.nextInt(this.plateauDeJeu.getNombreJoueurs())).setPossedeCouronne(true);
 	}
 	
@@ -129,7 +129,7 @@ public class Jeu {
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
 			if (this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite() >= 7) {
 				System.out.println("La partie est terminÃ© : "+this.plateauDeJeu.getJoueur(i).getNom()+" possÃ¨de une citÃ© complÃ¨te");
-				//on affecte l'attribut isPremier de joueur Ã  true pour dire qu'il est le premier Ã  avoir une citÃ© complÃ¨te
+				//on affecte l'attribut isPremier de joueur Ã  true pour dire qu'il est le premier Ã  avoir une citÃ© complÃ¨te
 				this.plateauDeJeu.getJoueur(i).setPremier(true);
 				this.plateauDeJeu.getJoueur(joueurPersoRangMax).setRangPlusEleve();
 				return true;
