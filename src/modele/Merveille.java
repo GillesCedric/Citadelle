@@ -39,7 +39,7 @@ public class Merveille {
 	
 	public static void effetForge(int personnage) {
 		int nbCartesPiocher = 2;
-		//Parcours de la citÃ© du Joueur afin de dÃ©ternminÃ© si le joueur possÃ¨de la Merveille Forge
+		//Parcours de la cité du Joueur afin de déternminé si le joueur possède la Merveille Forge
 		if(Merveille.isExist(personnage, ListeMerveille.FORGE.getNom()))
 		{
 			System.out.println("Voulez vous payez deux pieces d'or pour piocher une carte de plus? ");
@@ -52,7 +52,7 @@ public class Merveille {
 					nbCartesPiocher = 3;
 				}
 				else
-					System.out.println("Vous ne possÃ©dez pas assez de piÃ¨ces pour utiliser cet effet");
+					System.out.println("Vous ne possédez pas assez de pièces pour utiliser cet effet");
 			}
 		}
 	}
@@ -60,7 +60,7 @@ public class Merveille {
 	public static void effetLaboratoire(int personnage) {
 		if(Merveille.isExist(personnage, ListeMerveille.LABORATOIRE.getNom()))
 		{
-			System.out.println("Voulez vous vous dÃ©faussez d'une carte de votre main pour percevoir deux piÃ¨ces d'or supplÃ©mentaires? ");
+			System.out.println("Voulez vous vous défaussez d'une carte de votre main pour percevoir deux pièces d'or supplémentaires? ");
 			boolean choice = Interaction.lireOuiOuNon();
 			if(choice)
 			{
@@ -77,7 +77,7 @@ public class Merveille {
 	
 	public static int effetSalleDesCartes(int i) {
 		int score = 0;
-		//ImplÃ©mentatioon de l'augmentation du score pour chaque carte dans la main du joueur
+		//Implémentatioon de l'augmentation du score pour chaque carte dans la main du joueur
 		if(Merveille.isExist(i, ListeMerveille.SALLES_DES_CARTES.getNom()))
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
@@ -89,9 +89,9 @@ public class Merveille {
 	}
 	
 	public static int effetFontaineAuxSouhaits(int i) {
-		// la somme des diffÃ©rents bonus des merveilles de sa citÃ©
+		// la somme des différents bonus des merveilles de sa cité
 		int score = 0;
-		//ImplÃ©mentatioon de l'augmentation du score pour chaque carte dans la main du joueur
+		//Implémentatioon de l'augmentation du score pour chaque carte dans la main du joueur
 		if(Merveille.isExist(i, ListeMerveille.FONTAINE_AUX_SOUHAITS.getNom()))
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
@@ -106,7 +106,7 @@ public class Merveille {
 	}
 	
 	public static void effetBibliotheque(int personnage, Quartier[] quartiers) {
-		//Parcours de la citÃ© du Joueur afin de dÃ©ternminÃ© si le joueur possÃ¨de la Merveille Forge
+		//Parcours de la cité du Joueur afin de déternminé si le joueur possède la Merveille Forge
 		if(Merveille.isExist(personnage, ListeMerveille.BIBLIOTHEQUE.getNom()))
 		{
 			System.out.println("Quelle carte voulez vous gardez ? : ");
@@ -134,8 +134,8 @@ public class Merveille {
 	}
 	
 	private static boolean isExist(int personnage, String name) {
-		//ImplÃ©mentation de la Merveille Manufacture
-		//Parcours de la citÃ© du joueur afin de dÃ©terminer si il possÃ¨de la merveille Manufacture
+		//Implémentation de la Merveille Manufacture
+		//Parcours de la cité du joueur afin de déterminer si il possède la merveille Manufacture
 		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain(); j++) 
 		{
 			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(j).getNom().equals(name))
