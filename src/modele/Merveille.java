@@ -37,32 +37,57 @@ public class Merveille {
 		}
 	}
 	
-	public static void effetForge(int personnage) {
-		int nbCartesPiocher = 2;
+	public static void effetForge(int personnage) 
+	{
 		//Parcours de la cité du Joueur afin de déternminé si le joueur possède la Merveille Forge
 		if(Merveille.isExist(personnage, ListeMerveille.FORGE.getNom()))
 		{
-			System.out.println("Voulez vous payez deux pieces d'or pour piocher une carte de plus? ");
-			boolean choix = Interaction.lireOuiOuNon();
+			System.out.println("Voulez vous payez deux pieces d'or pour piocher trois cartes ? ");
+			boolean choix;
+			if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+				choix = Interaction.lireOuiOuNon();
+			else 
+			{
+				//sinon on gÃ©nÃ¨re un nombre alÃ©atoire qui correspond au choix de l'ordinateur
+				choix = this.generateur.nextInt(2) == 1;
+			}
 			if(choix)
 			{
-				if(plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= 2)
+				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= 2)
 				{
-					plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(2);
-					nbCartesPiocher = 3;
+					this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(2);
+					Quartier[] quartiers = new Quartier[3];
+					for (int i = 0; i < quartiers.length; i++) 
+					{
+						quartiers[i] = this.plateauDeJeu.getPioche().piocher();
+					}
+					System.out.println("Voici les cartes que vous avez piochÃ© : ");
+					for (int i = 0; i < quartiers.length; i++) 
+					{
+						System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
+							+ quartiers[i].getType() + " - piÃ¨ces : " + quartiers[i].getCout());
+					}
 				}
 				else
-					System.out.println("Vous ne possédez pas assez de pièces pour utiliser cet effet");
+					System.out.println("Vous ne possÃ©dez pas assez de piÃ¨ces pour utiliser cet effet");
+				}
 			}
-		}
 	}
-	
-	public static void effetLaboratoire(int personnage) {
+	//Fin de l'implémentation de l'effet Forge
+	public static void effetLaboratoire(int personnage) 
+	{
 		if(Merveille.isExist(personnage, ListeMerveille.LABORATOIRE.getNom()))
 		{
 			System.out.println("Voulez vous vous défaussez d'une carte de votre main pour percevoir deux pièces d'or supplémentaires? ");
-			boolean choice = Interaction.lireOuiOuNon();
-			if(choice)
+			boolean choix;
+			if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+				choix = Interaction.lireOuiOuNon();
+			else 
+			{
+				//sinon on gÃ©nÃ¨re un nombre alÃ©atoire qui correspond au choix de l'ordinateur
+				choix = this.generateur.nextInt(2) == 1;
+			}
+			if(choix)
 			{
 				if(plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain() >= 0)
 				{
@@ -74,7 +99,7 @@ public class Merveille {
 			}
 		}
 	}
-	
+	//Fin de l'implémentation de l'effet Laboratoire
 	public static int effetSalleDesCartes(int i) {
 		int score = 0;
 		//Implémentatioon de l'augmentation du score pour chaque carte dans la main du joueur
