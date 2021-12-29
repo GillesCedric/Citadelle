@@ -337,7 +337,7 @@ public class Jeu {
 			//Implémentation de la merveille Laboratoire
 			Merveille.effetLaboratoire(personnage);
 			//Fin de l'implémentation de la Merveille Laboratoire
-			Quartier[] quartiers = new Quartier[nbCartesPiocher];
+			Quartier[] quartiers = new Quartier[2];
 			for (int i = 0; i < quartiers.length; i++) 
 			{
 				quartiers[i] = this.plateauDeJeu.getPioche().piocher();
