@@ -4,26 +4,26 @@
 package modele;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  *
  */
 public enum ListeQuartier {
 	TEMPLE("Temple",1,3,Quartier.TYPE_QUARTIERS[0]),
 	EGLISE("Eglise",2,3,Quartier.TYPE_QUARTIERS[0]),
-	MONASTERE("Monastère",3,3,Quartier.TYPE_QUARTIERS[0]),
-	CATHEDRALE("Cathédrale",5,2,Quartier.TYPE_QUARTIERS[0]),
+	MONASTERE("MonastÃ¨re",3,3,Quartier.TYPE_QUARTIERS[0]),
+	CATHEDRALE("CathÃ©drale",5,2,Quartier.TYPE_QUARTIERS[0]),
 	TOUR_DE_GUET("Tour de guet",1,3,Quartier.TYPE_QUARTIERS[1]),
 	PRISON("Prison",2,3,Quartier.TYPE_QUARTIERS[1]),
 	CASERNE("Caserne",3,3,Quartier.TYPE_QUARTIERS[1]),
 	FORTERESSE("Forteresse",5,2,Quartier.TYPE_QUARTIERS[1]),
 	MANOIR("Manoir",3,5,Quartier.TYPE_QUARTIERS[2]),
-	CHATEAU("Château",4,4,Quartier.TYPE_QUARTIERS[2]),
+	CHATEAU("ChÃ¢teau",4,4,Quartier.TYPE_QUARTIERS[2]),
 	PALAIS("Palais",5,3,Quartier.TYPE_QUARTIERS[2]),
 	ECHOPPE("Echoppe",2,3,Quartier.TYPE_QUARTIERS[3]),
 	TAVERNE("Taverne",1,5,Quartier.TYPE_QUARTIERS[3]),
-	MARCHE("Marché",2,4,Quartier.TYPE_QUARTIERS[3]),
+	MARCHE("MarchÃ©",2,4,Quartier.TYPE_QUARTIERS[3]),
 	COMPTOIR("Taverne",3,3,Quartier.TYPE_QUARTIERS[3]),
-	HOTEL_DE_VILLE("Hôtel de ville",5,2,Quartier.TYPE_QUARTIERS[3]),
+	HOTEL_DE_VILLE("HÃ´tel de ville",5,2,Quartier.TYPE_QUARTIERS[3]),
 	PORT("Taverne",4,3,Quartier.TYPE_QUARTIERS[3]);
 
 	private ListeQuartier(String nom,int cout,int nbMax, String type) {

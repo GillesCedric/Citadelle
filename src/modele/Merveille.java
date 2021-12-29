@@ -13,6 +13,7 @@ import controlleur.Interaction;
  */
 public class Merveille {
 	private static PlateauDeJeu plateauDeJeu = null;
+	private static Random random = new Random();
 	
 	
 
@@ -44,32 +45,32 @@ public class Merveille {
 		{
 			System.out.println("Voulez vous payez deux pieces d'or pour piocher trois cartes ? ");
 			boolean choix;
-			if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+			if (!plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
 				choix = Interaction.lireOuiOuNon();
 			else 
 			{
-				//sinon on gÃ©nÃ¨re un nombre alÃ©atoire qui correspond au choix de l'ordinateur
-				choix = this.generateur.nextInt(2) == 1;
+				//sinon on génère un nombre aléatoire qui correspond au choix de l'ordinateur
+				choix = random.nextInt(2) == 1;
 			}
 			if(choix)
 			{
-				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= 2)
+				if(plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= 2)
 				{
-					this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(2);
+					plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(2);
 					Quartier[] quartiers = new Quartier[3];
 					for (int i = 0; i < quartiers.length; i++) 
 					{
-						quartiers[i] = this.plateauDeJeu.getPioche().piocher();
+						quartiers[i] = plateauDeJeu.getPioche().piocher();
 					}
-					System.out.println("Voici les cartes que vous avez piochÃ© : ");
+					System.out.println("Voici les cartes que vous avez pioché : ");
 					for (int i = 0; i < quartiers.length; i++) 
 					{
 						System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
-							+ quartiers[i].getType() + " - piÃ¨ces : " + quartiers[i].getCout());
+							+ quartiers[i].getType() + " - pièces : " + quartiers[i].getCout());
 					}
 				}
 				else
-					System.out.println("Vous ne possÃ©dez pas assez de piÃ¨ces pour utiliser cet effet");
+					System.out.println("Vous ne possédez pas assez de pièces pour utiliser cet effet");
 				}
 			}
 	}
@@ -80,12 +81,12 @@ public class Merveille {
 		{
 			System.out.println("Voulez vous vous défaussez d'une carte de votre main pour percevoir deux pièces d'or supplémentaires? ");
 			boolean choix;
-			if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+			if (!plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
 				choix = Interaction.lireOuiOuNon();
 			else 
 			{
-				//sinon on gÃ©nÃ¨re un nombre alÃ©atoire qui correspond au choix de l'ordinateur
-				choix = this.generateur.nextInt(2) == 1;
+				//sinon on génère un nombre aléatoire qui correspond au choix de l'ordinateur
+				choix = random.nextInt(2) == 1;
 			}
 			if(choix)
 			{
@@ -140,7 +141,7 @@ public class Merveille {
 				carte = Interaction.lireUnEntier(1, 3);
 			else {
 				do {
-					carte = new Random().nextInt(3);
+					carte = random.nextInt(3);
 				} while (carte == 0);
 			}
 			plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[carte-1]);
