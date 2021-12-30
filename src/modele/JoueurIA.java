@@ -4,7 +4,7 @@
 package modele;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  *
  */
 public enum JoueurIA {
@@ -17,7 +17,7 @@ public enum JoueurIA {
 	LOAN("Loan"),
 	RAZI("Razi"),
 	BISSANE("Bissane"),
-	CEDRIC("Cédric"),
+	CEDRIC("CÃ©dric"),
 	MILAINE("Milaine");
 	
 	private JoueurIA(String nom) {
