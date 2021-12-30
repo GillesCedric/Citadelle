@@ -408,7 +408,7 @@ public class Jeu {
 			if(forge)
 			{
 				System.out.println("Voulez vous payez deux pieces d'or pour piocher trois cartes ? ");
-				if
+				
 				boolean choix;
 				if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
 					choix = Interaction.lireOuiOuNon();

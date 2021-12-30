@@ -1,6 +1,5 @@
 package modele;
 import java.util.Scanner;
-
 import controlleur.Interaction;
 
 public class Condottiere extends Personnage {
@@ -19,7 +18,7 @@ public class Condottiere extends Personnage {
 		// TODO Auto-generated method stub
 		
 		
-		String ouiNon;
+		
 		int joueurChoisi;
 		int quartierChoisi;
 		Scanner sc = new Scanner (System.in);
@@ -29,25 +28,25 @@ public class Condottiere extends Personnage {
 		if (Interaction.lireOuiOuNon()) {
 			
 			
-			System.out.print("\nVoici la liste des joueurs et le contenu de leur cité :\n");
+			System.out.print("\nVoici la liste des joueurs et le contenu de leur citÃ© :\n");
 			
-			//parcours et affichage des joueurs et le contenus de leurs cités
+			//parcours et affichage des joueurs et le contenus de leurs citÃ©s
 			 for (int i=0; i < this.getPlateau().getNombreJoueurs() ; i++) {
 				 
 				
 				System.out.println( i+1 + " " + this.getPlateau().getJoueur(i).getNom() + " : ");
 				
-				for (int j=0; j < this.getPlateau().getJoueur(i).getCite().length; j++) {
+				for (int j=0; j < this.getPlateau().getJoueur(i).getCite().length; j++) {					
 					
 					System.out.println(j+1 + " " + this.getPlateau().getJoueur(i).getCite()[j].getNom() + 
-					" (Coût " + this.getPlateau().getJoueur(i).getCite()[j].getCout() + "), ");
+					" (CoÃ»t " + this.getPlateau().getJoueur(i).getCite()[j].getCout() + "), ");
 				}
 			 }
 			
 			
-			//affichage du nombre des piéces d'or du joueur actuel
-			System.out.print("\nPour plus d'information, vous avez " + this.getJoueur().nbPieces() + " piéces d'or "
-					+ "dans votre trésor ");
+			//affichage du nombre des piÃ¨ces d'or du joueur actuel
+			System.out.print("\nPour plus d'information, vous avez " + this.getJoueur().nbPieces() + " piÃ©ces d'or "
+					+ "dans votre trÃ©sor ");
 			
 			//demande de choisir un joueur
 			System.out.println("\nQuel joueur choisissez-vous ? (0 pour ne rien faire) ");
@@ -66,19 +65,20 @@ public class Condottiere extends Personnage {
 			
 			while (this.getJoueur().nbPieces() < this.getPlateau().getJoueur(joueurChoisi).getCite()[quartierChoisi].getCout()) {
 				
-					System.out.println("\nVotre trésor n'est pas suffisant");
+					System.out.println("\nVotre trÃ©sor n'est pas suffisant");
 					System.out.println("\nVotre choix ? ");
 					quartierChoisi = sc.nextInt();
+					
 				
 			}
 			
 			System.out.println("\n=> non retire l'" + this.getPlateau().getJoueur(joueurChoisi).getCite()[quartierChoisi].getNom() +
-					" à " + this.getPlateau().getJoueur(joueurChoisi).getNom());
+					" " + this.getPlateau().getJoueur(joueurChoisi).getNom());
 			
 			this.getPlateau().getJoueur(joueurChoisi).retirerQuartierDansCite(this.getPlateau().getJoueur(joueurChoisi).getCite()[quartierChoisi].getNom());
 			
-			System.out.println("\nPour information, votre trésor est constitué de " + this.getJoueur().nbPieces() + 
-					" piéces d'or");
+			System.out.println("\nPour information, votre trÃ©sor est constituÃ© de " + this.getJoueur().nbPieces() + 
+					" piÃ¨ces d'or");
 			
 			
 		} else {
