@@ -3,7 +3,7 @@ package modele;
 /**
  *
  * @author Badugue Bonnet Igor-M
- * @since 13/11/2021
+ * 
  */
 public class PlateauDeJeu {
 	private Personnage[] listePersonnages;
@@ -60,5 +60,37 @@ public class PlateauDeJeu {
 			this.nombreJoueurs++;
 		}
 	}
+
+	public Personnage getListePersonnages(int i) {
+		return listePersonnages[i];
+	}
+
+	public void setListePersonnages(Personnage[] listePersonnages) {
+		this.listePersonnages = listePersonnages;
+	}
+
+	public Joueur[] getListeJoueurs() {
+		return listeJoueurs;
+	}
+
+	public void setListeJoueurs(Joueur[] listeJoueurs) {
+		this.listeJoueurs = listeJoueurs;
+	}
+
+	public void setPioche(Pioche pioche) {
+		this.pioche = pioche;
+	}
+
+	public void setNombrePersonnages(int nombrePersonnages) {
+		this.nombrePersonnages = nombrePersonnages;
+	}
+
+	public void setNombreJoueurs(int nombreJoueurs) {
+		this.nombreJoueurs = nombreJoueurs;
+	}
+	
+	
+	
+	
 
 }

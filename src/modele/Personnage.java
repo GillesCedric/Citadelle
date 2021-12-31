@@ -158,5 +158,5 @@ public abstract class Personnage {
 	 */
 	public void setPlateau(PlateauDeJeu plateau) {
 		this.plateauDeJeu = plateau;
-	}
+	}  
 }
