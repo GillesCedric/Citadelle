@@ -101,6 +101,25 @@ public class Merveille {
 		}
 	}
 	//Fin de l'implémentation de l'effet Laboratoire
+	public static int statueEquestre(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
+		{
+			if(plateauDeJeu.getJoueur(i).getPossedeCouronne())
+				score + = 5;
+		}
+		
+	}
+	//Fin de l'implémentation de l'effet Statue Equestre
+	public static int tresorImperial(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
+		{
+			score + = plateauDeJeu.getJoueur(i).nbPieces();
+		}
+		
+	}
+	//Fin de l'implémentation de l'effet Trésor Impérial
 	public static int effetSalleDesCartes(int i) {
 		int score = 0;
 		//Implémentatioon de l'augmentation du score pour chaque carte dans la main du joueur
