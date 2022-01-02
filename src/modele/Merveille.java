@@ -171,5 +171,60 @@ public class Merveille {
 		}
 		return false;
 	}
+	
+	
+		public static int effetTrésorImpérial(int i) {
+			
+			int score = 0;
 
+			if(Merveille.isExist(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
+			{
+				for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
+				{
+					//parcours du trésor du joueur
+					for (int k=0; k < plateauDeJeu.getJoueur(j).nbPieces(); k++) {
+						
+						score++;
+					}
+			}
+				
+			return score;
+			
+		} else {
+			
+			return score;
+		}	
+	}
+		
+		
+/*
+
+public static int effetStatueEquestre(int i) {
+	
+	int score = 0;
+
+	if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
+	{
+		for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
+		{
+			for (ListeMerveille merveille : ListeMerveille.values()) {
+				
+				//parcours du trésor du joueur
+				for (int k=0; k < plateauDeJeu.getJoueur(j).nbPieces(); k++) {
+					
+					score++;
+				}
+		}
+	}
+		
+	return score;
+	
+} else {
+	
+	return score;
+}
+			
+		
+}		
+		*/
 }
