@@ -2,6 +2,8 @@ package modele;
 
 import java.util.Scanner;
 
+import controlleur.Interaction;
+
 /**
 *
 * @author Badugue Bonnet Igor-M
@@ -19,31 +21,21 @@ public class Assassin extends Personnage {
 	public void utiliserPouvoir() {
 	
 	PlateauDeJeu p= new PlateauDeJeu();
-	 int n=0;
 	
+	System.out.print("Quel personnage voulez vous assassiner?");
 		for(int i=0; i< p.getNombrePersonnages(); i++) {
-			
-			n+=n;
-			System.out.println(n+":"+this.getPlateau().getPersonnage(i).getNom().getNom());
-			n++;
+			System.out.println(i+1+": "+this.getPlateau().getPersonnage(i).getNom());
 		}
-		
-		System.out.print("Votre choix :");
-		
-		Scanner sc = new Scanner(System.in);  // Create a Scanner object
-	    s
 
-	    int choix = sc.nextInt(); 
+	    int choix = Interaction.lireUnEntier(1, this.getPlateau().getNombrePersonnages()+1); 
 	    
-	    if(this.getPlateau().getPersonnage(choix).getNom()=="Assassin") {
+	    if(this.getPlateau().getPersonnage(choix).getNom().equals(Nom.ASSASSIN)) {
 	    	System.out.println("Vous ne pouvez pas vous assassiner ");
 	    	
 	    }else { 
-	    	this.getPlateau().setAssassin();
+	    	this.getPlateau().getPersonnage(choix).setAssassine();
 	    	
 	    }
-
-		
 	}
 
 	@Override
