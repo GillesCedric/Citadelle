@@ -4,7 +4,7 @@
 package modele;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  * @since 15/11/2021
  * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
  */
@@ -35,7 +35,7 @@ public class Roi extends Personnage {
 				nbQuartierNoble ++;
 		}
 		this.getJoueur().ajouterPieces(nbQuartierNoble);
-		System.out.println("Grâce à vos quatier nobles dans votre cité, vous gagnez "+nbQuartierNoble+" de pièces en plus");
+		System.out.println("GrÃ¢ce Ã  vos quatier nobles dans votre citÃ©, vous gagnez "+nbQuartierNoble+" de piÃ¨ces en plus");
 	}
 
 	@Override

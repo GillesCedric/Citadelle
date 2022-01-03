@@ -11,10 +11,10 @@ public class Eveque extends Personnage
 	{
 		int i;
 		Quartier cit[]= getJoueur().getCite();
-		for(i=0; i< getJoueur().nbQuartiersDansCite()-1;i++)
+		for(i=0; i< getJoueur().nbQuartiersDansCite();i++)
 		{
 			
-			if(cit[i].getType().equals("RELIGIEUX"))
+			if(cit[i].getType().equals(Quartier.TYPE_QUARTIERS[0]))
 			{
 				getJoueur().ajouterPieces(1);
 			}
