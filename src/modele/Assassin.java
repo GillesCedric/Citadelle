@@ -20,10 +20,8 @@ public class Assassin extends Personnage {
 	@Override
 	public void utiliserPouvoir() {
 	
-	PlateauDeJeu p= new PlateauDeJeu();
-	
-	System.out.print("Quel personnage voulez vous assassiner?");
-		for(int i=0; i< p.getNombrePersonnages(); i++) {
+	System.out.print("voila la liste de personnage de jeu");
+		for(int i=0; i< this.getPlateau().getNombrePersonnages(); i++) {
 			System.out.println(i+1+": "+this.getPlateau().getPersonnage(i).getNom());
 		}
 

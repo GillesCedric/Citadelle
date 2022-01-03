@@ -3,8 +3,10 @@
  */
 package modele;
 
+import controlleur.Interaction;
+
 /**
- * @author Gilles Cédric
+ * @author Badugue Bonnet Igor-Marie
  *
  */
 public class Voleur extends Personnage {
@@ -21,9 +23,22 @@ public class Voleur extends Personnage {
 
 	@Override
 	public void utiliserPouvoir() {
-		// TODO Auto-generated method stub
+		System.out.print("Voila la liste de personnage !");
+		for(int i=0; i< this.getPlateau().getNombrePersonnages(); i++) {
+			System.out.println(i+1+": "+this.getPlateau().getPersonnage(i).getNom());
+		}
 
+	    int choix = Interaction.lireUnEntier(1, this.getPlateau().getNombrePersonnages()+1); 
+	    
+	    if(this.getPlateau().getPersonnage(choix).getNom().equals(Nom.VOLEUR)) {
+	    	System.out.println("Vous ne pouvez pas vous auto-voler ");
+	    	
+	    }else { 
+	    	this.getPlateau().getPersonnage(choix).setVole();
+	    	
+	    }
 	}
+
 
 	@Override
 	public void utiliserPouvoirAvatar() {
