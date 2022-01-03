@@ -101,6 +101,25 @@ public class Merveille {
 		}
 	}
 	//Fin de l'implémentation de l'effet Laboratoire
+	public static int statueEquestre(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
+		{
+			if(plateauDeJeu.getJoueur(i).getPossedeCouronne())
+				score + = 5;
+		}
+		
+	}
+	//Fin de l'implémentation de l'effet Statue Equestre
+	public static int tresorImperial(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
+		{
+			score + = plateauDeJeu.getJoueur(i).nbPieces();
+		}
+		
+	}
+	//Fin de l'implémentation de l'effet Trésor Impérial
 	public static int effetSalleDesCartes(int i) {
 		int score = 0;
 		//Implémentatioon de l'augmentation du score pour chaque carte dans la main du joueur
@@ -171,5 +190,60 @@ public class Merveille {
 		}
 		return false;
 	}
+	
+	
+		public static int effetTrésorImpérial(int i) {
+			
+			int score = 0;
 
+			if(Merveille.isExist(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
+			{
+				for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
+				{
+					//parcours du trésor du joueur
+					for (int k=0; k < plateauDeJeu.getJoueur(j).nbPieces(); k++) {
+						
+						score++;
+					}
+			}
+				
+			return score;
+			
+		} else {
+			
+			return score;
+		}	
+	}
+		
+		
+/*
+
+public static int effetStatueEquestre(int i) {
+	
+	int score = 0;
+
+	if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
+	{
+		for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
+		{
+			for (ListeMerveille merveille : ListeMerveille.values()) {
+				
+				//parcours du trésor du joueur
+				for (int k=0; k < plateauDeJeu.getJoueur(j).nbPieces(); k++) {
+					
+					score++;
+				}
+		}
+	}
+		
+	return score;
+	
+} else {
+	
+	return score;
+}
+			
+		
+}		
+		*/
 }
