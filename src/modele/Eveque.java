@@ -3,9 +3,9 @@ package modele;
 
 public class Eveque extends Personnage
 {
-	public Eveque(String nom, int rang, String caracteristiques)
+	public Eveque()
 	{
-		super( nom, rang, caracteristiques);
+		super( Nom.EVEQUE, Rang.EVEQUE, Caracteristiques.EVEQUE);
 	}
 	public void percevoirRessourcesSpecifiques()
 	{
@@ -22,9 +22,10 @@ public class Eveque extends Personnage
 	}
 	public void utiliserPouvoir()
 	{
-		if(getRang()<8)
-		{
-			System.out.println("Rang 8 minimum exigé");
-		}
+	}
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
 	}
 }

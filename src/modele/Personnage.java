@@ -2,12 +2,12 @@ package modele;
 
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  * @since 12/11/2021
  * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
  *
  */
-public abstract class Personnage {
+public abstract class Personnage implements Comparable<Personnage>{
 	private String nom;
 	private int rang;
 	private String caracteristiques;
@@ -118,6 +118,8 @@ public abstract class Personnage {
 	 */
 	public void construire(Quartier quartier) {
 		if (this.joueur != null && !this.assassine) {
+			this.joueur.retirerPieces(2);
+			this.joueur.getMain().remove(quartier);
 			this.joueur.ajouterQuartierDansCite(quartier);
 		}
 	}
@@ -127,7 +129,7 @@ public abstract class Personnage {
 	 */
 	public void percevoirRessourcesSpecifiques() {
 		if (this.joueur == null || this.assassine) {
-			System.out.println("Aucune ressources spÃ©cifiques");
+			System.out.println("Aucune ressources spï¿½cifiques");
 		}
 	}
 
@@ -135,15 +137,20 @@ public abstract class Personnage {
 	 * @return void
 	 */
 	public abstract void utiliserPouvoir();
+	
+	/**
+	 * @return void
+	 */
+	public abstract void utiliserPouvoirAvatar();
 
 	/**
 	 * @return void
 	 */
 	public void reinitialiser() {
+		this.joueur.monPersonnage = null;
 		this.joueur = null;
 		this.assassine = false;
 		this.vole = false;
-		this.joueur.monPersonnage = null;
 	}
 
 	/**
@@ -159,4 +166,15 @@ public abstract class Personnage {
 	public void setPlateau(PlateauDeJeu plateau) {
 		this.plateauDeJeu = plateau;
 	}  
+	
+
+	@Override
+	public int compareTo(Personnage o) {
+		if(this.rang > o.rang)
+			return 1;
+		else if(this.rang == o.rang)
+			return 0;
+		return -1;
+	}
+
 }

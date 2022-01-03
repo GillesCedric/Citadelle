@@ -3,9 +3,9 @@ package modele;
 
 public class Marchande extends Personnage
 {
-	public Marchande(String nom, int rang, String caracteristiques)
+	public Marchande()
 	{
-		super( nom, rang, caracteristiques);
+		super( Nom.MARCHANDE, Rang.MARCHANDE, Caracteristiques.MARCHANDE);
 	}
 	public void percevoirRessourcesSpecifiques()
 	{
@@ -22,11 +22,11 @@ public class Marchande extends Personnage
 	}
 	public void utiliserPouvoir()
 	{
-		if(getRang()>=8)
-		{
-			getJoueur().ajouterPieces(1);
-		}
-		else
-			System.out.println("Rang 8 minimum exigé");
+		getJoueur().ajouterPieces(1);
+	}
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
 	}
 }

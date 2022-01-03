@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Badugue Bonnet Igor-M
@@ -18,6 +20,17 @@ public class PlateauDeJeu {
 		pioche = new Pioche();
 		nombrePersonnages = 0;
 		nombreJoueurs = 0;
+	}
+	
+	public void sortPersonnage() {
+		Arrays.sort(this.listePersonnages);
+	}
+
+	/**
+	 * @param pioche the pioche to set
+	 */
+	public void setPioche(Pioche pioche) {
+		this.pioche = pioche;
 	}
 
 	public Personnage getPersonnage(int i) {
