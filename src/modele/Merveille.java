@@ -163,7 +163,7 @@ public class Merveille {
 	private static boolean isExist(int personnage, String name) {
 		//Implémentation de la Merveille Manufacture
 		//Parcours de la cité du joueur afin de déterminer si il possède la merveille Manufacture
-		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain(); j++) 
+		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); j++) 
 		{
 			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(j).getNom().equals(name))
 			{

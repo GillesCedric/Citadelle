@@ -11,10 +11,10 @@ public class Marchande extends Personnage
 	{
 		int i;
 		Quartier cit[]= getJoueur().getCite();
-		for(i=0; i< getJoueur().nbQuartiersDansCite()-1;i++)
+		for(i=0; i< getJoueur().nbQuartiersDansCite();i++)
 		{
 			
-			if(cit[i].getType().equals("COMMERCANT"))
+			if(cit[i].getType().equals(Quartier.TYPE_QUARTIERS[3]))
 			{
 				getJoueur().ajouterPieces(1);
 			}
@@ -26,7 +26,7 @@ public class Marchande extends Personnage
 	}
 	@Override
 	public void utiliserPouvoirAvatar() {
-		// TODO Auto-generated method stub
+		utiliserPouvoir();
 		
 	}
 }
