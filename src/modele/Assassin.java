@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import controlleur.Interaction;
@@ -38,8 +39,22 @@ public class Assassin extends Personnage {
 
 	@Override
 	public void utiliserPouvoirAvatar() {
-		// TODO Auto-generated method stub
+		Random random = new Random();
+		int res = random.nextInt(this.getPlateau().getNombreJoueurs()+1);
+		System.out.print("Voila la liste des personnages !");
+		for(int i=0; i< this.getPlateau().getNombrePersonnages(); i++) {
+			System.out.println(i+1+": "+this.getPlateau().getPersonnage(i).getNom());
+		}
+		if(this.getPlateau().getPersonnage(res).getNom().equals(Nom.ASSASSIN)) {
+	    	System.out.println(" Vous ne pouvez pas vous auto-assassiner");
+	    	
+	    }else { 
+	    	this.getPlateau().getPersonnage(res).setAssassine();
+	    	
+	    }
 		
 	}
+		
+	
 
 }

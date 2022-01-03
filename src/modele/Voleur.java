@@ -3,6 +3,8 @@
  */
 package modele;
 
+import java.util.Random;
+
 import controlleur.Interaction;
 
 /**
@@ -23,15 +25,15 @@ public class Voleur extends Personnage {
 
 	@Override
 	public void utiliserPouvoir() {
-		System.out.print("Voila la liste de personnage !");
+		System.out.print("Voila la liste des personnages !");
 		for(int i=0; i< this.getPlateau().getNombrePersonnages(); i++) {
 			System.out.println(i+1+": "+this.getPlateau().getPersonnage(i).getNom());
 		}
 
 	    int choix = Interaction.lireUnEntier(1, this.getPlateau().getNombrePersonnages()+1); 
 	    
-	    if(this.getPlateau().getPersonnage(choix).getNom().equals(Nom.VOLEUR)) {
-	    	System.out.println("Vous ne pouvez pas vous auto-voler ");
+	    if(this.getPlateau().getPersonnage(choix).getNom().equals(Nom.VOLEUR) || this.getPlateau().getPersonnage(choix).getRang()==1) {
+	    	System.out.println(" Vous ne pouvez pas vous auto-voler ni meme choisir un personnage de rang 1 ");
 	    	
 	    }else { 
 	    	this.getPlateau().getPersonnage(choix).setVole();
@@ -42,7 +44,19 @@ public class Voleur extends Personnage {
 
 	@Override
 	public void utiliserPouvoirAvatar() {
-		// TODO Auto-generated method stub
+		Random random = new Random();
+		int res = random.nextInt(this.getPlateau().getNombreJoueurs()+1);
+		System.out.print("Voila la liste de personnage !");
+		for(int i=0; i< this.getPlateau().getNombrePersonnages(); i++) {
+			System.out.println(i+1+": "+this.getPlateau().getPersonnage(i).getNom());
+		}
+		if(this.getPlateau().getPersonnage(res).getNom().equals(Nom.VOLEUR) || this.getPlateau().getPersonnage(res).getRang()==1) {
+	    	System.out.println(" Vous ne pouvez pas vous auto-voler ni meme choisir un personnage de rang 1 ");
+	    	
+	    }else { 
+	    	this.getPlateau().getPersonnage(res).setVole();
+	    	
+	    }
 		
 	}
 
