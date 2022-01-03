@@ -329,7 +329,7 @@ public class Jeu {
 			} while (response == 0);
 		}
 		if (response == 1) {
-<<<<<<< HEAD
+
 			System.out.println("Vous avez piochÃ© deux cartes");
 			boolean bibliotheque = false;
 			//Parcours de la citÃ© du Joueur afin de dÃ©ternminÃ© si le joueur possÃ¨de la Merveille Bibliotheque
@@ -384,11 +384,11 @@ public class Jeu {
 						System.out.println("Vous ne possÃ©dez pas assez de piÃ¨ces pour utiliser cet effet");
 				}
 			}
-=======
+
 			System.out.println("Vous avez pioché deux cartes");
 			// Implémentation de la merveille Forge 
 			Merveille.effetForge(personnage);
->>>>>>> ec0aa56721d699fde7c07d4c27c414e61ed24262
+
 			//Fin de l'effet de la Merveille Forge
 			
 			//Implémentation de la merveille Laboratoire

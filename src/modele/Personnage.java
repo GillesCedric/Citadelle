@@ -2,7 +2,7 @@ package modele;
 
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  * @since 12/11/2021
  * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
  *
@@ -129,7 +129,7 @@ public abstract class Personnage implements Comparable<Personnage>{
 	 */
 	public void percevoirRessourcesSpecifiques() {
 		if (this.joueur == null || this.assassine) {
-			System.out.println("Aucune ressources spécifiques");
+			System.out.println("Aucune ressources spï¿½cifiques");
 		}
 	}
 
@@ -165,7 +165,8 @@ public abstract class Personnage implements Comparable<Personnage>{
 	 */
 	public void setPlateau(PlateauDeJeu plateau) {
 		this.plateauDeJeu = plateau;
-	}
+	}  
+	
 
 	@Override
 	public int compareTo(Personnage o) {
@@ -175,4 +176,5 @@ public abstract class Personnage implements Comparable<Personnage>{
 			return 0;
 		return -1;
 	}
+
 }
