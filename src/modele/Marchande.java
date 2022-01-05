@@ -1,5 +1,6 @@
 package modele;
 
+import utilities.Nom;
 
 public class Marchande extends Personnage
 {

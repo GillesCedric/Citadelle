@@ -10,12 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import controlleur.Interaction;
 import modele.Joueur;
-import modele.ListeMerveille;
 import modele.Merveille;
-import modele.Nom;
 import modele.Personnage;
 import modele.PlateauDeJeu;
 import modele.Quartier;
+import utilities.Browser;
+import utilities.Nom;
 
 /**
  * @author Gilles Cédric
@@ -63,15 +63,17 @@ public class Jeu {
 	}
 	
 	private void afficherLesRegles() {
-		try {
-			Desktop.getDesktop().open(new File("C:\\Users\\HP\\eclipse-2021-workspace\\Citadelle\\src\\ressources\\presentationJeuCitadelles.pdf"));
-		} catch (IOException e) {
+		//try {
+			//Desktop.getDesktop().open(new File("C"+System.getProperty("")+""+System.getProperty(null)+"Users\\HP\\eclipse-2021-workspace\\Citadelle\\src\\ressources\\presentationJeuCitadelles.pdf"));
+			Browser.open("https://drive.google.com/file/d/1FxyMtdVkxvK9qeMBQQM_Y7ZyvyR8g-Wv/view?usp=sharing");
+			System.out.println("Les règles vont s'ouvrir dans le navigateur");
+		/*} catch (IOException e) {
 			System.err.println("Erreur lors de l'ouverture des règles du jeu : "+e.getMessage());
-		}
+		}*/
 	}
 	
 	private void quitter() {
-		System.out.println("Au revoir et à  très bientà´t !!!");
+		System.out.println("Au revoir et à  très bientôt !!!");
 		System.exit(0);
 	}
 	
@@ -329,62 +331,7 @@ public class Jeu {
 			} while (response == 0);
 		}
 		if (response == 1) {
-
-			System.out.println("Vous avez piochÃ© deux cartes");
-			boolean bibliotheque = false;
-			//Parcours de la citÃ© du Joueur afin de dÃ©ternminÃ© si le joueur possÃ¨de la Merveille Bibliotheque
-			for (int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++) {
-				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.BIBLIOTHEQUE.getNom())) {
-					bibliotheque = true;
-					break;
-				}
-			}
-			// ImplÃ©mentation de la merveille Forge 
-			boolean forge =  false;
-			int nbCartesPiocher = 2;
-			//Parcours de la citÃ© du Joueur afin de dÃ©ternminÃ© si le joueur possÃ¨de la Merveille Forge
-			for (int i = 0; i < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); i++) 
-			{
-				if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[i].getNom().equals(ListeMerveille.FORGE.getNom())) 
-				{
-					forge = true;
-					break;
-				}
-			}
-			if(forge)
-			{
-				System.out.println("Voulez vous payez deux pieces d'or pour piocher trois cartes ? ");
-				
-				boolean choix;
-				if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
-					choix = Interaction.lireOuiOuNon();
-				else 
-				{
-					//sinon on gÃ©nÃ¨re un nombre alÃ©atoire qui correspond au choix de l'ordinateur
-					choix = this.generateur.nextInt(2) == 1;
-				}
-				if(choix)
-				{
-					if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= 2)
-					{
-						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(2);
-						Quartier[] quartiers = new Quartier[3];
-						for (int i = 0; i < quartiers.length; i++) 
-						{
-							quartiers[i] = this.plateauDeJeu.getPioche().piocher();
-						}
-						System.out.println("Voici les cartes que vous avez piochÃ© : ");
-						for (int i = 0; i < quartiers.length; i++) 
-						{
-							System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
-								+ quartiers[i].getType() + " - piÃ¨ces : " + quartiers[i].getCout());
-						}
-					}
-					else
-						System.out.println("Vous ne possÃ©dez pas assez de piÃ¨ces pour utiliser cet effet");
-				}
-			}
-
+		
 			System.out.println("Vous avez pioché deux cartes");
 			// Implémentation de la merveille Forge 
 			Merveille.effetForge(personnage);

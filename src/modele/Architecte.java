@@ -1,5 +1,7 @@
 package modele;
 
+import utilities.Nom;
+
 public class Architecte extends Personnage {
 	
 

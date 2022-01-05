@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import controlleur.Interaction;
+import utilities.Nom;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  *
  */
 public class Magicienne extends Personnage {
@@ -22,15 +23,15 @@ public class Magicienne extends Personnage {
 	public void utiliserPouvoir() {
 		ArrayList<Quartier> copieMainMagicienne = null;
 		ArrayList<Quartier> copieMainJoueur = null;
-		System.out.println("Voulez échanger vos cartes avec celle d'un autre joueur ? (oui/non) ");
+		System.out.println("Voulez ï¿½changer vos cartes avec celle d'un autre joueur ? (oui/non) ");
 		if (Interaction.lireOuiOuNon()) {
 			for (int i = 0; i < this.getPlateau().getNombreJoueurs(); i++) {
 				if(!this.getPlateau().getJoueur(i).monPersonnage.getNom().equals(this.getNom())) {
-					System.out.println((i + 1) + " : Le joueur " + this.getPlateau().getJoueur(i).getNom() + " possède "
+					System.out.println((i + 1) + " : Le joueur " + this.getPlateau().getJoueur(i).getNom() + " possï¿½de "
 							+ this.getPlateau().getJoueur(i).nbQuartiersDansMain() + " cartes dans sa main");
 				}
 			}
-			System.out.println("Veuillez choisir un joueur en entrant son numéro ");
+			System.out.println("Veuillez choisir un joueur en entrant son numï¿½ro ");
 			int joueur = Interaction.lireUnEntier(1, this.getPlateau().getNombreJoueurs()+1);
 			copieMainMagicienne = new ArrayList<Quartier>(this.getJoueur().getMain());
 			copieMainJoueur = new ArrayList<Quartier>(
@@ -71,11 +72,11 @@ public class Magicienne extends Personnage {
 					for (int i = 0; i < copieMainMagicienne.size(); i++) {
 						System.out.println("Voici les cartes de votre main :");
 						System.out.println((i + 1) + " " + copieMainMagicienne.get(i).getNom() + " - type : "
-								+ copieMainMagicienne.get(i).getType() + " - pièces : "
+								+ copieMainMagicienne.get(i).getType() + " - piï¿½ces : "
 								+ copieMainMagicienne.get(i).getCout());
 					}
 					for (int i = 0; i < nb; i++) {
-						System.out.println("Quel est le numéro de la carte que vous voulez retirer ? ");
+						System.out.println("Quel est le numï¿½ro de la carte que vous voulez retirer ? ");
 						int carte = Interaction.lireUnEntier(1, copieMainMagicienne.size() + 1);
 						this.getPlateau().getPioche().ajouter(copieMainMagicienne.remove(carte-1));
 					}
@@ -103,16 +104,16 @@ public class Magicienne extends Personnage {
 		ArrayList<Quartier> copieMainJoueur = null;
 		int response = 0;
 		boolean res = false;
-		System.out.println("Voulez échanger vos cartes avec celle d'un autre joueur ? (oui/non) ");
+		System.out.println("Voulez ï¿½changer vos cartes avec celle d'un autre joueur ? (oui/non) ");
 		res = random.nextInt(2) == 1;
 		if (res) {
 			for (int i = 0; i < this.getPlateau().getNombreJoueurs(); i++) {
 				if(!this.getPlateau().getJoueur(i).monPersonnage.getNom().equals(this.getNom())) {
-					System.out.println((i + 1) + " : Le joueur " + this.getPlateau().getJoueur(i).getNom() + " possède "
+					System.out.println((i + 1) + " : Le joueur " + this.getPlateau().getJoueur(i).getNom() + " possï¿½de "
 							+ this.getPlateau().getJoueur(i).nbQuartiersDansMain() + " cartes dans sa main");
 				}
 			}
-			System.out.println("Veuillez choisir un joueur en entrant son numéro ");
+			System.out.println("Veuillez choisir un joueur en entrant son numï¿½ro ");
 			do
 				response = random
 				.nextInt(this.getPlateau().getNombreJoueurs()+1);
@@ -157,16 +158,16 @@ public class Magicienne extends Personnage {
 					for (int i = 0; i < copieMainMagicienne.size(); i++) {
 						System.out.println("Voici les cartes de votre main :");
 						System.out.println((i + 1) + " " + copieMainMagicienne.get(i).getNom() + " - type : "
-								+ copieMainMagicienne.get(i).getType() + " - pièces : "
+								+ copieMainMagicienne.get(i).getType() + " - piï¿½ces : "
 								+ copieMainMagicienne.get(i).getCout());
 					}
 					for (int i = 0; i < nb; i++) {
-						System.out.println("Quel est le numéro de la carte que vous voulez retirer ? ");
+						System.out.println("Quel est le numï¿½ro de la carte que vous voulez retirer ? ");
 						int carte = 0;
 						do
 							carte = random
 							.nextInt(copieMainMagicienne.size() + 1);
-						while(response == 0);
+						while(carte == 0);
 						this.getPlateau().getPioche().ajouter(copieMainMagicienne.remove(carte-1));
 					}
 					for (int i = 0; i < nb; i++) {

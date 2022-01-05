@@ -6,7 +6,7 @@ package modele;
 import java.util.Random;
 
 import controlleur.Interaction;
-
+import utilities.Nom;
 /**
  * @author Badugue Bonnet Igor-Marie
  *

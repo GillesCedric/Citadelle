@@ -1,7 +1,7 @@
 /**
  * 
  */
-package modele;
+package utilities;
 
 /**
  * @author Gilles C�dric

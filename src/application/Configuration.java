@@ -11,9 +11,6 @@ import modele.Assassin;
 import modele.Condottiere;
 import modele.Eveque;
 import modele.Joueur;
-import modele.JoueurIA;
-import modele.ListeMerveille;
-import modele.ListeQuartier;
 import modele.Magicienne;
 import modele.Marchande;
 import modele.Personnage;
@@ -22,9 +19,12 @@ import modele.PlateauDeJeu;
 import modele.Quartier;
 import modele.Roi;
 import modele.Voleur;
+import utilities.JoueurIA;
+import utilities.ListeMerveille;
+import utilities.ListeQuartier;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  *
  */
 public class Configuration {

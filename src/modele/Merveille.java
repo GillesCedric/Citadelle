@@ -6,6 +6,7 @@ package modele;
 import java.util.Random;
 
 import controlleur.Interaction;
+import utilities.ListeMerveille;
 
 /**
  * @author Gilles Cédric

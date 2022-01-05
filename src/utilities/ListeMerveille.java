@@ -1,7 +1,9 @@
 /**
  * 
  */
-package modele;
+package utilities;
+
+import modele.Quartier;
 
 /**
  * @author Gilles C�dric

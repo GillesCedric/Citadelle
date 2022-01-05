@@ -3,6 +3,8 @@
  */
 package modele;
 
+import utilities.Nom;
+
 /**
  * @author Gilles C�dric
  * @since 15/11/2021
