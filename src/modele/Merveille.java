@@ -114,7 +114,74 @@ public class Merveille {
 		}
 		return score;
 	}
+	//Debut de l'implémentation dde l'effet Basilique 
 	
+	public static int effetBasilique(int i)
+	{
+		int score;
+		if(Merveille.isExist(i, ListeMerveille.BASILIQUE.getNom()))
+		{
+			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++)
+			{
+				if(!(plateauDeJeu.getJoueur(i).getCite()[j].getCout() % 2 == 0))
+					score ++;
+			}
+		}
+		
+	}
+	
+	//Fin de l'implémentation dde l'effet Basilique 
+	
+	//Debut de l'implémentation dde l'effet Capitole 
+	
+	public static int effetCapitole(int i) 
+	{
+		int score;
+		if(Merveille.isExist(i, ListeMerveille.CAPITOLE.getNom()))
+		{
+			int nbReli;
+			int nbCom;
+			int nbMer;
+			int nbMili;
+			int nbNoble;
+			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
+			{
+				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[0])
+					nbReli++;
+				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[1])
+					nbMili++;
+				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[2])
+					nbNoble++;
+				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[3])
+					nbCom++;
+				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[4])
+					nbMer++;
+				if((nbReli >= 3 ) || (nbCom >= 3 ) || (nbMer >= 3 ) || (nbMili >= 3 ) || (nbNoble >= 3 ) )
+				{
+					score += 3;	
+					return score;
+				}
+				   
+			}
+			
+		}
+	}	
+	
+	//Fin de l'implémentation dde l'effet Capitole 
+	
+	//Debut de l'implémentation dde l'effet CATACOMBES 
+				   
+	public static int effetCatacombes(int i) 
+	{
+		int score;
+		if(Merveille.isExistDansMain(i, ListeMerveille.CATACOMBES.getNom()))	
+		{
+			score += 3;
+			return score;
+		}
+				   
+	//Fin de l'implémentation dde l'effet CATACOMBES
+		
 	public static int effetFontaineAuxSouhaits(int i) {
 		// la somme des différents bonus des merveilles de sa cité
 		int score = 0;
@@ -160,9 +227,10 @@ public class Merveille {
 		}
 	}
 	
-	private static boolean isExist(int personnage, String name) {
-		//Implémentation de la Merveille Manufacture
-		//Parcours de la cité du joueur afin de déterminer si il possède la merveille Manufacture
+	//Methode permetant de vérifier si une merveille existe dans la cité d'un joueur	
+	private static boolean isExist(int personnage, String name) 
+	{
+		//Parcours de la cité du joueur afin de déterminer si il possède la merveille 
 		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); j++) 
 		{
 			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(j).getNom().equals(name))
@@ -173,8 +241,24 @@ public class Merveille {
 		return false;
 	}
 	
+	//Methode permetant de vérifier si une merveille existe dans la main d'un joueur
+	private static boolean isExistDansMain(int personnage, String name) 
+	{
+		//Parcours de la cité du joueur afin de déterminer si il possède la merveille 
+		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain(); j++) 
+		{
+			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(j).getNom().equals(name))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
-		public static int effetTrésorImpérial(int i) {
+	
+		
+	public static int effetTrésorImpérial(int i) 
+	{
 			
 
 			if(Merveille.isExist(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
