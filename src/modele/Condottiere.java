@@ -39,7 +39,7 @@ public class Condottiere extends Personnage {
 				
 				System.out.println( i+1 + " " + this.getPlateau().getJoueur(i).getNom() + " : ");
 				
-				for (int j=0; j < this.getPlateau().getJoueur(i).getCite().length; j++) {					
+				for (int j=0; j < this.getPlateau().getJoueur(i).nbQuartiersDansCite(); j++) {					
 					
 					System.out.println(j+1 + " " + this.getPlateau().getJoueur(i).getCite()[j].getNom() + 
 					" (Coût " + this.getPlateau().getJoueur(i).getCite()[j].getCout() + "), ");
