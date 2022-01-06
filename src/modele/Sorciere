@@ -1,0 +1,7 @@
+class Sorciere() extends Personnage
+{
+       public Sorciere()
+       {
+        
+       }
+}
