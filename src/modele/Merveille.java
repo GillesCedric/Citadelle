@@ -182,6 +182,93 @@ public class Merveille {
 		}
 				   
 	//Fin de l'implémentation dde l'effet CATACOMBES
+	
+	//Début de l'effet Mine d'Or 
+	
+	public static int effetMineDor(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.MINE_DOR.getNom()))
+		{
+			System.out.println("Grace à votre Merveille Mine d'Or vous recevez une piece d'or de plus");
+			plateauDeJeu.getJoueur(j).ajouterPieces(1);
+		}
+	}
+		
+	//Fin de l'effetMine d'Or
+	
+	//Début de l'implémentation de l'effet Observatoire
+		
+	public static int effetObservatoire(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.OBSERVATOIRE.getNom()))
+		{
+			System.out.println("Grace à votre Merveille OBSERVATOIRE vous pouvez piocher 3 cartes plutot que 2 et en choisir une");
+			Quartier[] quartiers = new Quartier[3];
+			for (int i = 0; i < quartiers.length; i++) 
+			{
+				quartiers[i] = plateauDeJeu.getPioche().piocher();
+			}
+			System.out.println("Voici les cartes que vous avez pioché : ");
+			for (int i = 0; i < quartiers.length; i++) 
+			{
+				System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
+							+ quartiers[i].getType() + " - pièces : " + quartiers[i].getCout());
+			}
+			
+		}
+	}
+		
+	//Fin de l'implémentation de l'effet Observatoire
+		
+	//Début de l'implémentation de l'effet Tour d'Ivoire
+		
+	public static int effetTourIvoire(int i) 
+	{
+		int score = 0;
+		int nbMerveille == 0; 
+		if(Merveille.isExist(i, ListeMerveille.TOUR_DIVOIRE.getNom()))
+		{
+			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
+			{
+				for (ListeMerveille merveille : ListeMerveille.values())
+				{
+					if(plateauDeJeu.getJoueur(i).getCite()[j].getNom().equals(merveille.getNom()))
+					{
+						if(plateauDeJeu.getJoueur(i).getCite()[j].getNom().equals("COURS_DES_MIRACLES"))
+						{
+							if(!plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[4]))
+								continue;
+						}
+						if(plateauDeJeu.getJoueur(i).getCite()[j].getNom().equals("TOUR_DIVOIRE"))
+							continue;
+						
+						 nbMerveille ++;
+					}
+				}
+				if( nbMerveille >= 1)
+					return score;
+				if(nbMerveille == 0)
+				{
+					score += 5;
+					return score;
+				}
+				
+			}
+		}
+	}
+		
+	//Fin de l'implémentation de l'effet Tour d'Ivoire
+	
+	//Début de l'implémentation de l'effet Monument
+		
+	public static void effetMonument (int i)
+	{
+		//la restriction de construction du Monument sera implémentée dans tour de Jeu
+		if(Merveille.isExist(i, ListeMerveille.MONUMENT.getNom()))
+			plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite() ++;
+	}
+		
+	//Fin de l'implémentation de l'effet Monument
 		
 	public static int effetFontaineAuxSouhaits(int i) {
 		// la somme des différents bonus des merveilles de sa cité
@@ -191,7 +278,8 @@ public class Merveille {
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
 			{
-				for (ListeMerveille merveille : ListeMerveille.values()) {
+				for (ListeMerveille merveille : ListeMerveille.values())
+				{
 					if(plateauDeJeu.getJoueur(j).getCite()[i].getNom().equals(merveille.getNom()))
 						score++;
 				}
