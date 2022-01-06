@@ -270,6 +270,57 @@ public class Merveille {
 		
 	//Fin de l'implémentation de l'effet Monument
 		
+	//Début de l'implémentation de l'effet Cour des Miracles
+		
+	public static int effetCourDesMiracles (int i)
+	{
+		System.out.println("Quel type désirez vous avoir pour la Cour des Miracles ?");
+		for(i=0; i < 4; i++)
+		{
+			System.out.println( i+1 "  "+Quartier.TYPE_QUARTIER[i]);
+		}
+		choix = Interaction.lireUnEntier(1, 4);
+		if(! choix == 0)
+		{
+			if(choix==1)
+			{
+				ListeMerveille.settype
+			}
+		}
+	}
+		
+	//Fin de l'implémentation de l'effet Cour des Miracles
+		
+	// Debut de l'effet Dracoport
+		
+	public static int effetDracoport(int i)
+	{
+		int score;
+		if(Merveille.isExist(i, ListeMerveille.DRACOPORT.getNom()))
+		{
+			score++;
+		}
+	}
+		
+	//Fin de l'effet Dracoport
+		
+	//Début de l'effet Ecole de Magie
+		
+	public static void efetEcoleDeMagie(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.ECOLE_DE_MAGIE.getNom()))
+		{
+			System.out.println("Quel type désirez vous avoir pour l'ECOLE DE MAGIE ?");
+			for(i=0; i < 4; i++)
+			{
+				System.out.println( i+1 "  "+Quartier.TYPE_QUARTIER[i]);
+			}
+			choix = Interaction.lireUnEntier(1, 4);
+		}
+	
+	}
+	
+	//Fin de l'effet Ecole Magie
 	public static int effetFontaineAuxSouhaits(int i) {
 		// la somme des différents bonus des merveilles de sa cité
 		int score = 0;
