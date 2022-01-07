@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import controlleur.Interaction;
+import utilities.Caracteristiques;
 import utilities.Nom;
+import utilities.Rang;
 
 /**
  * @author Gilles C�dric

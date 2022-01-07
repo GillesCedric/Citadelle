@@ -33,7 +33,7 @@ public enum ListeMerveille {
 	NECROPOLE("Nécropole",5,"Pour b�tir la n�cropole, vous pouvez d�truire un quartier de votre cit� au lieu de payer son co�t de construction. Le Bailli ne peut pas confisquer la N�cropole sans payer son co�t de construction"),
 	OBSERVATOIRE("Observatoire",4,"Si vous choisissez de piocher des cartes au d�but de votre tour, vous choisissez la carte parmi 3 cartes au lieu de 2"),
 	PARC("Parc",6,"Si vous n�avez aucune carte en main � la fin de votre tour, piochez 2 cartes. Si la Sorci�re ne reprend pas son tour, elle ne peut pas utiliser l�effet du Parc `a la fin de son tour"),
-	PODRIERE("Poudrière",3,"Durant votre tour, vous pouvez d�tuire simultan�ement la Poudri�re et un autre quartier votre choix. Vous ne pouvez pas d�truire un quartier d�une cit� compl�te"),
+	POUDRIERE("Poudrière",3,"Durant votre tour, vous pouvez d�tuire simultan�ement la Poudri�re et un autre quartier votre choix. Vous ne pouvez pas d�truire un quartier d�une cit� compl�te"),
 	SALLES_DES_CARTES("Salles des Cartes",5,"A la fin de la partie, marquez 1 point suppl�mentaire par carte dans votre main"),
 	STATUE_EQUESTRE("Statue Equestre",3,"Si vous d�tenez le Couronne � la fin de la partie, marquez 5 points suppl�mentaires"),
 	THEATRE("Théâtre",6,"A la fin de la phase de s�lection, vous pouvez �changer votre carte Personnage face cach�e avec celle d�un autre joueur. Le propri�taire du Th��tre choisit avec qui il fait l��change, sans avoir vu aucune des cartes des autres joueurs. Les cartes �chang�es en peuvent �tre r�v�l�es aux autres joueurs avant d��tre appel�es. Dans une partie � 2 ou 3 joueurs, le propri�taire "),

@@ -1,6 +1,8 @@
 package modele;
 
+import utilities.Caracteristiques;
 import utilities.Nom;
+import utilities.Rang;
 
 public class Eveque extends Personnage
 {
