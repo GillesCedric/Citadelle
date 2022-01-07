@@ -19,7 +19,7 @@ public class Nom {
 	public static final String SORCIER = "Sorcier";
 	public static final String VOYANTE = "Voyante";
 	public static final String EMPEREUR = "Empereur";
-	public static final String PRATICIEN = "Praticien";
+	public static final String PATRICIEN = "Praticien";
 	public static final String EVEQUE = "Evèque";
 	public static final String ABBE = "Abbé";
 	public static final String CARDINAL = "Cardinal";

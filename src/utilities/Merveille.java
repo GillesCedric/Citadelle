@@ -1,12 +1,13 @@
 /**
  * 
  */
-package modele;
+package utilities;
 
 import java.util.Random;
 
 import controlleur.Interaction;
-import utilities.ListeMerveille;
+import modele.PlateauDeJeu;
+import modele.Quartier;
 
 /**
  * @author Gilles Cédric

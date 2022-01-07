@@ -1,13 +1,17 @@
-class Sorciere() extends Personnage
+package modele;
+
+import controlleur.Interaction;
+import utilities.Caracteristiques;
+import utilities.Nom;
+import utilities.Rang;
+
+public class Sorciere extends Personnage
 {
        public Sorciere() 
        {
-              super( Nom.Sorciere, Rang.Sorciere, Caracteristiques.Sorciere);
+              super( Nom.SORCIERE, Rang.SORCIERE, Caracteristiques.SORCIERE);
        }
-       public void utiliserPouvoir()
-       {
-              
-       }
+
        public void  utiliserPouvoir()
        {
               //Annoncer le personnage à ensorceler
@@ -22,4 +26,9 @@ class Sorciere() extends Personnage
                      percevoirRessource(choix - 1);
              
        }
+	@Override
+	public void utiliserPouvoirAvatar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

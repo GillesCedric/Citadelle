@@ -5,16 +5,14 @@ package application;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
 import controlleur.Interaction;
 import modele.Joueur;
-import modele.Merveille;
 import modele.Personnage;
 import modele.PlateauDeJeu;
 import modele.Quartier;
 import utilities.Browser;
+import utilities.ListeConfiguration;
+import utilities.Merveille;
 import utilities.Nom;
 
 /**
@@ -32,7 +30,7 @@ public class Jeu {
 	 */
 	public Jeu() {
 		this.plateauDeJeu = new PlateauDeJeu();
-		this.numeroConfiguration = 0;
+		this.numeroConfiguration = 1;
 		this.generateur = new Random();
 	}
 	
@@ -87,9 +85,50 @@ public class Jeu {
 		calculDesPoints();
 	}
 	
+	private int choixNombreJoueurs() {
+		System.out.println("Pour commencer une partie, veuillez entrer le nombre de joueurs!");
+		return Interaction.lireUnEntier(2, 9);
+	}
+	
+	private void choixConfiguration() {
+		System.out.println("A présent, veuillez choisir la configuration du jeu");
+		for (int i = 0; i < ListeConfiguration.values().length; i++) {
+			System.out.println((i+1)+" : "+ListeConfiguration.values()[i].getNom());
+		}
+		System.out.println("Veuillez entrer le numéro correspondant à votre choix");
+		this.numeroConfiguration = Interaction.lireUnEntier(0, ListeConfiguration.values().length+1);
+	}
+	
 	private void initialisation() {
+		int nbJoueur = choixNombreJoueurs();
+		choixConfiguration();
 		//ici on initialise le plateau avec la configuration de base du projet
-		this.plateauDeJeu = Configuration.configurationDeBase(Configuration.nouvellePioche());
+		switch (this.numeroConfiguration) {
+		case 1:
+			this.plateauDeJeu = Configuration.configurationDeBase(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		case 2:
+			this.plateauDeJeu = Configuration.configurationAristocratesAmbitieux(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		case 3:
+			this.plateauDeJeu = Configuration.configurationIntrigantsSubtils(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		case 4:
+			this.plateauDeJeu = Configuration.configurationEmissairesIllustres(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		case 5:
+			this.plateauDeJeu = Configuration.configurationDignitairesSournois(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		case 6:
+			this.plateauDeJeu = Configuration.configurationOligarquesTenaces(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		case 7:
+			this.plateauDeJeu = Configuration.configurationNoblesRetors(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		default:
+			this.plateauDeJeu = Configuration.configurationDeBase(Configuration.nouvellePioche(),nbJoueur);
+			break;
+		}
 		Merveille.setPlateauDeJeu(plateauDeJeu);
 		//on ajoute deux pièces à  tous les joueurs
 		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {

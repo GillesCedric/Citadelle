@@ -1,7 +1,9 @@
 package modele;
 import java.util.Scanner;
 import controlleur.Interaction;
+import utilities.Caracteristiques;
 import utilities.Nom;
+import utilities.Rang;
 
 public class Condottiere extends Personnage {
 

@@ -24,9 +24,9 @@ public enum ListeQuartier {
 	ECHOPPE("Echoppe",2,3,Quartier.TYPE_QUARTIERS[3]),
 	TAVERNE("Taverne",1,5,Quartier.TYPE_QUARTIERS[3]),
 	MARCHE("Marché",2,4,Quartier.TYPE_QUARTIERS[3]),
-	COMPTOIR("Taverne",3,3,Quartier.TYPE_QUARTIERS[3]),
+	COMPTOIR("Comptoir",3,3,Quartier.TYPE_QUARTIERS[3]),
 	HOTEL_DE_VILLE("Hôtel de ville",5,2,Quartier.TYPE_QUARTIERS[3]),
-	PORT("Taverne",4,3,Quartier.TYPE_QUARTIERS[3]);
+	PORT("Port",4,3,Quartier.TYPE_QUARTIERS[3]);
 
 	private ListeQuartier(String nom,int cout,int nbMax, String type) {
 		this.nom = nom;

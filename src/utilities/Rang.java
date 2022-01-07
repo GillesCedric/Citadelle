@@ -1,10 +1,10 @@
 /**
  * 
  */
-package modele;
+package utilities;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  *
  */
 public class Rang {
@@ -19,6 +19,7 @@ public class Rang {
 	public static final int VOYANTE = 3;
 	public static final int EMPEREUR = 4;
 	public static final int ROI = 4;
+	public static final int PATRICIEN = 4;
 	public static final int ABBE = 5;
 	public static final int CARDINAL = 5;
 	public static final int EVEQUE = 5;
