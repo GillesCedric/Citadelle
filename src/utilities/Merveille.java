@@ -490,7 +490,8 @@ public static boolean effetCarriere(int i)
 		{
 			boolean doubleur= true;
 			return doubleur;
-		}
+		} 
+		else return false;
 	}
 	else
 		return false;
@@ -499,5 +500,4 @@ public static boolean effetCarriere(int i)
 		
 	
 }
-}
-		
+	
