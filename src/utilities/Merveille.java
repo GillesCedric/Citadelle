@@ -126,7 +126,7 @@ public class Merveille {
 	
 	public static int effetBasilique(int i)
 	{
-		int score;
+		int score = 0;
 		if(Merveille.isExist(i, ListeMerveille.BASILIQUE.getNom()))
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++)
@@ -135,7 +135,7 @@ public class Merveille {
 					score ++;
 			}
 		}
-		
+		return score;
 	}
 	
 	//Fin de l'implémentation dde l'effet Salle des Cartes
@@ -144,37 +144,35 @@ public class Merveille {
 	
 	public static int effetCapitole(int i) 
 	{
-		int score;
 		if(Merveille.isExist(i, ListeMerveille.CAPITOLE.getNom()))
 		{
-			int nbReli;
-			int nbCom;
-			int nbMer;
-			int nbMili;
-			int nbNoble;
+			int nbReli = 0;
+			int nbCom = 0;
+			int nbMer = 0;
+			int nbMili = 0;
+			int nbNoble = 0;
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
 			{
-				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[0])
+				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[0]))
 					nbReli++;
-				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[1])
+				else if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[1]))
 					nbMili++;
-				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[2])
+				else if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[2]))
 					nbNoble++;
-				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[3])
+				else if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[3]))
 					nbCom++;
-				if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[4])
+				else if(plateauDeJeu.getJoueur(i).getCite()[j].getType().equals(Quartier.TYPE_QUARTIERS[4]))
 					nbMer++;
-				if((nbReli >= 3 ) || (nbCom >= 3 ) || (nbMer >= 3 ) || (nbMili >= 3 ) || (nbNoble >= 3 ) )
-				{
-					score += 3;	
-					return score;
-				}
+
 				   
 			}
-			
+			if ((nbReli >= 3 ) || (nbCom >= 3 ) || (nbMer >= 3 ) || (nbMili >= 3 ) || (nbNoble >= 3 ) )
+			{
+				score+=3;	
+			}
 		}
-	}	
-	
+		return score;
+	}
 	//Fin de l'implémentation dde l'effet Capitole 
 	
 	//Debut de l'implémentation dde l'effet CATACOMBES 
@@ -196,7 +194,7 @@ public class Merveille {
 	
 	public static void effetMineDor(int personnage)
 	{
-		if(Merveille.isExist(i, ListeMerveille.MINE_DOR.getNom()))
+		if(Merveille.isExist(personnage, ListeMerveille.MINE_DOR.getNom()))
 		{
 			System.out.println("Grace à votre Merveille Mine d'Or vous recevez une piece d'or de plus");
 			plateauDeJeu.getPersonnage(personnage).getJoueur().ajouterPieces(1);
@@ -213,15 +211,15 @@ public class Merveille {
 		{
 			System.out.println("Grace à votre Merveille OBSERVATOIRE vous pouvez piocher 3 cartes plutot que 2 et en choisir une");
 			Quartier[] quartiers = new Quartier[3];
-			for (int i = 0; i < quartiers.length; i++) 
+			for (int j = 0; i < quartiers.length; i++) 
 			{
-				quartiers[i] = plateauDeJeu.getPioche().piocher();
+				quartiers[j] = plateauDeJeu.getPioche().piocher();
 			}
 			System.out.println("Voici les cartes que vous avez pioché : ");
-			for (int i = 0; i < quartiers.length; i++) 
+			for (int j = 0; j < quartiers.length; j++) 
 			{
-				System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
-							+ quartiers[i].getType() + " - pièces : " + quartiers[i].getCout());
+				System.out.println((j + 1) + " " + quartiers[j].getNom() + " - type : "
+							+ quartiers[j].getType() + " - pièces : " + quartiers[j].getCout());
 			}
 			
 		}
@@ -271,11 +269,11 @@ public class Merveille {
 	
 	//Début de l'implémentation de l'effet Monument
 		
-	public static void effetMonument (int i)
+	public static void effetMonument (int personnage)
 	{
 		//la restriction de construction du Monument sera implémentée dans tour de Jeu
-		if(Merveille.isExist(i, ListeMerveille.MONUMENT.getNom()))
-			plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite() ++;
+		if(Merveille.isExist(personnage, ListeMerveille.MONUMENT.getNom()))
+			plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite()
 	}
 		
 	//Fin de l'implémentation de l'effet Monument
@@ -284,14 +282,14 @@ public class Merveille {
 		
 	public static void effetCourDesMiracles (int i)
 	{
-		if(Merveille.isExist(i, ListeMerveille.COUR_DES_MIRACLES.getNom()))
+		if(Merveille.isExist(i, ListeMerveille.COURS_DES_MIRACLES.getNom()))
 		{
 			System.out.println("Quel type désirez vous avoir pour la Cour des Miracles ?");
 			for(i=0; i < 4; i++)
 			{
-				System.out.println( i+1 "  "+Quartier.TYPE_QUARTIER[i]);
+				System.out.println( i+1 +"  "+Quartier.TYPE_QUARTIERS[i]);
 			}
-			boolean choix;
+			int choix;
 			if (!plateauDeJeu.getJoueur(i).isSimule())
 				choix = Interaction.lireUnEntier(1,5);
 			else 
@@ -299,8 +297,8 @@ public class Merveille {
 				//sinon on génère un nombre aléatoire qui correspond au choix de l'ordinateur
 				choix = random.nextInt(5);
 			}
-			ListeMerveille.COURS_DES_MIRACLES.setType(Quartier.TYPE_QUARTIER[choix - 1]);
-			System.out.println(" Suite à votre choix la Cour Des Miracles est maintenant de type : " +Quartier.TYPE_QUARTIER[choix - 1]);
+			ListeMerveille.COURS_DES_MIRACLES.setType(Quartier.TYPE_QUARTIERS[choix - 1]);
+			System.out.println(" Suite à votre choix la Cour Des Miracles est maintenant de type : " +Quartier.TYPE_QUARTIERS[choix - 1]);
 		}
 		
 	}
@@ -326,19 +324,19 @@ public class Merveille {
 		
 	public static void efetEcoleDeMagie(int personnage)
 	{
-		if(Merveille.isExist(i, ListeMerveille.ECOLE_DE_MAGIE.getNom()))
+		if(Merveille.isExist(personnage, ListeMerveille.ECOLE_DE_MAGIE.getNom()))
 		{
 			System.out.println("Quel type désirez vous avoir pour l'ECOLE DE MAGIE pour la perception de revenue ?");
-			boolean choix;
+			int choix;
 			if (!plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
-				choix = Interaction.lireUnEntier(1,5);
+				choix = Interaction.lireUnEntier(1, 5);
 			else 
 			{
 				//sinon on génère un nombre aléatoire qui correspond au choix de l'ordinateur
 				choix = random.nextInt(5);
 			}
-			ListeMerveille.ECOLE_DE_MAGIE.setType(Quartier.TYPE_QUARTIER[choix - 1]);
-			System.out.println(" Suite à votre choix l'Ecole de Magie est maintenant de type : " +Quartier.TYPE_QUARTIER[choix - 1]);
+			ListeMerveille.ECOLE_DE_MAGIE.setType(Quartier.TYPE_QUARTIERS[choix - 1]);
+			System.out.println(" Suite à votre choix l'Ecole de Magie est maintenant de type : " +Quartier.TYPE_QUARTIERS[choix - 1]);
 		}
 	
 	}
@@ -351,19 +349,19 @@ public class Merveille {
 	{
 		if(Merveille.isExist(i, ListeMerveille.PARC.getNom()))
 		{
-			if( plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain() == 0)
+			if( plateauDeJeu.getPersonnage(i).getJoueur().nbQuartiersDansMain() == 0)
 			{
 				System.out.println("Grace à votre Merveille PARC vous pouvez piocher deux cartes ");
 				Quartier[] quartiers = new Quartier[2];
-				for (int i = 0; i < quartiers.length; i++) 
+				for (int j = 0; j < quartiers.length; j++) 
 				{
-					quartiers[i] = plateauDeJeu.getPioche().piocher();
+					quartiers[j] = plateauDeJeu.getPioche().piocher();
 				}
 				System.out.println("Voici les cartes que vous avez pioché : ");
-				for (int i = 0; i < quartiers.length; i++) 
+				for (int j = 0; j < quartiers.length; j++) 
 				{
-					System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
-							+ quartiers[i].getType() + " - pièces : " + quartiers[i].getCout());
+					System.out.println((j + 1) + " " + quartiers[j].getNom() + " - type : "
+							+ quartiers[i].getType() + " - pièces : " + quartiers[j].getCout());
 				}
 			}
 		}
@@ -458,7 +456,7 @@ public class Merveille {
 		int score = 0;
 		if(Merveille.isExist(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
 		{
-			score += plateauDeJeu.getJoueur(i).nbPieces()
+			score += plateauDeJeu.getJoueur(i).nbPieces();
 			return score;
 		}
 		return score;
@@ -469,7 +467,6 @@ public class Merveille {
 
 	public static int effetStatueEquestre(int i) 
 	{
-		int score = O;
 		if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
 		{
       			if (plateauDeJeu.getJoueur(i).getPossedeCouronne()) 
@@ -482,6 +479,25 @@ public class Merveille {
 	} 
 			
 		
-}		
+
+public static boolean effetCarriere(int i) 
+{
+	if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
+	{
+		if(plateauDeJeu.getJoueur(i).getPersonnage().getRang() != (Rang.ECHEVIN) || 
+		   plateauDeJeu.getJoueur(i).getPersonnage().getRang() != (Rang.DIPLOMATE) ||
+		   plateauDeJeu.getJoueur(i).getPersonnage().getRang() != (Rang.CAPITAINE) ) 
+		{
+			boolean doubleur= true;
+			return doubleur;
+		}
+	}
+	else
+		return false;
+  		
+} 
 		
+	
 }
+}
+		

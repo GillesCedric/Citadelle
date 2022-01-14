@@ -58,6 +58,7 @@ public class Condottiere extends Personnage {
 		    joueurChoisi = Interaction.lireUnEntier(1, this.getPlateau().getNombreJoueurs()+1);
 			joueurChoisi = joueurChoisi - 1;
 
+			System.out.print(joueurChoisi);
 			System.out.println(this.getPlateau().getJoueur(joueurChoisi).getNom());
 
 			if (joueurChoisi >= 0) {
@@ -93,6 +94,8 @@ public class Condottiere extends Personnage {
 			System.out.println("\nPour information, votre trésor est constitué de " + this.getJoueur().nbPieces() + 
 					" pièces d'or");
 			
+			//System.out.println(this.getPlateau().getJoueur(joueurChoisi).nbQuartiersDansCite());
+			
 			
 		} else {
 			
@@ -101,6 +104,7 @@ public class Condottiere extends Personnage {
 		
 	}
 
+	
 	@Override
 	public void utiliserPouvoirAvatar() {
 		// TODO Auto-generated method stub
