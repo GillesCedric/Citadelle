@@ -39,7 +39,7 @@ public class Navigatrice extends Personnage {
         		}
         	}
         }else if(getJoueur().equals(null)){
-            System.out.println("Ce personnage n'a pas été attribué");
+            System.out.println("Le personnage n'est pas  attribué");
         }else{
             System.out.println("Vous avez été assassiné, vous ne pouvez pas utiliser votre pouvoir");
         }
@@ -61,7 +61,7 @@ public class Navigatrice extends Personnage {
         		}
         	}
         }else if(getJoueur().equals(null)){
-            System.out.println("Ce personnage n'a pas été attribué");
+            System.out.println("Le personnage n'est pas  attribué");
         }else{
             System.out.println("Vous avez été assassiné, vous ne pouvez pas utiliser votre pouvoir");
         }
