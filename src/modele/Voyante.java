@@ -26,7 +26,7 @@ public class Voyante extends Personnage {
 	@Override
 	public void utiliserPouvoir() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

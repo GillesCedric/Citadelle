@@ -6,12 +6,12 @@ package utilities;
 import modele.Quartier;
 
 /**
- * @author Gilles C�dric
+ * @author Gilles Cédric
  *
  */
 public enum ListeMerveille {
 	BASILIQUE("Basilique",4,"A la fin de la partie, marquez 1 point suppl�mentaire pour chaque quartier au co�t de construction impair dans votre cit�"),
-	BIBLIOTHEQUE("Biblioth�que",6,"Si vous choisissez de piocher des cartes au d�but du tour, concervez-les toutes"),
+	BIBLIOTHEQUE("Bibliothèque",6,"Si vous choisissez de piocher des cartes au d�but du tour, concervez-les toutes"),
 	CAPITOLE("Capitole",5,"A la fin de la partie, marquez 3 points suppl�mentaires si vous avez au moins 3 quartiers du m�me type (couleur) dans votre cit�. Vous ne pouvez utiliser l�effet du capitole qu�une seule fois"),
 	CARRIERE("Carrière",5,"Vous pouvez b�tir des quartiers identiques � d�autres quartiers de votre cit�. Le propri�taire de la carri�re peut b�tir autant de quartiers identiques qu�il le souhaite, mais ne peut utiliser le pouvoir de l�Echevin, du Diplomate ou du Capitaine pour acqu�rir des quartiers identiques"),
 	CATACOMBES("Catacombes",0,"Les catacombes ne peuvent pas �tre b�ties. A la fin de la partie, si vous avez les catacombes dans votre main, marquez 3 points suppl�mentaires"),

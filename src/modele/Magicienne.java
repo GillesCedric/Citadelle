@@ -12,7 +12,7 @@ import utilities.Nom;
 import utilities.Rang;
 
 /**
- * @author Gilles C�dric
+ * @author Gilles Cédric
  *
  */
 public class Magicienne extends Personnage {
