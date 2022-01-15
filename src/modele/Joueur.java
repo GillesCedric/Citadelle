@@ -199,6 +199,10 @@ public class Joueur {
 
 	}
 	
+	public void retirerQuartierDansMain(Quartier q) {
+		main.remove(q);
+	}
+	
 	public void reinitialiser() {
 		this.tresor = 0;
 		this.cite = new Quartier[8];
