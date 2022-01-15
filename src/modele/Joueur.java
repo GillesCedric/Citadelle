@@ -2,7 +2,7 @@ package modele;
 import java.util.*;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  * @since 12/11/2021
  * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
  *
@@ -163,9 +163,10 @@ public class Joueur {
 		
 	}
 	
-	public Quartier retirerQuartierDansCite(String nom) {
+  public Quartier retirerQuartierDansCite(String nom) {
 		
 		Quartier quartSupprime = null;
+		Quartier newCity = new Quartier();
 		
 		for (int i=0; i< nbQuartier; i++) {
 			if (cite[i].getNom().equals(nom)) {
@@ -177,7 +178,8 @@ public class Joueur {
 		return quartSupprime;
 		
 	}
-	
+   
+   
 	public void ajouterQuartierDansMain(Quartier quartier) {
 		
 		main.add(quartier);
@@ -195,6 +197,10 @@ public class Joueur {
 		}
 		return null;
 
+	}
+	
+	public void retirerQuartierDansMain(Quartier q) {
+		main.remove(q);
 	}
 	
 	public void reinitialiser() {

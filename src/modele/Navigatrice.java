@@ -24,15 +24,47 @@ public class Navigatrice extends Personnage {
 	}
 
 	@Override
-	public void utiliserPouvoir() {
-		// TODO Auto-generated method stub
+	   public void utiliserPouvoir(){
+        if(!getAssassine()){
+        	System.out.println("Voulez-vous 4 pi�ces (entrez non pour 4 quartiers) ? :");
+        	boolean choix = Interaction.lireOuiOuNon();
+        	if(choix) {
+        		getJoueur().ajouterPieces(4);
+        	}
+        	else {
+        		int compte=0;
+        		while(getPlateau().getPioche().nombreElements()>0 && compte<4) {
+        			getJoueur().getMain().add(getPlateau().getPioche().piocher());
+        			compte++;
+        		}
+        	}
+        }else if(getJoueur().equals(null)){
+            System.out.println("Le personnage n'est pas  attribué");
+        }else{
+            System.out.println("Vous avez été assassiné, vous ne pouvez pas utiliser votre pouvoir");
+        }
+    }
 
-	}
-
-	@Override
-	public void utiliserPouvoirAvatar() {
-		// TODO Auto-generated method stub
-
-	}
+    public void utiliserPouvoirAvatar(){
+        if(!getAssassine()){
+        	Random random = new Random();
+        	boolean choix = random.nextBoolean();
+        	System.out.println(choix);
+        	if(choix) {
+        		getJoueur().ajouterPieces(4);
+        	}
+        	else {
+        		int compte=0;
+        		while(getPlateau().getPioche().nombreElements()>0 && compte<4) {
+        			getJoueur().getMain().add(getPlateau().getPioche().piocher());
+        			compte++;
+        		}
+        	}
+        }else if(getJoueur().equals(null)){
+            System.out.println("Le personnage n'est pas  attribué");
+        }else{
+            System.out.println("Vous avez été assassiné, vous ne pouvez pas utiliser votre pouvoir");
+        }
+    }
 
 }

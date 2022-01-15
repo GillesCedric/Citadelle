@@ -274,6 +274,12 @@ public class Jeu {
 								//Fin de l'effet de la merveille Manufacture
 								
 								//on vérifie si le joueur peut construire la carte choisie
+								if(Merveille.effetCarriere(personnage))
+								{
+									if (this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= this.plateauDeJeu.getPersonnage(personnage)
+											.getJoueur().getMain().get(carte - 1).getCout())
+										peutConstruire = true;
+								}
 								if (this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= this.plateauDeJeu.getPersonnage(personnage)
 										.getJoueur().getMain().get(carte - 1).getCout()
 										&& !this.plateauDeJeu.getPersonnage(personnage).getJoueur().quartierPresentDansCite(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).getNom()))
