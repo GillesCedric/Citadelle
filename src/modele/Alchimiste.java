@@ -23,22 +23,28 @@ public class Alchimiste extends Personnage {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void utiliserPouvoir() 
-	{
-		// TODO Auto-generated method stub
-	}
+	public void utiliserPouvoir(){
+        if(!getAssassine()){
+            
+        }else if(getJoueur().equals(null)){
+            System.out.println("Ce personnage n'a pas été attribué");
+        }else{
+            System.out.println("Vous avez été assassiné, vous ne pouvez pas utiliser votre pouvoir");
+        }
+    }
 
-	@Override
-	public void utiliserPouvoirAvatar() 
-	{
-		
+    public void utiliserPouvoirAvatar(){
+        if(!getAssassine()){
+            
+        }else if(getJoueur().equals(null)){
+            System.out.println("Ce personnage n'a pas été attribué");
+        }else{
+            System.out.println("Vous avez été assassiné, vous ne pouvez pas utiliser votre pouvoir");
+    }
+    }
 
-	}
-	  @Override
-	    public void percevoirRessourcesSpecifiques()
-	    {
-	    	
-	    }
-
+    @Override
+    public void percevoirRessourcesSpecifiques(){
+    	
+    }
 }

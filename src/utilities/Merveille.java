@@ -454,10 +454,10 @@ public class Merveille {
 		if(Merveille.isExist(personnage, ListeMerveille.BIBLIOTHEQUE.getNom()))
 		{
 			System.out.println("Grâce à  votre Merveille Bibliothèque, vous gardez vos deux cartes!");
-			for (int i = 0; i < quartiers.length; i++) {
+			for (int i = 0; i < quartiers.length; i++)
 				plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[i]);
 			}
-		}else 
+		else 
 		{
 			System.out.println("Quelle carte voulez vous gardez ? : ");
 			int carte = 0;
@@ -490,7 +490,7 @@ public class Merveille {
 		//Parcours de la cité du joueur afin de déterminer si il possède la merveille 
 		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); j++) 
 		{
-			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getCite().get(j).getNom().equals(name))
+			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[j].getNom().equals(name))
 			{
 				return true;
 			}
@@ -504,7 +504,7 @@ public class Merveille {
 		//Parcours de la cité du joueur afin de déterminer si il possède la merveille 
 		for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
 		{
-			if(plateauDeJeu.getJoueur(i).getCite().get(j).getNom().equals(name))
+			if(plateauDeJeu.getJoueur(i).getCite()[j].getNom().equals(name))
 			{
 				return true;
 			}

@@ -51,9 +51,18 @@ public class Architecte extends Personnage {
 
 
 	@Override
-	public void utiliserPouvoirAvatar() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void utiliserPouvoirAvatar(){
+        if(!getAssassine()){
+            int m=0;
+            while(getPlateau().getPioche().nombreElements()>0 && m<2){
+                m++;
+                getJoueur().getMain().add(getPlateau().getPioche().piocher());
+            }
+        }else if(getJoueur().equals(null)){
+            System.out.println("Ce personnage n'a pas été attribué");
+        }else{
+            System.out.println("Vous avez été assassiné, vous ne pouvez pas utiliser votre pouvoir");
+        }
+    }
 
 }

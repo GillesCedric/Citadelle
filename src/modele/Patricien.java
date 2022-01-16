@@ -34,7 +34,7 @@ public class Patricien extends Personnage {
 				}
 				System.out.println("	Je prends la couronne");
 				super.getJoueur().setPossedeCouronne(true);
-
+		}
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class Patricien extends Personnage {
 				}
 				System.out.println("	Je prends la couronne");
 				super.getJoueur().setPossedeCouronne(true);
-
+		}
 	}
 	@Override
 	public void percevoirRessourcesSpecifiques() {
@@ -71,7 +71,8 @@ public class Patricien extends Personnage {
                 while(getPlateau().getPioche().nombreElements()>0 && i< NbCarte){
                     getJoueur().ajouterQuartierDansMain(getPlateau().getPioche().piocher());
                     i++;
-
+                }
+			}
 	}
 	
 	public void reinitialiser() 

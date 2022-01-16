@@ -70,7 +70,7 @@ public class Artiste extends Personnage {
                 			System.out.println("Quel quartier voulez-vous embellir ?");
                 			choixInt=Interaction.lireUnEntier(1, compte+1)-1;
                 			listeAEmbellir.get(choixInt).setCout(listeAEmbellir.get(choixInt).getCout()+1);
-                			listeAEmbellir.get(choixInt).setEmbelli(true);
+                			listeAEmbellir.get(choixInt).embellir();
                 			nbEmbelli += 1;
                 			super.getJoueur().retirerPieces(1);
                 			if(nbEmbelli==super.getJoueur().nbQuartiersDansCite()) {
@@ -140,7 +140,7 @@ public class Artiste extends Personnage {
 							}else{
 								choixInt=random.nextInt(compte);
 								listeAEmbellir.get(choixInt).setCout(listeAEmbellir.get(choixInt).getCout()+1);
-								listeAEmbellir.get(choixInt).setEmbelli(true);
+								listeAEmbellir.get(choixInt).embellir();
 								nbEmbelli += 1;
 								nbQuartierEmbelliDurantCeTour+=1;
 								super.getJoueur().retirerPieces(1);

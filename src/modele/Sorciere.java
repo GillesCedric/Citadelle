@@ -24,6 +24,7 @@ public class Sorciere extends Personnage
                      int choix = Interaction.lireUnEntier(1, this.getPlateau().getNombreJoueurs()+1);
               //Révélation du personnage par le joueur qui le possède et perception des ressources
                     this.getJoueur().getPersonnage().percevoirRessourcesSpecifiques();
+                     //percevoirRessource(choix - 1);
              
        }
 	@Override

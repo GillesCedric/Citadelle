@@ -299,7 +299,7 @@ public class Jeu {
 									{
 										boolean det = false;
 										int detchoix =0;
-										System.out.println(" Voulez vous détruire un quartier pour construire la Necropole ? ")
+										System.out.println(" Voulez vous détruire un quartier pour construire la Necropole ? ");
 										//On recupere le choix en fonction du type joueur 
 										if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
 											det = Interaction.lireOuiOuNon();
@@ -318,9 +318,9 @@ public class Jeu {
 												+ this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[k].getCout());
 											}
 											//On recupere le choix de la cite a detruire
-											System.out.println(" Quel quartier voulez vous détruire pour construire la Necropole ? ")
+											System.out.println(" Quel quartier voulez vous détruire pour construire la Necropole ? ");
 											if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
-												detchoix = Interaction.lireUnEntier(1, this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite() + 1);;
+												detchoix = Interaction.lireUnEntier(1, this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite() + 1);
 											else 
 											{
 												detchoix = this.generateur.nextInt(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite() + 1);
@@ -335,7 +335,7 @@ public class Jeu {
 									}
 									else
 									{
-										System.out.println(" Vous avez certes  la Necropole mais votre cite est vide, vous ne pouvez pas par consequent detruire de quartier ")
+										System.out.println(" Vous avez certes  la Necropole mais votre cite est vide, vous ne pouvez pas par consequent detruire de quartier ");
 									}
 								}
 								//Fin de l'Implementation de la construction de la Necropole avec destruction de carte quartier dans cite 
@@ -512,14 +512,15 @@ public class Jeu {
 		}
 		if (response == 1) 
 		{
-			if(Merveille.ObservatoireActif(personnage)
+			Quartier[] quartiers = new Quartier[2];
+			if(Merveille.ObservatoireActif(personnage))
 			{
-				Merveille.effetObservatoire(personnage)
+				Merveille.effetObservatoire(personnage);
 			}
 			else
 			{
 				System.out.println("Vous avez pioché deux cartes");
-				Quartier[] quartiers = new Quartier[2];
+				
 				for (int i = 0; i < quartiers.length; i++) 
 				{
 					quartiers[i] = this.plateauDeJeu.getPioche().piocher();
