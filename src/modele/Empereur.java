@@ -4,6 +4,7 @@
 package modele;
 
 import utilities.Caracteristiques;
+import utilities.ListeMerveille;
 import utilities.Nom;
 import utilities.Rang;
 
@@ -30,11 +31,11 @@ public class Empereur extends Personnage {
 			Quartier[] cite = super.getJoueur().getCite();
 			for (int i = 0; i<cite.length ; i++) 
 			{
-				if (cite[i] != null && cite[i].getType().equals(TYPE_QUARTIERS[2]))
+				if (cite[i] != null && cite[i].getType().equals(Quartier.TYPE_QUARTIERS[2]))
 				{
 					piece += 1;
 				}
-				if(cite[i] != null && cite[i].getNom().equals("Ecole de Magie"))
+				if(cite[i] != null && cite[i].getNom().equals(ListeMerveille.ECOLE_DE_MAGIE.getNom()))
 				{
 					piece +=1;
 				}

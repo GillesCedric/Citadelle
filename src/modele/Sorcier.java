@@ -9,7 +9,7 @@ import utilities.Rang;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Controleur.Interaction;
+import controlleur.Interaction;
 
 /**
  * @author cedri
@@ -100,7 +100,8 @@ public class Sorcier extends Personnage {
 		else
 		{
                 	System.out.println("La victime n'a pas de cartes");
-            	}
+		}
+		}
 
         }
 
@@ -116,7 +117,7 @@ public class Sorcier extends Personnage {
         	}
 
         	listDeJoueur.remove(super.getJoueur());
-        	int choix = generateur.nextInt(listJoueur.size());
+        	int choix = generateur.nextInt(listDeJoueur.size());
 		
             	Joueur victime = listDeJoueur.get(choix);
 
