@@ -484,13 +484,13 @@ public class Merveille {
 	
 	//Fin de l'effet Fontaine aux Souhaits
 		
-	//Methode permetant de vérifier si une merveille existe dans la cité d'un joueur	
+	//Methode permetant de vérifier si une merveille existe dans la cité d'un personage	
 	private static boolean isExist(int personnage, String name) 
 	{
 		//Parcours de la cité du joueur afin de déterminer si il possède la merveille 
 		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); j++) 
 		{
-			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(j).getNom().equals(name))
+			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getCite().get(j).getNom().equals(name))
 			{
 				return true;
 			}
@@ -504,7 +504,7 @@ public class Merveille {
 		//Parcours de la cité du joueur afin de déterminer si il possède la merveille 
 		for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
 		{
-			if(plateauDeJeu.getJoueur(i).getMain().get(j).getNom().equals(name))
+			if(plateauDeJeu.getJoueur(i).getCite().get(j).getNom().equals(name))
 			{
 				return true;
 			}
