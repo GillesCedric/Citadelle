@@ -13,6 +13,7 @@ public class Eveque extends Personnage
 	public void percevoirRessourcesSpecifiques()
 	{
 		int i;
+		int piece = 0;
 		Quartier cit[]= getJoueur().getCite();
 		for(i=0; i< getJoueur().nbQuartiersDansCite();i++)
 		{
@@ -20,7 +21,14 @@ public class Eveque extends Personnage
 			if(cit[i].getType().equals(Quartier.TYPE_QUARTIERS[0]))
 			{
 				getJoueur().ajouterPieces(1);
+				piece++;
 			}
+			if(cit[i].getNom().equals("Ecole de Magie"))
+			{
+				getJoueur().ajouterPieces(1);
+				piece++;
+			}
+			System.out.println(" Vous gagnez " +piece +" piece d'or");
 		}
 	}
 	public void utiliserPouvoir()
