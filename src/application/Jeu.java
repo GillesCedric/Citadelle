@@ -209,22 +209,33 @@ public class Jeu {
 				}
 				System.out.println("Vous possédez "+this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces()+" pièces");
 				//on vérifie si le personnage n'est pas assassiné
-				if (!this.plateauDeJeu.getPersonnage(personnage).getAssassine()) {
+				if (!this.plateauDeJeu.getPersonnage(personnage).getAssassine()) 
+				{
 					//on vérifie si le personnage n'est pas volé
-					if (this.plateauDeJeu.getPersonnage(personnage).getVole()) {
+					if (this.plateauDeJeu.getPersonnage(personnage).getVole()) 
+					{
 						System.out.println("Le " + this.plateauDeJeu.getPersonnage(personnage).getNom() + " est volé !");
 						System.out.println("Le " + this.plateauDeJeu.getPersonnage(personnage).getNom() + " donne toutes ses pièces au voleur !");
 						int nbPieces = this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces();
 						//si le personnage est volé il donne toutes ses pièces au voleur
 						this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerPieces(nbPieces);
-						for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
+						for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) 
+						{
 							if (this.plateauDeJeu.getJoueur(i).getNom().equals(Nom.VOLEUR))
 								this.plateauDeJeu.getJoueur(i).ajouterPieces(nbPieces);
 						}
-					} else {
+					} 
+					else 
+					{
 						//le personnage percoit les ressources (cartes ou pièces d'or)
 						percevoirRessource(personnage);
 						this.plateauDeJeu.getPersonnage(personnage).percevoirRessourcesSpecifiques();
+						
+						//L'Alchimiste utilise Hospice avant d'utiliser son pouvoir 
+						if(this.plateauDeJeu.getPersonnage(personnage).getNom().equals("Alchimiste"))
+							Merveille.effetHospice(personnage);
+						//Fin de l'effet Hospice pour l'Alchimiste
+						
 						System.out.println("Voulez vous utiliser votre pouvoir ?");
 						boolean res = false;
 						//on teste si le personnage n'est pas simulé par l'ordinateur
@@ -249,6 +260,7 @@ public class Jeu {
 						}
 						if (res) {
 							boolean peutConstruire = false;
+							boolean check = false;
 							int carte = 0;
 							do {
 								System.out.println("Quel cartier voulez vous construire ?");
@@ -269,34 +281,149 @@ public class Jeu {
 								}
 								if (carte == 0)
 									break;
+								// Application des effets des Merveilles pouvant affecter le cout de construction
 								//Implémentation de la Merveille Manufacture
 								Merveille.effetManufacture(personnage, carte);
 								//Fin de l'effet de la merveille Manufacture
 								
+								//Implémentation de la Merveille Tripot
+								Merveille.effetManufacture(personnage, carte);
+								//Fin de l'effet de la merveille Tripot
+								
 								//on vérifie si le joueur peut construire la carte choisie
+								
+								//Implementation de la construction de la Necropole avec destruction de carte quartier dans cite 
+								if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).getNom().equals("Nécropole"))
+								{
+									if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite()>0)
+									{
+										boolean det = false;
+										int detchoix =0;
+										System.out.println(" Voulez vous détruire un quartier pour construire la Necropole ? ")
+										//On recupere le choix en fonction du type joueur 
+										if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+											det = Interaction.lireOuiOuNon();
+										else 
+										{
+											det = this.generateur.nextInt(2) == 1;
+										}
+										if(det)
+										{
+											//Affichage de la cite
+											System.out.println(" Voici votre cite ");
+											for (int k = 0; k < this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite(); k++) 
+											{
+												System.out.println((k + 1) + " " +  this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[k].getNom() + " - type : "
+												+ this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[k].getType() + " - pièces : "
+												+ this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[k].getCout());
+											}
+											//On recupere le choix de la cite a detruire
+											System.out.println(" Quel quartier voulez vous détruire pour construire la Necropole ? ")
+											if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+												detchoix = Interaction.lireUnEntier(1, this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite() + 1);;
+											else 
+											{
+												detchoix = this.generateur.nextInt(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite() + 1);
+											}
+											System.out.println(" Le quartier : "  +this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[detchoix - 1].getNom() +" est retire de votre cite ");
+											this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerQuartierDansCite(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getCite()[detchoix - 1].getNom());
+											//Le coût de construction de la Necropole passe donc a 0 pour être construit
+											this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).setCout(0);
+										}
+										else
+											System.out.println(" Tres bien! Votre cite reste intacte, vous aurez donc a payer le cout de construction de la Necropole ");//Dans le cas ou le joueur ne voudrait pas detruire son quartier
+									}
+									else
+									{
+										System.out.println(" Vous avez certes  la Necropole mais votre cite est vide, vous ne pouvez pas par consequent detruire de quartier ")
+									}
+								}
+								//Fin de l'Implementation de la construction de la Necropole avec destruction de carte quartier dans cite 
+								
+								//Implementation de la construction de quartier en detruisant la merveille Chantier
+								if(checkChantier(personnage))
+								{
+									System.out.println(" Voulez vous detruire votre merveille Chantier afin de construire votre carte ? ");
+									boolean chan = false;
+									//On recupere le choix en fonction du type joueur 
+									if (!this.plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
+										chan = Interaction.lireOuiOuNon();
+									else 
+									{
+										chan = this.generateur.nextInt(2) == 1;
+									}
+									if(chan)
+									{
+										System.out.println(" La merveille Chantier est retirée de votre citée  ");
+										this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerQuartierDansCite("Chantier");
+										this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).setCout(0);
+									}
+									else
+										System.out.println(" Tres bien! Votre Merveille Chantier reste intacte, vous aurez donc a payer le cout de construction de la carte choisie ");//Dans le cas ou le joueur ne voudrait pas detruire sa merveille
+								}
+								
+								
+								//Fin de l'Implementation de la construction de quartier en detruisant la merveille Chantier
+								
+								//Restreinte de l'effet de la Merveille Monument empêchant de construire le quartier Monument pour une cite d'au moins 5 quartier
+								if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).getNom().equals("Monument"))
+								{
+									if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite()>4)
+									{
+										System.out.println("Vous ne pouvez pas bâtir le Monnment avec au moins cinq quartier dans votre cité, merci de choisir une autre carte");
+										check = true;
+									}
+								}
+								//Fin de l'implementation de la restreinte sur le Monument
+								
+								//Restreinte sur les catacombes : elles ne peuvent pas être bâties
+								if(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).getNom().equals("Catacombes"))
+								{
+									check=true;
+									System.out.println(" Vous ne pouvez pas bâtir les Catacombes, cette merveille aura effet au calcul des points. Merci de choisir une autre carte ");
+								}
+								//Fin de l'implementation de la restreinte sur le Monument
+								
+								//Merveille Carriere
 								if(Merveille.effetCarriere(personnage))
 								{
 									if (this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= this.plateauDeJeu.getPersonnage(personnage)
 											.getJoueur().getMain().get(carte - 1).getCout())
 										peutConstruire = true;
 								}
-								if (this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= this.plateauDeJeu.getPersonnage(personnage)
+								else
+								{
+									if (this.plateauDeJeu.getPersonnage(personnage).getJoueur().nbPieces() >= this.plateauDeJeu.getPersonnage(personnage)
 										.getJoueur().getMain().get(carte - 1).getCout()
 										&& !this.plateauDeJeu.getPersonnage(personnage).getJoueur().quartierPresentDansCite(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).getNom()))
-									peutConstruire = true;
-								else
-									System.out.println(
-											"Vous ne pouvez pas construire ce quartier. Veuillez choisir un autre quartier !");
-							} while (!peutConstruire);
-							if (carte != 0) {
+										peutConstruire = true;
+									else
+									System.out.println(" Vous ne pouvez pas construire ce quartier. Veuillez choisir un autre quartier !");
+								}
+							} while ( (!peutConstruire) || (check) );
+							
+							if (carte != 0) 
+							{
 								//on constuit le quartier choisit
 								System.out.println("Le " + this.plateauDeJeu.getPersonnage(personnage).getNom()  + " a construit le "+this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte-1).getNom());
 								this.plateauDeJeu.getPersonnage(personnage)
 										.construire(this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1));
 							}
 						}
+						//Imlementation des effets agissants en fin de tour 
+						
+						//Implémentation de la Merveille Parc
+						Merveille.effetParc(personnage);
+						//Fin de l"implementation de la merveile Parc
+						
+						//Implémentation de la Merveille Hospice
+						//L'alchimiste utilise Hospice avant d'utiliser son pouvoir 
+						if(!this.plateauDeJeu.getPersonnage(personnage).getNom().equals("Alchimiste"))
+							Merveille.effetHospice(personnage);
+						//Fin de l"implementation de la merveile Hospice
 					}
-				} else {
+				} 
+				else {
 					System.out.println("Le " + this.plateauDeJeu.getPersonnage(personnage).getNom() + " est assasiné !");
 				}
 			} else {
@@ -364,6 +491,14 @@ public class Jeu {
 	
 	private void percevoirRessource(int personnage) 
 	{
+		// Implémentation de la merveille Forge 
+		Merveille.effetForge(personnage);
+		//Fin de l'effet de la Merveille Forge
+		
+		//Implémentation de la merveille Laboratoire
+		Merveille.effetLaboratoire(personnage);
+		//Fin de l'implémentation de la Merveille Laboratoire
+		
 		System.out.println("Voulez vous percevoir des cartes ou des pièces d'or ?");
 		System.out.println("1 : deux cartes");
 		System.out.println("2 : deux pièces d'or");
@@ -375,34 +510,40 @@ public class Jeu {
 				response = this.generateur.nextInt(3);
 			} while (response == 0);
 		}
-		if (response == 1) {
-		
-			System.out.println("Vous avez pioché deux cartes");
-			// Implémentation de la merveille Forge 
-			Merveille.effetForge(personnage);
-
-			//Fin de l'effet de la Merveille Forge
-			
-			//Implémentation de la merveille Laboratoire
-			Merveille.effetLaboratoire(personnage);
-			//Fin de l'implémentation de la Merveille Laboratoire
-			Quartier[] quartiers = new Quartier[2];
-			for (int i = 0; i < quartiers.length; i++) 
+		if (response == 1) 
+		{
+			if(Merveille.ObservatoireActif(personnage)
 			{
-				quartiers[i] = this.plateauDeJeu.getPioche().piocher();
+				Merveille.effetObservatoire(personnage)
 			}
-			System.out.println("Voici les cartes que vous avez pioché : ");
-			for (int i = 0; i < quartiers.length; i++) 
+			else
 			{
-				System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
-				+ quartiers[i].getType() + " - pièces : " + quartiers[i].getCout());
+				System.out.println("Vous avez pioché deux cartes");
+				Quartier[] quartiers = new Quartier[2];
+				for (int i = 0; i < quartiers.length; i++) 
+				{
+					quartiers[i] = this.plateauDeJeu.getPioche().piocher();
+				}
+				System.out.println("Voici les cartes que vous avez pioché : ");
+				for (int i = 0; i < quartiers.length; i++) 
+				{
+					System.out.println((i + 1) + " " + quartiers[i].getNom() + " - type : "
+					+ quartiers[i].getType() + " - pièces : " + quartiers[i].getCout());
+				}
 			}
+				
 			//Implémentation de la merveille Bibliothèque
 			Merveille.effetBibliotheque(personnage, quartiers);
 			//Fin de l'implémentation de la Merveille Bibliothèque	
-		} else {
+		}
+		else 
+		{
 			System.out.println("Vous avez perçu deux pièces d'or");
 			this.plateauDeJeu.getPersonnage(personnage).ajouterPieces();
+			
+			// Implémentation de la merveille Mine d'or
+			Merveille.effetMineDor(personnage);
+			//Fin de l'effet de la Merveille Mine d'or
 		}
 	}
 	
@@ -424,12 +565,46 @@ public class Jeu {
 				if(this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite() >= 7)
 					score += 2;
 			}
+			//Implémentation de la merveille Cour des Miracles
+			Merveille.effetCourDesMiracles(i);
+			//Fin de l'implémentation de la Cour des Miracles
+			
 			//Implémentation de la merveille Fontaine aux souhaits
 			score += Merveille.effetFontaineAuxSouhaits(i);
 			//Fin de l'implémentation de la Fontaine aux souhaits
+			
 			//Implémentation de la merveille Salle des Cartes
 			score += Merveille.effetSalleDesCartes(i);
 			//Fin de l'implémentation de la Merveille Salle de Cartes
+			
+			//Implémentation de la merveille Basilique
+			score += Merveille.effetBasilique(i);
+			//Fin de l'implémentation de la Merveille Basilique
+			
+			//Implémentation de la merveille Capitole
+			score += Merveille.effetCapitole(i);
+			//Fin de l'implémentation de la Merveille Capitole
+			
+			//Implémentation de la merveille Catacombes
+			score += Merveille.effetCatacombes(i);
+			//Fin de l'implémentation de la Merveille Catacombes
+			
+			//Implémentation de la merveille Dracoport
+			score += Merveille.effetDracoport(i);
+			//Fin de l'implémentation de la Merveille Dracoport
+			
+			//Implémentation de la merveille Statue Equestre
+			score += Merveille.effetStatueEquestre(i);
+			//Fin de l'implémentation de la Merveille Statue Equestre
+			
+			//Implémentation de la merveille Statue Tresor Imperial
+			score += Merveille.effetTresorImperial(i);
+			//Fin de l'implémentation de la Merveille Tresor Imperial
+			
+			//Implémentation de la merveille Tour d'ivoire
+			score += Merveille.effetTourIvoire(i);
+			//Fin de l'implémentation de la Merveille Tour d'ivoire
+			
 			scores[i][0] = score;
 			System.out.println( this.plateauDeJeu.getJoueur(i).getNom()+" a un total de "+score+" points !");
 		}
