@@ -416,7 +416,7 @@ public class Merveille {
 	
 	//Verification de la possesion de la merveille chantier
 	
-	public static boolan checkChantier(int i)
+	public static boolean checkChantier(int i)
 	{
 		if(Merveille.isExist(i, ListeMerveille.CHANTIER.getNom()))
 		{
@@ -456,6 +456,7 @@ public class Merveille {
 			System.out.println("Grâce à  votre Merveille Bibliothèque, vous gardez vos deux cartes!");
 			for (int i = 0; i < quartiers.length; i++) {
 				plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[i]);
+			}
 		}else 
 		{
 			System.out.println("Quelle carte voulez vous gardez ? : ");
@@ -540,7 +541,6 @@ public class Merveille {
 		{
 			return score;
 		}
-		return score;
 	}
 	
 	//Fin de l'effet Trésor Impérial	

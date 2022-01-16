@@ -11,9 +11,27 @@ public class Condottiere extends Personnage {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void percevoirRessourcesSpecifiques() {
-		super.percevoirRessourcesSpecifiques();
-	}
+		public void percevoirRessourcesSpecifiques() {
+		if(getAssassine()){
+
+        }else{
+            
+            Quartier[] cite = getJoueur().getCite();
+            int count=0;
+            for(int i=0; i < cite.length;i++){
+                if(cite[i] != null && cite[i].getType().equals("MILITAIRE")){
+                    count++;
+                }
+                if(cite[i] != null && cite[i].getNom().equals("Ecole de Magie")){
+                    count +=1;
+                    System.out.println("L'école de magie vous rapprote 1 piece de plus");
+                }
+            }
+
+            getJoueur().ajouterPieces(count);
+            
+        }	}
+        	
 	
 	@Override
 	public void utiliserPouvoir() {

@@ -129,7 +129,7 @@ public abstract class Personnage implements Comparable<Personnage>{
 	 */
 	public void percevoirRessourcesSpecifiques() {
 		if (this.joueur == null || this.assassine) {
-			System.out.println("Aucune ressources sp�cifiques");
+			System.out.println("Aucune ressources spécifiques");
 		}
 	}
 
