@@ -50,7 +50,7 @@ public enum ListeMerveille {
 
 
 	private final String nom;
-	private final String type;
+	private  String type;
 	private int coutConstruction;
 	private String caracteristique;
 	
@@ -89,6 +89,10 @@ public enum ListeMerveille {
 	 */
 	public String getType() {
 		return type;
+	}
+	public void setType(String typeVoulu) 
+	{
+		this.type = typeVoulu;
 	}
 
 }
