@@ -287,7 +287,7 @@ public class Jeu {
 								//Fin de l'effet de la merveille Manufacture
 								
 								//Implémentation de la Merveille Tripot
-								Merveille.effetManufacture(personnage, carte);
+								Merveille.effetTripot(personnage, carte);
 								//Fin de l'effet de la merveille Tripot
 								
 								//on vérifie si le joueur peut construire la carte choisie
@@ -341,7 +341,7 @@ public class Jeu {
 								//Fin de l'Implementation de la construction de la Necropole avec destruction de carte quartier dans cite 
 								
 								//Implementation de la construction de quartier en detruisant la merveille Chantier
-								if(checkChantier(personnage))
+								if(Merveille.checkChantier(personnage))
 								{
 									System.out.println(" Voulez vous detruire votre merveille Chantier afin de construire votre carte ? ");
 									boolean chan = false;
