@@ -550,9 +550,11 @@ public class Jeu {
 	private void calculDesPoints() {
 		int[][] scores = new int[this.plateauDeJeu.getNombreJoueurs()][1];
 		int score = 0;
-		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) {
+		for (int i = 0; i < this.plateauDeJeu.getNombreJoueurs(); i++) 
+		{
 			ArrayList<String> quartiers = new ArrayList<>();
-			for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) {
+			for (int j = 0; j < this.plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
+			{
 				score += this.plateauDeJeu.getJoueur(i).getCite()[j].getCout();
 				if(!quartiers.contains(this.plateauDeJeu.getJoueur(i).getCite()[j].getType()))
 					quartiers.add(this.plateauDeJeu.getJoueur(i).getCite()[j].getType());
