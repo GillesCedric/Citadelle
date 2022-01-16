@@ -50,7 +50,18 @@ public class Jeu {
 	}
 	
 	private void afficherBienvenue() {
-		System.out.println("Bienvenue dans le jeu Citadelles");
+		System.out.print("\r\n"
+				+ "________/\\\\\\\\\\\\\\\\\\____________________________________________/\\\\\\__________________/\\\\\\\\\\\\_____/\\\\\\\\\\\\___________________        \r\n"
+				+ " _____/\\\\\\////////____________________________________________\\/\\\\\\_________________\\////\\\\\\____\\////\\\\\\___________________       \r\n"
+				+ "  ___/\\\\\\/____________/\\\\\\_____/\\\\\\____________________________\\/\\\\\\____________________\\/\\\\\\_______\\/\\\\\\___________________      \r\n"
+				+ "   __/\\\\\\_____________\\///___/\\\\\\\\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\\\\___________\\/\\\\\\______/\\\\\\\\\\\\\\\\_____\\/\\\\\\_______\\/\\\\\\________/\\\\\\\\\\\\\\\\__     \r\n"
+				+ "    _\\/\\\\\\______________/\\\\\\_\\////\\\\\\////__\\////////\\\\\\_____/\\\\\\\\\\\\\\\\\\____/\\\\\\/////\\\\\\____\\/\\\\\\_______\\/\\\\\\______/\\\\\\/////\\\\\\_    \r\n"
+				+ "     _\\//\\\\\\____________\\/\\\\\\____\\/\\\\\\________/\\\\\\\\\\\\\\\\\\\\___/\\\\\\////\\\\\\___/\\\\\\\\\\\\\\\\\\\\\\_____\\/\\\\\\_______\\/\\\\\\_____/\\\\\\\\\\\\\\\\\\\\\\__   \r\n"
+				+ "      __\\///\\\\\\__________\\/\\\\\\____\\/\\\\\\_/\\\\___/\\\\\\/////\\\\\\__\\/\\\\\\__\\/\\\\\\__\\//\\\\///////______\\/\\\\\\_______\\/\\\\\\____\\//\\\\///////___  \r\n"
+				+ "       ____\\////\\\\\\\\\\\\\\\\\\_\\/\\\\\\____\\//\\\\\\\\\\___\\//\\\\\\\\\\\\\\\\/\\\\_\\//\\\\\\\\\\\\\\/\\\\__\\//\\\\\\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\\\\__\\//\\\\\\\\\\\\\\\\\\\\_ \r\n"
+				+ "        _______\\/////////__\\///______\\/////_____\\////////\\//___\\///////\\//____\\//////////__\\/////////__\\/////////____\\//////////__\r\n"
+				+ "");
+		System.out.println("\r\n*-*-*-*-*Bienvenue dans le jeu Citadelles*-*-*-*-*\n");
 	}
 	
 	private void afficherMenu() {
@@ -71,7 +82,19 @@ public class Jeu {
 	}
 	
 	private void quitter() {
-		System.out.println("Au revoir et à  très bientôt !!!");
+		System.out.println("\r\n"
+				+ "  /$$$$$$                                                          /$$           /$$ /$$ /$$\r\n"
+				+ " /$$__  $$                                                        |__/          | $$| $$| $$\r\n"
+				+ "| $$  \\ $$ /$$   /$$        /$$$$$$   /$$$$$$  /$$    /$$ /$$$$$$  /$$  /$$$$$$ | $$| $$| $$\r\n"
+				+ "| $$$$$$$$| $$  | $$       /$$__  $$ /$$__  $$|  $$  /$$//$$__  $$| $$ /$$__  $$| $$| $$| $$\r\n"
+				+ "| $$__  $$| $$  | $$      | $$  \\__/| $$$$$$$$ \\  $$/$$/| $$  \\ $$| $$| $$  \\__/|__/|__/|__/\r\n"
+				+ "| $$  | $$| $$  | $$      | $$      | $$_____/  \\  $$$/ | $$  | $$| $$| $$                  \r\n"
+				+ "| $$  | $$|  $$$$$$/      | $$      |  $$$$$$$   \\  $/  |  $$$$$$/| $$| $$       /$$ /$$ /$$\r\n"
+				+ "|__/  |__/ \\______/       |__/       \\_______/    \\_/    \\______/ |__/|__/      |__/|__/|__/\r\n"
+				+ "                                                                                            \r\n"
+				+ "                                                                                            \r\n"
+				+ "                                                                                            \r\n"
+				+ "");
 		System.exit(0);
 	}
 	
@@ -182,6 +205,7 @@ public class Jeu {
 	private void tourDeJeu() {
 		//on effectue le choix des personnages
 		choixPersonnages();
+		System.out.println("***************Le tour de jeu commence***************");
 		for (int personnage = 0; personnage <this.plateauDeJeu.getNombrePersonnages(); personnage++) {
 			System.out.println("Le jeu appelle " + this.plateauDeJeu.getPersonnage(personnage).getNom());
 			//on vérifie si le personnage est associé à un joueur
@@ -354,7 +378,7 @@ public class Jeu {
 									}
 									if(chan)
 									{
-										System.out.println(" La merveille Chantier est retirée de votre citée  ");
+										System.out.println(" La merveille Chantier est retirée de votre cité  ");
 										this.plateauDeJeu.getPersonnage(personnage).getJoueur().retirerQuartierDansCite("Chantier");
 										this.plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).setCout(0);
 									}
@@ -436,9 +460,11 @@ public class Jeu {
 			if(this.plateauDeJeu.getJoueur(j).getPersonnage().getRang() > joueurPersoRangMax)
 				joueurPersoRangMax = j;
 		}
+		System.out.println("***************Fin du tour de jeu***************");
 	}
 	
 	private void choixPersonnages() {
+		System.out.println("***************Choix des personnages***************");
 		ArrayList<Joueur> joueurs = new ArrayList<>();
 		Personnage persoFaceVisible1 = null;
 		Personnage persoFaceVisible2 = null;
