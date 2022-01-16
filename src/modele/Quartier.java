@@ -1,7 +1,7 @@
 package modele;
 
 /**
- * @author Gilles Cédric
+ * @author Gilles Cï¿½dric
  * @since 10/11/2021
  * @see https://moodle3.esaip.org/mod/resource/view.php?id=36274
  *
@@ -77,6 +77,11 @@ public class Quartier {
 	public boolean getEmbelli() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public boolean setEmbelli(boolean tf) {
+		// TODO Auto-generated method stub
+		return tf;
 	}
 
 	public void embellir() {

@@ -3,6 +3,10 @@
  */
 package modele;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import controlleur.Interaction;
 import utilities.Caracteristiques;
 import utilities.Nom;
 import utilities.Rang;
@@ -30,7 +34,7 @@ public class Artiste extends Personnage {
         int nbEmbelli=0;
         int compte = 0;
         while(compte<super.getJoueur().nbQuartiersDansCite()) {
-        	if(super.getJoueur().getCite()[compte].getEstEmbelli()==true) {
+        	if(super.getJoueur().getCite()[compte].getEmbelli()==true) {
         		nbEmbelli+=1;
         	}
         	compte++;
@@ -57,7 +61,7 @@ public class Artiste extends Personnage {
                 			ArrayList<Quartier> listeAEmbellir = new ArrayList<Quartier>();
                 			compte=0;
                 			for(int j=0; j<super.getJoueur().nbQuartiersDansCite(); j++) {
-                				if(super.getJoueur().getCite()[j].getEstEmbelli()==false) {
+                				if(super.getJoueur().getCite()[j].getEmbelli()==false) {
                 					compte +=1;
                 					listeAEmbellir.add(super.getJoueur().getCite()[j]);
                 					System.out.println(compte+". "+super.getJoueur().getCite()[j].getNom()+" co�t : "+super.getJoueur().getCite()[j].getCout());
@@ -100,7 +104,7 @@ public class Artiste extends Personnage {
         int nbEmbelli=0;
         int compte = 0;
         while(compte<super.getJoueur().nbQuartiersDansCite()) {
-        	if(super.getJoueur().getCite()[compte] != null && super.getJoueur().getCite()[compte].getEstEmbelli()==true) {
+        	if(super.getJoueur().getCite()[compte] != null && super.getJoueur().getCite()[compte].getEmbelli()==true) {
         		nbEmbelli+=1;
         	}
         	compte++;
@@ -125,7 +129,7 @@ public class Artiste extends Personnage {
                 			ArrayList<Quartier> listeAEmbellir = new ArrayList<Quartier>();
                 			compte=0;
                 			for(int j=0; j<super.getJoueur().nbQuartiersDansCite(); j++) {
-                				if(super.getJoueur().getCite()[j] != null && super.getJoueur().getCite()[j].getEstEmbelli()==false) {
+                				if(super.getJoueur().getCite()[j] != null && super.getJoueur().getCite()[j].getEmbelli()==false) {
                 					compte +=1;
                 					listeAEmbellir.add(super.getJoueur().getCite()[j]);
                 				}

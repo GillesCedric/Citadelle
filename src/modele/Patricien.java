@@ -71,10 +71,11 @@ public class Patricien extends Personnage {
                 while(getPlateau().getPioche().nombreElements()>0 && i< NbCarte){
                     getJoueur().ajouterQuartierDansMain(getPlateau().getPioche().piocher());
                     i++;
+
 	}
 	
 	public void reinitialiser() 
 	{
-		super.reintitialiser();
+		super.reinitialiser();
 	}
 }

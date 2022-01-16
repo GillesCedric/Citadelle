@@ -9,6 +9,8 @@ import utilities.Rang;
 import java.util.ArrayList;
 import java.util.Random;
 
+import controlleur.Interaction;
+
 /**
  * @author cedri
  *

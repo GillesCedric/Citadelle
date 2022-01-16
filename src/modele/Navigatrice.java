@@ -3,6 +3,9 @@
  */
 package modele;
 
+import java.util.Random;
+
+import controlleur.Interaction;
 import utilities.Caracteristiques;
 import utilities.Nom;
 import utilities.Rang;
