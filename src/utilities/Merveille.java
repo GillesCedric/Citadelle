@@ -29,6 +29,8 @@ public class Merveille {
 	/**
 	 * @param args
 	 */
+	//Début de l'implémentation de l'effet Manufacture
+	
 	public static void effetManufacture(int personnage, int carte) {
 		if(Merveille.isExist(personnage, ListeMerveille.MANUFACTURE.getNom()))
 		{
@@ -39,6 +41,23 @@ public class Merveille {
 				}
 		}
 	}
+	
+	//Fin de l'implémentation de l'effet Manufacture
+	
+	//Début de l'implémentation de l'effet Tripot
+	
+	public static void effetTripot(int personnage, int carte) {
+		if(Merveille.isExist(personnage, ListeMerveille.TRIPOT.getNom()))
+		{
+			for (ListeMerveille merveille : ListeMerveille.values()) 
+			{
+					plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(carte - 1).setCout(1);//Le coût de n'importe quel quartier passe à 1
+			}
+		}
+	}
+	
+	//Fin de l'implémentation de l'effet Tripot
+	
 	//Début de l'implémentation de l'effet Forge
 	
 	public static void effetForge(int personnage) 
@@ -113,7 +132,7 @@ public class Merveille {
 	public static int effetSalleDesCartes(int i) {
 		int score = 0;
 		//Implémentatioon de l'augmentation du score pour chaque carte dans la main du joueur
-		if(Merveille.isExist(i, ListeMerveille.SALLES_DES_CARTES.getNom()))
+		if(Merveille.isExistJoueur(i, ListeMerveille.SALLES_DES_CARTES.getNom()))
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
 			{
@@ -127,7 +146,7 @@ public class Merveille {
 	public static int effetBasilique(int i)
 	{
 		int score = 0;
-		if(Merveille.isExist(i, ListeMerveille.BASILIQUE.getNom()))
+		if(Merveille.isExistJoueur(i, ListeMerveille.BASILIQUE.getNom()))
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++)
 			{
@@ -144,7 +163,8 @@ public class Merveille {
 	
 	public static int effetCapitole(int i) 
 	{
-		if(Merveille.isExist(i, ListeMerveille.CAPITOLE.getNom()))
+		int score=0;
+		if(Merveille.isExistJoueur(i, ListeMerveille.CAPITOLE.getNom()))
 		{
 			int nbReli = 0;
 			int nbCom = 0;
@@ -171,6 +191,11 @@ public class Merveille {
 				score+=3;	
 			}
 		}
+		else
+		{
+			return score;
+		}
+
 		return score;
 	}
 	//Fin de l'implémentation dde l'effet Capitole 
@@ -211,7 +236,7 @@ public class Merveille {
 		{
 			System.out.println("Grace à votre Merveille OBSERVATOIRE vous pouvez piocher 3 cartes plutot que 2 et en choisir une");
 			Quartier[] quartiers = new Quartier[3];
-			for (int j = 0; i < quartiers.length; i++) 
+			for (int j = 0; j < quartiers.length; j++) 
 			{
 				quartiers[j] = plateauDeJeu.getPioche().piocher();
 			}
@@ -224,16 +249,28 @@ public class Merveille {
 			
 		}
 	}
-		
+	 
 	//Fin de l'implémentation de l'effet Observatoire
-		
+	
+	//Verification de l'existence de observatoire
+	public static boolean ObservatoireActif(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.OBSERVATOIRE.getNom()))
+		{
+			return true;
+		}
+		else 
+			return false;
+	}
+	// Fin de la verification 
+	
 	//Début de l'implémentation de l'effet Tour d'Ivoire
 		
 	public static int effetTourIvoire(int i) 
 	{
 		int score = 0;
 		int nbMerveille = 0; 
-		if(Merveille.isExist(i, ListeMerveille.TOUR_DIVOIRE.getNom()))
+		if(Merveille.isExistJoueur(i, ListeMerveille.TOUR_DIVOIRE.getNom()))
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
 			{
@@ -262,27 +299,20 @@ public class Merveille {
 				
 			}
 		}
+		else
+		{
+			return score;
+		}
 		return score;
 	}
 		
 	//Fin de l'implémentation de l'effet Tour d'Ivoire
-	
-	//Début de l'implémentation de l'effet Monument
-		
-	public static void effetMonument (int personnage)
-	{
-		//la restriction de construction du Monument sera implémentée dans tour de Jeu
-		if(Merveille.isExist(personnage, ListeMerveille.MONUMENT.getNom()))
-			plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansCite()
-	}
-		
-	//Fin de l'implémentation de l'effet Monument
 		
 	//Début de l'implémentation de l'effet Cour des Miracles
 		
 	public static void effetCourDesMiracles (int i)
 	{
-		if(Merveille.isExist(i, ListeMerveille.COURS_DES_MIRACLES.getNom()))
+		if(Merveille.isExistJoueur(i, ListeMerveille.COURS_DES_MIRACLES.getNom()))
 		{
 			System.out.println("Quel type désirez vous avoir pour la Cour des Miracles ?");
 			for(i=0; i < 4; i++)
@@ -310,7 +340,7 @@ public class Merveille {
 	public static int effetDracoport(int i)
 	{
 		int score = 0;
-		if(Merveille.isExist(i, ListeMerveille.DRACOPORT.getNom()))
+		if(Merveille.isExistJoueur(i, ListeMerveille.DRACOPORT.getNom()))
 		{
 			score += 2;
 			return score;
@@ -322,7 +352,7 @@ public class Merveille {
 		
 	//Début de l'effet Ecole de Magie
 		
-	public static void efetEcoleDeMagie(int personnage)
+	public static void effetEcoleDeMagie(int personnage)
 	{
 		if(Merveille.isExist(personnage, ListeMerveille.ECOLE_DE_MAGIE.getNom()))
 		{
@@ -345,7 +375,7 @@ public class Merveille {
 	
 	//Début de l'effet Parc
 		
-	public static void effetPARC(int i)
+	public static void effetParc(int i)
 	{
 		if(Merveille.isExist(i, ListeMerveille.PARC.getNom()))
 		{
@@ -368,14 +398,43 @@ public class Merveille {
 	}
 		
 	//Fin de l'effet PARC	
+	
+	//Début de l'effet Hospice
 		
+	public static void effetHospice(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.HOSPICE.getNom()))
+		{
+			if( plateauDeJeu.getPersonnage(i).getJoueur().nbPieces() == 0)
+			{
+				System.out.println(" Grace à votre merveille Hospice vous recevez une piece d'or " );
+				plateauDeJeu.getPersonnage(i).getJoueur().ajouterPieces(1);
+			}
+		}
+	}
+	//Fin de l'effet Hospice
+	
+	//Verification de la possesion de la merveille chantier
+	
+	public static boolan checkChantier(int i)
+	{
+		if(Merveille.isExist(i, ListeMerveille.CHANTIER.getNom()))
+		{
+			return true;
+		}
+		else 
+			return false;
+	}
+	
+	//Fin de la verification 
+	
 	//Début de l'effet Fontaine aux souhaits
 		
 	public static int effetFontaineAuxSouhaits(int i) {
 		// la somme des différents bonus des merveilles de sa cité
 		int score = 0;
 		//Implémentatioon de l'augmentation du score pour chaque carte dans la main du joueur
-		if(Merveille.isExist(i, ListeMerveille.FONTAINE_AUX_SOUHAITS.getNom()))
+		if(Merveille.isExistJoueur(i, ListeMerveille.FONTAINE_AUX_SOUHAITS.getNom()))
 		{
 			for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
 			{
@@ -394,26 +453,30 @@ public class Merveille {
 		//Parcours de la cité du Joueur afin de déternminé si le joueur possède la Merveille Forge
 		if(Merveille.isExist(personnage, ListeMerveille.BIBLIOTHEQUE.getNom()))
 		{
+			System.out.println("Grâce à  votre Merveille Bibliothèque, vous gardez vos deux cartes!");
+			for (int i = 0; i < quartiers.length; i++) {
+				plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[i]);
+		}else 
+		{
 			System.out.println("Quelle carte voulez vous gardez ? : ");
 			int carte = 0;
 			if (!plateauDeJeu.getPersonnage(personnage).getJoueur().isSimule())
 				carte = Interaction.lireUnEntier(1, 3);
-			else {
-				do {
+			else 
+			{
+				do 
+				{
 					carte = random.nextInt(3);
 				} while (carte == 0);
 			}
 			plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[carte-1]);
-			for (int i = 0; i < quartiers.length; i++) {
-				if (!quartiers[carte-1].getNom().equals(quartiers[i].getNom())) {
+			for (int i = 0; i < quartiers.length; i++) 
+			{
+				if (!quartiers[carte-1].getNom().equals(quartiers[i].getNom())) 
+				{
 					plateauDeJeu.getPioche().ajouter(quartiers[i]);
 					break;
 				}
-			}
-		}else {
-			System.out.println("Grâce à  votre Merveille Bibliothèque, vous gardez vos deux cartes!");
-			for (int i = 0; i < quartiers.length; i++) {
-				plateauDeJeu.getPersonnage(personnage).ajouterQuartier(quartiers[i]);
 			}
 		}
 	}
@@ -433,14 +496,28 @@ public class Merveille {
 		}
 		return false;
 	}
-	
-	//Methode permetant de vérifier si une merveille existe dans la main d'un joueur
-	private static boolean isExistDansMain(int personnage, String name) 
+		
+	// Verifie si un joueur et non le joueur d'un perso, posede une merveille( efficace pour le calcul des points)
+	private static boolean isExistJoueur(int i, String name) 
 	{
 		//Parcours de la cité du joueur afin de déterminer si il possède la merveille 
-		for (int j = 0; j < plateauDeJeu.getPersonnage(personnage).getJoueur().nbQuartiersDansMain(); j++) 
+		for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansCite(); j++) 
 		{
-			if(plateauDeJeu.getPersonnage(personnage).getJoueur().getMain().get(j).getNom().equals(name))
+			if(plateauDeJeu.getJoueur(i).getMain().get(j).getNom().equals(name))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+		
+	//Methode permetant de vérifier si une merveille existe dans la main d'un joueur
+	private static boolean isExistDansMain(int i, String name) 
+	{
+		//Parcours de la main du joueur afin de déterminer si il possède la merveille 
+		for (int j = 0; j < plateauDeJeu.getJoueur(i).nbQuartiersDansMain(); j++) 
+		{
+			if(plateauDeJeu.getJoueur(i).getMain().get(j).getNom().equals(name))
 			{
 				return true;
 			}
@@ -449,14 +526,18 @@ public class Merveille {
 	}
 	
 	
-	//Debut de l'effet Trésor Impérial
+	//Debut de l'effet Tresor Impérial
 		
-	public static int effetTrésorImpérial(int i) 
+	public static int effetTresorImperial(int i) 
 	{
 		int score = 0;
-		if(Merveille.isExist(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
+		if(Merveille.isExistJoueur(i, ListeMerveille.TRESOR_IMPERIAL.getNom()))
 		{
 			score += plateauDeJeu.getJoueur(i).nbPieces();
+			return score;
+		}
+		else
+		{
 			return score;
 		}
 		return score;
@@ -467,7 +548,8 @@ public class Merveille {
 
 	public static int effetStatueEquestre(int i) 
 	{
-		if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
+		int score=0;
+		if(Merveille.isExistJoueur(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
 		{
       			if (plateauDeJeu.getJoueur(i).getPossedeCouronne()) 
 			{
@@ -475,28 +557,24 @@ public class Merveille {
 				return score;
        			}
 		}
+		else
+		{
+			return score;
+		}
 		return score;
 	} 
 			
 		
 
-public static boolean effetCarriere(int i) 
-{
-	if(Merveille.isExist(i, ListeMerveille.STATUE_EQUESTRE.getNom()))
+	public static boolean effetCarriere(int i) 
 	{
-		if(plateauDeJeu.getJoueur(i).getPersonnage().getRang() != (Rang.ECHEVIN) || 
-		   plateauDeJeu.getJoueur(i).getPersonnage().getRang() != (Rang.DIPLOMATE) ||
-		   plateauDeJeu.getJoueur(i).getPersonnage().getRang() != (Rang.CAPITAINE) ) 
+		if(Merveille.isExist(i, ListeMerveille.CARRIERE.getNom()))
 		{
-			boolean doubleur= true;
-			return doubleur;
-		} 
-		else return false;
-	}
-	else
-		return false;
-  		
-} 
+			return true;
+		}
+		else
+			return false;
+	} 
 		
 	
 }
