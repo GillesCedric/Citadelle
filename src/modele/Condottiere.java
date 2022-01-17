@@ -37,10 +37,6 @@ public class Condottiere extends Personnage {
 	public void utiliserPouvoir() {
 		// TODO Auto-generated method stub
 		
-		/*
-		 *Ajouter l'effet du pouvoir de l'eveque qui l'empêche d'etre detruit par la condottière 
-		 *c bon c fait
-		 */
 		
 		
 		int joueurChoisi;
