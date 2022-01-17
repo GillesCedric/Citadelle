@@ -491,7 +491,7 @@ public class Jeu {
 			System.out.println("Le personnage \""+persoFaceVisible2.getNom()+"\" est écarté face visible");
 			System.out.println("Un personnage est écarté face cachée");
 			if(joueurs.get(0).getPossedeCouronne())
-				System.out.println("Vous avez la couronne ! ");
+				System.out.println(joueurs.get(0).getNom()+"possède la couronne ! ");
 			for (int i = 0; i < this.plateauDeJeu.getNombrePersonnages(); i++) {
 				if(this.plateauDeJeu.getPersonnage(i).getJoueur() == null && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceCache.getNom()) && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceVisible1.getNom()) && !this.plateauDeJeu.getPersonnage(i).getNom().equals(persoFaceVisible2.getNom())) {
 					System.out.println((i+1)+" "+this.plateauDeJeu.getPersonnage(i).getNom());
